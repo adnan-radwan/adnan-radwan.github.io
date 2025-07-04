@@ -1,4 +1,84 @@
 Add style.css for site design
+<link rel="stylesheet" href="style.css" />
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f9f9f9;
+  color: #222;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header {
+  background: #012941;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.quote {
+  font-style: italic;
+  margin-top: 10px;
+  color: #cce7ff;
+}
+
+.book {
+  background: white;
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 900px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.book img {
+  float: right;
+  max-width: 200px;
+  margin-left: 20px;
+  border-radius: 8px;
+}
+
+.book h2 {
+  margin-top: 0;
+  color: #012941;
+}
+
+.meta {
+  list-style: none;
+  padding: 0;
+}
+
+.meta li {
+  margin-bottom: 6px;
+}
+
+.buy-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  background: #012941;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.links a {
+  color: #012941;
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #eee;
+  margin-top: 40px;
+}
+
 
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
