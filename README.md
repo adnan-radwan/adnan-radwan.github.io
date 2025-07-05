@@ -54,5 +54,3 @@ git add .
 git commit -m "إطلاق الموقع"
 git push -u origin master
 
-
-
