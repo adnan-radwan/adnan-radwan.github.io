@@ -1,0 +1,178 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdfdfd;
+  color: #222;
+  margin: 0;
+  padding: 0;
+  direction: rtl;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #004d7a;
+  color: white;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header p {
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.cover {
+  max-width: 300px;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.description {
+  max-width: 700px;
+  text-align: right;
+}
+
+.description p {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.meta {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.meta li {
+  margin-bottom: 0.5rem;
+}
+
+.buy-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #004d7a;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.buy-button:hover {
+  background-color: #006fa1;
+}
+
+.audio-poem {
+  margin-top: 2rem;
+}
+
+.audio-poem h3 {
+  margin-bottom: 0.5rem;
+}
+
+.links {
+  margin-top: 2rem;
+}
+
+.links p {
+  margin: 0.3rem 0;
+}
+
+.links a {
+  color: #004d7a;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.back-button {
+  margin-top: 2rem;
+}
+
+.back-button a {
+  text-decoration: none;
+  color: #444;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #eee;
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+/* الصفحة الرئيسية */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.book-card {
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.book-card:hover {
+  transform: scale(1.03);
+}
+
+.book-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.book-card h2 {
+  font-size: 1rem;
+  color: #004d7a;
+  margin: 0;
+}
+
+📂 root/
+│
+├── index.html                ← الصفحة الرئيسية لجميع الكتب
+├── about.html                ← صفحة السيرة الذاتية
+├── style.css                 ← ملف التنسيق الموحد
+│
+├── 📂 books/                 ← صفحات الكتب الفردية
+│   ├── self-mastery.html
+│   ├── novel-thoughts.html
+│   ├── letters-east-21.html
+│   ├── letters-east-23.html
+│   ├── ghost-of-rare.html
+│   ├── harouf.html
+│   └── mals.html
+│
+├── 📂 images/                ← صور الأغلفة وصورتك الشخصية
+│   └── adnan.jpg
+│
+└── 📂 media/                 ← ملف الصوت الخاص بالسيرة الذاتية
+    └── adnan-bio.mp3
