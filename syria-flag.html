@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>علم سوريا الحرة</title>
+  <style>
+    body {
+      background-color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .flag {
+      width: 300px;
+      height: 180px;
+      border: 2px solid #333;
+      animation: wave 2s infinite ease-in-out;
+    }
+
+    .stripe {
+      height: 33.33%;
+      width: 100%;
+    }
+
+    .green { background-color: #007a3d; }
+    .white { background-color: white; position: relative; }
+    .black { background-color: black; }
+
+    .star {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      color: red;
+      animation: pulse 1.5s infinite;
+    }
+
+    .star:nth-child(1) { left: 25%; }
+    .star:nth-child(2) { left: 47%; }
+    .star:nth-child(3) { left: 69%; }
+
+    @keyframes wave {
+      0%, 100% { transform: rotateZ(0deg); }
+      50% { transform: rotateZ(1deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateY(-50%) scale(1); }
+      50% { transform: translateY(-50%) scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <div class="flag">
+    <div class="stripe green"></div>
+    <div class="stripe white">
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+    </div>
+    <div class="stripe black"></div>
+  </div>
+</body>
+</html>
+https://adnan-radwan.github.io/syria-flag.html
