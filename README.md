@@ -1,6 +1,28 @@
 
 ├── index.html                ← الصفحة الرئيسية لجميع الكتب
-├── about.html                ← صفحة السيرة الذاتية
+├── about.html 
+.chat-widget {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #004d7a;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.chat-button {
+  background-color: white;
+  color: #004d7a;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+← صفحة السيرة الذاتية
 ├── style.css                 ← ملف التنسيق الموحد
 │
 ├── 📂 books/                 ← صفحات الكتب الفردية
