@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>علم سوريا الحرة ثلاثي الأبعاد</title>
+  <style>
+    body {
+      background: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      perspective: 1000px;
+    }
+
+    .flag-wrapper {
+      width: 320px;
+      height: 192px;
+      transform-style: preserve-3d;
+      animation: wave 4s infinite linear;
+    }
+
+    .flag {
+      width: 100%;
+      height: 100%;
+      border: 2px solid #222;
+      transform-origin: left center;
+      transform: rotateY(10deg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .stripe {
+      flex: 1;
+      width: 100%;
+    }
+
+    .green { background-color: #007a3d; }
+    .white {
+      background-color: white;
+      position: relative;
+    }
+    .black { background-color: black; }
+
+    .star {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.8rem;
+      color: red;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    .star:nth-child(1) { left: 25%; }
+    .star:nth-child(2) { left: 47%; }
+    .star:nth-child(3) { left: 69%; }
+
+    @keyframes wave {
+      0% { transform: rotateY(10deg); }
+      25% { transform: rotateY(12deg); }
+      50% { transform: rotateY(10deg); }
+      75% { transform: rotateY(8deg); }
+      100% { transform: rotateY(10deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateY(-50%) scale(1); }
+      50% { transform: translateY(-50%) scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <div class="flag-wrapper">
+    <div class="flag">
+      <div class="stripe green"></div>
+      <div class="stripe white">
+        <span class="star">★</span>
+        <span class="star">★</span>
+        <span class="star">★</span>
+      </div>
+      <div class="stripe black"></div>
+    </div>
+  </div>
+</body>
+</html>
