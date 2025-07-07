@@ -51,12 +51,32 @@ https://www.adnan-radwan.com/assets/
   </div>
 
   <div class="logo-section">
+
+logo-gold.png
+
+logo-horizontal.png
+
+logo-animated-glow.webp
+
+logo-bw.png
+
+logo-email.png
+
+adnan-visual-identity.pdf
+
+adnan-visual-identity.zip
+<img src="assets/icons/facebook.svg" />
+
     <img src="assets/logo-gold.png" alt="الشعار الرسمي" />
     <img src="assets/logo-horizontal.png" alt="الشعار الأفقي" />
     <img src="assets/logo-animated-glow.webp" alt="الشعار المتحرك" />
     <br>
     <a class="download-btn" href="assets/adnan-visual-identity.zip">⬇ تحميل الهوية البصرية</a>
   </div>
+<div style="text-align: center; margin-top: 2rem;">
+  <img src="assets/usa-eagle-logo.png" alt="الشعار الأمريكي" style="max-width: 220px;" />
+  <p style="font-size: 14px; color: #888;">رمز القوة والهوية الأمريكية</p>
+</div>
 
   <div class="logo-section">
     <h3>شارك الصفحة:</h3>
@@ -88,6 +108,10 @@ telegram.svg
 twitter.svg
 
 <img src="assets/icons/facebook.svg" />
+<div style="text-align: center; margin-top: 2rem;">
+  <img src="assets/usa-eagle-logo.png" alt="الشعار الأمريكي" style="max-width: 220px;" />
+  <p style="font-size: 14px; color: #888;">رمز القوة والهوية الأمريكية</p>
+</div>
 
 icons
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28">
@@ -100,3 +124,11 @@ icons
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="28" height="28">
   <path fill="#1DA1F2" d="M153.6 301.6c94.4 0 146-78.2 146-146v-6.6c10-7.2 18.7-16.3 25.6-26.6-9.3 4.1-19.3 6.9-29.8 8.2 10.7-6.4 18.8-16.5 22.6-28.6-10 6-21 10.3-32.7 12.6-9.4-10-22.7-16.2-37.5-16.2-28.4 0-51.5 23-51.5 51.5 0 4 .5 7.9 1.3 11.6-42.8-2.1-80.8-22.6-106.2-53.7-4.4 7.5-6.9 16.3-6.9 25.6 0 17.7 9 33.3 22.7 42.5-8.3-.3-16.1-2.5-22.9-6.3v.6c0 24.7 17.6 45.3 40.9 50-4.3 1.2-8.8 1.8-13.5 1.8-3.3 0-6.5-.3-9.6-.9 6.5 20.3 25.4 35.1 47.8 35.5-17.5 13.7-39.5 21.9-63.4 21.9-4.1 0-8.2-.2-12.2-.7 22.6 14.5 49.5 23 78.4 23"/>
 </svg>
+<div style="text-align: center; margin-top: 2rem;">
+  <img src="assets/usa-eagle-logo.png" alt="الشعار الأمريكي" style="max-width: 220px;" />
+  <p style="font-size: 14px; color: #888;">رمز القوة والهوية الأمريكية</p>
+</div>
+<div style="text-align: center; margin-top: 2rem;">
+  <img src="assets/usa-eagle-logo.png" alt="الشعار الأمريكي" style="max-width: 220px;" />
+  <p style="font-size: 14px; color: #888;">رمز القوة والهوية الأمريكية</p>
+</div>
