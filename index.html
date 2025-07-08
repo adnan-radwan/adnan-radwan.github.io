@@ -48,6 +48,79 @@
     }
   </style>
 </head>
+  <header class="main-header">
+  <div class="header-overlay">
+    <h1>عدنان كمال رضوان</h1>
+    <h2>Adnan Kamal Radwan</h2>
+    <p>أدب وفكر وهوية</p>
+  </div>
+</header>
+/* رأس الصفحة بتأثير Parallax و Zoom-in */
+.main-header {
+  background-image: url('media/header-akr.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  animation: zoomFade 3s ease forwards;
+}
+
+/* النص المتحرك فوق الصورة */
+.header-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: gold;
+  font-family: 'Amiri', serif;
+  animation: fadeSlide 2s ease-in-out forwards;
+}
+
+.header-overlay h1 {
+  font-size: 1.8rem;
+  margin: 0;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.header-overlay h2 {
+  font-size: 1.2rem;
+  margin: 0;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.header-overlay p {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  text-shadow: 1px 1px 3px #000;
+}
+
+/* تأثيرات الحركة */
+@keyframes zoomFade {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeSlide {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+تم
 <body>
   <header class="site-header">
     <h1>📚 جميع مؤلفات عدنان كمال رضوان</h1>
