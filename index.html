@@ -8,14 +8,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
 </head>
 <body>
+<!-- واجهة ترحيبية -->
+<div id="welcome-box" class="welcome-box">
+  <div class="welcome-text">
+    <h2>مرحبًا بك في موقع عدنان كمال رضوان</h2>
+    <p>رسالتي إليكم هي رسالة: <strong>أدب، وفكر، وهوية</strong>.</p>
+    <button onclick="closeWelcome()">متابعة</button>
+  </div>
+</div>
+<!-- واجهة ترحيبية -->
+<div id="welcome-box" class="welcome-box">
+  <div class="welcome-text">
+    <h2>مرحبًا بك في موقع عدنان كمال رضوان</h2>
+    <p>رسالتي إليكم هي رسالة: <strong>أدب، وفكر، وهوية</strong>.</p>
+    <button onclick="closeWelcome()">متابعة</button>
+  </div>
+</div>
 
-  <!-- رأس الصفحة -->
-  <header class="main-header">
-    <div class="header-overlay">
-      <h1>عدنان كمال رضوان</h1>
-      <h2>Adnan Kamal Radwan</h2>
-      <p>أدب وفكر وهوية</p>
-    </div>
+<!-- مشغل الصوت -->
+<audio id="welcome-audio">
+  <source src="audio/welcome.mp3" type="audio/mpeg" />
+  متصفحك لا يدعم تشغيل الصوت.
+</audio>
+
   </header>
 
   <!-- ترويسة الموقع -->
