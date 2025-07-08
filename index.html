@@ -24,6 +24,65 @@
 </audio>
 
 <body>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>جميع مؤلفات عدنان رضوان</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="main-header">
+    <!-- محتوى الهيدر الأصلي -->
+  </header>
+
+  <!-- ✅ واجهة ترحيبية -->
+  <div id="welcome-box" class="welcome-box">
+    <div class="welcome-text">
+      <h2>مرحبًا بك في موقع عدنان كمال رضوان</h2>
+      <p>رسالتي إليكم هي رسالة: <strong>أدب، وفكر، وهوية</strong>.</p>
+      <button onclick="closeWelcome()">متابعة</button>
+    </div>
+  </div>
+
+  <!-- ✅ مشغل الصوت -->
+  <audio id="welcome-audio">
+    <source src="audio/welcome.mp3" type="audio/mpeg" />
+    متصفحك لا يدعم تشغيل الصوت.
+  </audio>
+
+  <!-- ✅ سكربت التشغيل -->
+  <script>
+    function closeWelcome() {
+      document.getElementById('welcome-box').style.display = 'none';
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+      const audio = document.getElementById('welcome-audio');
+      const playAudio = () => {
+        audio.play().catch((e) => {
+          console.log("لم يتم تشغيل الصوت تلقائيًا:", e.message);
+        });
+        window.removeEventListener('click', playAudio);
+      };
+      window.addEventListener('click', playAudio);
+    });
+  </script>
+
+  <!-- ✅ باقي محتوى الصفحة -->
+  <main>
+    <!-- جميع مؤلفات عدنان كمال رضوان -->
+    <!-- ... -->
+  </main>
+
+  <footer>
+    <!-- حقوق النشر والتواصل -->
+  </footer>
+
+</body>
+</html>
 
   <header class="main-header"></header>
 
