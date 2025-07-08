@@ -1,6 +1,42 @@
 Add style.css for site design
 <link rel="stylesheet" href="style.css" />
 body {
+/* خصائص عامة للصفحة */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f9f9f9;
+  color: #222;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+/* رأس الصفحة بتأثير Parallax و Zoom-in */
+.main-header {
+  background-image: url('media/header-akr-transparent.png');
+  background-color: #004d7a;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  animation: zoomFade 3s ease forwards;
+}
+
+/* النص المتحرك فوق الصورة */
+.header-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: gold;
+  font-family: 'Amiri', serif;
+  animation: fadeSlide 2s ease-in-out forwards;
+}
+
 .header-overlay h1 {
   font-size: 1.8rem;
   margin: 0;
@@ -19,6 +55,7 @@ body {
   text-shadow: 1px 1px 3px #000;
 }
 
+/* تأثيرات الحركة */
 @keyframes zoomFade {
   0% {
     opacity: 0;
@@ -41,16 +78,11 @@ body {
   }
 }
 
-/* خصائص عامة للصفحة */
-body {
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: #f9f9f9;
-  color: #222;
-  line-height: 1.8;
-  margin: 0;
-  padding: 0;
-}
-padding: 20px;
+/* تنسيق الكتب */
+.book {
+  background: white;
+  margin: 40px auto;
+  padding: 20px;
   max-width: 900px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
@@ -68,6 +100,7 @@ padding: 20px;
   color: #012941;
 }
 
+/* بيانات الكتاب */
 .meta {
   list-style: none;
   padding: 0;
@@ -77,6 +110,7 @@ padding: 20px;
   margin-bottom: 6px;
 }
 
+/* زر الشراء */
 .buy-button {
   display: inline-block;
   margin-top: 10px;
@@ -87,9 +121,37 @@ padding: 20px;
   border-radius: 6px;
 }
 
+/* روابط */
 .links a {
   color: #012941;
   text-decoration: none;
+}
+
+/* ترويسة الموقع */
+.site-header {
+  background: #012941;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.quote {
+  font-style: italic;
+  margin-top: 10px;
+  color: #cce7ff;
+}
+
+/* تذييل الصفحة */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #eee;
+  margin-top: 40px;
 }
 
 footer {
