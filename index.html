@@ -18,6 +18,10 @@
   <audio id="welcome-audio">
   <source src="audio/welcome.mp3" type="audio/mpeg" />
 </audio>
+<audio id="welcome-audio">
+  <source src="audio/welcome.mp3" type="audio/mpeg" />
+  متصفحك لا يدعم تشغيل الصوت.
+</audio>
 
 <body>
 
@@ -55,6 +59,19 @@
   </script>
 
 </body>
+  <script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const audio = document.getElementById('welcome-audio');
+    const playAudio = () => {
+      audio.play().catch((e) => {
+        console.log("لم يتم تشغيل الصوت تلقائيًا:", e.message);
+      });
+      window.removeEventListener('click', playAudio);
+    };
+    window.addEventListener('click', playAudio);
+  });
+</script>
+
 </html>
 
 <body>
