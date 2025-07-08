@@ -40,6 +40,16 @@
   <footer>
     <p>© 2025 عدنان كمال رضوان. جميع الحقوق محفوظة.</p>
   </footer>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const audio = document.getElementById('welcome-audio');
+    const playAudio = () => {
+      audio.play().catch(() => {});
+      window.removeEventListener('click', playAudio);
+    };
+    window.addEventListener('click', playAudio);
+  });
+</script>
 
 </body>
 </html>
@@ -100,6 +110,11 @@
     <p>أدب وفكر وهوية</p>
   </div>
 </header>
+  <audio id="welcome-audio">
+  <source src="audio/welcome.mp3" type="audio/mpeg" />
+  متصفحك لا يدعم تشغيل الصوت.
+</audio>
+
 /* رأس الصفحة بتأثير Parallax و Zoom-in */
 .main-header {
   background-image: url('media/header-akr.jpg');
