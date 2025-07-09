@@ -103,6 +103,48 @@ Add style.css for site design
 }
 
 <body/>
+ <div class="header">
+    <h1>الهوية البصرية الرسمية</h1>
+    <div class="quote">
+      وطني ومجد قاسيون تألقي<br />
+      ما بين المآذن كان الحمام<br />
+      يطوف السماء خارج محراب<br />
+      وفي الداخل يطيبها الإحرام<br />
+
+      <strong>— عدنان كمال رضوان</strong>
+    </div>
+  </div>
+
+  <div class="logo-section">
+    <img src="assets/logo-gold.png" alt="الشعار الرسمي" />
+    <img src="assets/logo-horizontal.png" alt="الشعار الأفقي" />
+    <img src="assets/logo-animated-glow.webp" alt="الشعار المتحرك" />
+    <br />
+    <a class="download-btn" href="assets/adnan-visual-identity.zip">⬇ تحميل الهوية البصرية</a>
+  </div>
+
+  <div class="logo-section">
+    <h3>شارك الصفحة:</h3>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.adnan-radwan.com/visual-identity.html" target="_blank">
+        <img src="http://www.w3.org/2000/svg" alt="Facebook" />
+      </a>
+      <a href="https://t.me/share/url?url=https://www.adnan-radwan.com/visual-identity.html" target="_blank">
+        <img src="assets/icons/telegram.svg" alt="Telegram" />
+      </a>
+      <a href="https://twitter.com/intent/tweet?url=https://www.adnan-radwan.com/visual-identity.html" target="_blank">
+        <img src="assets/icons/twitter.svg" alt="Twitter" />
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    جميع الحقوق محفوظة © عدنان كمال رضوان – 2025
+  </div>
+
+
+</!doctype>
+
 <script>
   function closeWelcome() {
     document.getElementById('welcome-box').style.display = 'none';
