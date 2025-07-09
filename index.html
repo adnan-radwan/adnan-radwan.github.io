@@ -133,6 +133,23 @@
 
 </body>
   <script>
+  function closeWelcome() {
+    document.getElementById('welcome-box').style.display = 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    const audio = document.getElementById('welcome-audio');
+    const playAudio = () => {
+      audio.play().catch((e) => {
+        console.log("لم يتم تشغيل الصوت تلقائيًا:", e.message);
+      });
+      window.removeEventListener('click', playAudio);
+    };
+    window.addEventListener('click', playAudio);
+  });
+</script>
+
+  <script>
   window.addEventListener('DOMContentLoaded', function () {
     const audio = document.getElementById('welcome-audio');
     const playAudio = () => {
