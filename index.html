@@ -92,11 +92,20 @@ font-family: 'Aref Ruqaa', serif;
     </div>
   </div>
 
-  <!-- ✅ مشغل الصوت -->
-  <audio id="welcome-audio">
-    <source src="audio/welcome.mp3" type="audio/mpeg" />
-    متصفحك لا يدعم تشغيل الصوت.
-  </audio>
+  <audio id="welcome-audio" autoplay muted>
+  <source src="https://github.com/adnan-radwan/adnan-radwan.github.io/raw/refs/heads/main/welcome.mp3" type="audio/mpeg">
+  متصفحك لا يدعم تشغيل الصوت.
+</audio>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const audio = document.getElementById('welcome-audio');
+    audio.muted = false;
+    audio.play().catch((e) => {
+      console.log("⚠️ المتصفح منع التشغيل التلقائي:", e.message);
+    });
+  });
+</script>
 
   <!-- ✅ سكربت التشغيل -->
   <script>
