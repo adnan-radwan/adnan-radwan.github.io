@@ -139,6 +139,22 @@ adnan-visual-identity.zip
   </div>
 
 </body>
+<div class="header" style="text-align: center; margin-top: 2rem;">
+  <img src="https://www.adnan-radwan.com/assets/logo-gold.png" alt="الشعار الرسمي" style="max-width: 180px; margin-bottom: 15px;">
+
+  <h1 style="font-family: 'Cairo', sans-serif; font-size: 26px; color: #222; margin-bottom: 10px;">
+    الهوية البصرية الرسمية
+  </h1>
+
+  <div class="quote" style="font-size: 17px; color: #555; max-width: 600px; margin: 0 auto; line-height: 1.8;">
+    وطني ومجد قاسيون تألقي<br>
+    ما بين المآذن كان الحمام<br>
+    يطوف السماء خارج محراب<br>
+    وفي الداخل يطيبها الإحرام<br>
+    <strong style="display: block; margin-top: 10px;">— عدنان كمال رضوان</strong>
+  </div>
+</div>
+
 </html>
 
 icons/
