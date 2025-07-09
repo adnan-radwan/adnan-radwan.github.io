@@ -53,6 +53,14 @@ https://www.adnan-radwan.com/assets/
 <img src="assets/logo-animated-glow.webp" alt="الشعار المتحرك" />
 
 <body>
+<div style="text-align: center; margin-top: 40px;">
+  <img src="https://www.adnan-radwan.com/assets/logo-gold.png" alt="الشعار الذهبي" style="max-width: 220px; margin: 20px;">
+  <img src="https://www.adnan-radwan.com/assets/logo-horizontal.png" alt="الشعار الأفقي" style="max-width: 220px; margin: 20px;">
+  <img src="https://www.adnan-radwan.com/assets/logo-animated-glow.webp" alt="الشعار المتوهج" style="max-width: 220px; margin: 20px;">
+  <img src="https://www.adnan-radwan.com/assets/logo-bw.png" alt="الشعار بالأبيض والأسود" style="max-width: 220px; margin: 20px;">
+  <img src="https://www.adnan-radwan.com/assets/logo-email.png" alt="شعار توقيع البريد" style="max-width: 220px; margin: 20px;">
+  <img src="https://www.adnan-radwan.com/assets/usa-eagle-logo.png" alt="الشعار الأمريكي" style="max-width: 220px; margin: 20px;">
+</div>
 
   <div class="header">
     <h1>الهوية البصرية الرسمية</h1>
