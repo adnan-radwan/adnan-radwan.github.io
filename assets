@@ -37,6 +37,13 @@ https://www.adnan-radwan.com/assets/
     .social-icons img { width: 28px; margin: 0 5px; vertical-align: middle; }
   </style>
 </head>
+<img src="assets/logo-gold.png" alt="الشعار الرسمي" />
+<img src="assets/logo-horizontal.png" alt="الشعار الأفقي" />
+<img src="assets/logo-animated-glow.webp" alt="الشعار المتحرك" />
+<img src="assets/logo-gold.png" alt="الشعار الرسمي" />
+<img src="assets/logo-horizontal.png" alt="الشعار الأفقي" />
+<img src="assets/logo-animated-glow.webp" alt="الشعار المتحرك" />
+
 <body>
 
   <div class="header">
@@ -51,7 +58,17 @@ https://www.adnan-radwan.com/assets/
   </div>
 
   <div class="logo-section">
+logo-gold.png
 
+logo-horizontal.png
+
+logo-animated-glow.webp
+
+icons/facebook.svg
+
+icons/telegram.svg
+
+icons/twitter.svg
 logo-gold.png
 
 logo-horizontal.png
