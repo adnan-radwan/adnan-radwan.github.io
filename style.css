@@ -103,6 +103,35 @@ Add style.css for site design
 }
 
 <body/>
+.logo-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.logo-card {
+  text-align: center;
+  width: 220px;
+}
+.logo-card img {
+  width: 200px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #ccc;
+}
+.logo-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #0077cc;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+}
+.logo-card a:hover {
+  background: #005fa3;
+}
+
+
  <div class="header">
     <h1>الهوية البصرية الرسمية</h1>
     <div class="quote">
