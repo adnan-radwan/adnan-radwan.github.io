@@ -663,3 +663,7 @@ Literature, Thought, and Identity
     document.getElementById('video-content-en').style.display = lang === 'en' ? 'block' : 'none';
   }
 </script>
+<video controls autoplay muted loop style="max-width: 800px; width: 100%; border-radius: 16px;">
+  <source src="assets/adnan-identity.mp4" type="video/mp4">
+  متصفحك لا يدعم تشغيل الفيديو.
+</video>
