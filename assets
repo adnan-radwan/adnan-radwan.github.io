@@ -515,3 +515,9 @@ My Cultural Identity – A Poetic Promotional Film by Adnan Radwan
 </script>
 My Message to You:
 Literature, Thought, and Identity
+
+<video controls autoplay muted loop style="...">
+  <source src="assets/adnan-identity.mp4" type="video/mp4">
+  متصفحك لا يدعم تشغيل الفيديو.
+</video>
+<img src="assets/adnan-cover-ar.jpg" alt="صورة الغلاف" style="...">
