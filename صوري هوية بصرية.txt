@@ -5,6 +5,7 @@ logo-glow-blue.png
 signature-email.png
 
 logo-eagle.png
+<img src="assets/adnan-cover-ar.jpg" alt="صورة الغلاف" style="...">
 
 logo-syrian-eagle.png
 adnan-radwan.github.io
