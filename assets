@@ -30,6 +30,7 @@
     <button onclick="switchLang('ar')" style="margin: 0 10px; padding: 10px 20px; background-color: #d4af37; border: none; border-radius: 6px; font-weight: bold;">العربية</button>
     <button onclick="switchLang('en')" style="margin: 0 10px; padding: 10px 20px; background-color: #d4af37; border: none; border-radius: 6px; font-weight: bold;">English</button>
   </div>
+<img src="assets/adnan-cover-ar.jpg" alt="صورة الغلاف">
 
   <div id="video-content-ar" style="display: block;">
     <h2 style="font-family: 'Cairo', sans-serif; font-size: 36px;">✨ الفيلم الترويجي لهويتي الثقافية</h2>
