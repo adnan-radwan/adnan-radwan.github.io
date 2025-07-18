@@ -47,3 +47,8 @@ git add .
 git commit -m "إطلاق الموقع"
 git push -u origin master
 
+My Message to You:
+Literature, Thought, and Identity
+My Cultural Identity – A Poetic Promotional Film by Adnan Radwan
+My Cultural Identity – A Poetic Promotional Film by Adnan Radwan
+"images/adnan-cover-ar.jpg"
