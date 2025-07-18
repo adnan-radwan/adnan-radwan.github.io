@@ -672,3 +672,12 @@ Literature, Thought, and Identity
   <source src="assets/adnan-identity.mp4" type="video/mp4">
   متصفحك لا يدعم تشغيل الفيديو.
 </video>
+<iframe width="800" height="450"
+        src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+        title="ADNAN RADWAN Identity Film"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        style="border-radius: 16px; box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);">
+</iframe>
+<source src="assets/adnan-identity.mp4" type="video/mp4">
