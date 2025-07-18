@@ -7,3 +7,5 @@ signature-email.png
 logo-eagle.png
 
 logo-syrian-eagle.png
+adnan-radwan.github.io
+"images/adnan-cover-ar.jpg"
