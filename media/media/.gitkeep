@@ -199,3 +199,7 @@ Literature, Thought, and Identity
 My Cultural Identity – A Poetic Promotional Film by Adnan Radwan
 My Cultural Identity – A Poetic Promotional Film by Adnan Radwan
 "images/adnan-cover-ar.jpg"
+<video controls autoplay muted loop style="...">
+  <source src="assets/adnan-identity.mp4" type="video/mp4">
+  متصفحك لا يدعم تشغيل الفيديو.
+</video>
