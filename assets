@@ -777,3 +777,18 @@ adnan-cultural-fade.png
   <source src="assets/adnan-identity.mp4" type="video/mp4">
   متصفحك لا يدعم تشغيل الفيديو.
 </video>
+
+<div style="margin-top: 40px;">
+  <p style="font-size: 18px; margin-bottom: 12px;">📤 Share the film with others:</p>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.adnan-radwan.com/my-message-en.html" target="_blank" style="margin: 0 10px;">
+    <img src="assets/facebook-icon.png" alt="Facebook" style="width: 32px;" />
+  </a>
+  <a href="https://twitter.com/intent/tweet?url=https://www.adnan-radwan.com/my-message-en.html&text=Discover%20Adnan%20Radwan's%20cultural%20identity%20film" target="_blank" style="margin: 0 10px;">
+    <img src="assets/twitter-icon.png" alt="X" style="width: 32px;" />
+  </a>
+  <a href="https://wa.me/?text=Watch%20Adnan%20Radwan's%20cultural%20identity%20film:%20https://www.adnan-radwan.com/my-message-en.html" target="_blank" style="margin: 0 10px;">
+    <img src="assets/whatsapp-icon.png" alt="WhatsApp" style="width: 32px;" />
+  </a>
+</div>
+
+facebook-icon.png, twitter-icon.png, whatsapp-icon.png) موجودة داخل
