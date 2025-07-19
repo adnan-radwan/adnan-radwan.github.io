@@ -689,3 +689,33 @@ Literature, Thought, and Identity
 <img src="assets/feather-digital.png" alt="ريشة ذهبية" />
 <img src="assets/writing-glow.png" alt="كتابة على الهواء" />
 <img src="assets/adnan-cultural-fade.png" alt="ADNAN وسط رموز" />
+
+
+<section style="background-color: #0d0d0d; padding: 60px 20px; text-align: center; color: #f5f5f5; font-family: 'Cairo', sans-serif;">
+  <h2 style="font-size: 36px; color: #FFD700;">🎞️ الفيلم الترويجي لهويتي الثقافية</h2>
+
+  <!-- مشهد 1: الريشة الذهبية -->
+  <div style="margin: 40px 0; animation: fadeIn 3s ease-in;">
+    <img src="assets/feather-digital.png" alt="ريشة ذهبية" style="max-width: 720px; border-radius: 12px; box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);"/>
+    <p style="font-size: 24px; margin-top: 20px; color: #FFD700;">«حريتي أن أكون قويًا»</p>
+  </div>
+
+  <!-- مشهد 2: الكتابة في الهواء -->
+  <div style="margin: 40px 0; animation: fadeIn 3s ease-in 2s;">
+    <img src="assets/writing-glow.png" alt="كتابة على الهواء" style="max-width: 720px; border-radius: 12px; box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);"/>
+    <p style="font-size: 22px; margin-top: 20px;">رسالتي إليكم هي رسالة: <br> أدب، فكر، وهوية</p>
+  </div>
+
+  <!-- مشهد 3: الاسم وسط الرموز -->
+  <div style="margin: 40px 0; animation: fadeIn 3s ease-in 4s;">
+    <img src="assets/adnan-cultural-fade.png" alt="ADNAN وسط رموز" style="max-width: 720px; border-radius: 12px; box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);"/>
+    <p style="font-size: 28px; margin-top: 20px; color: #FFD700; font-weight: bold;">ADNAN RADWAN</p>
+  </div>
+</section>
+
+<style>
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+</style>
