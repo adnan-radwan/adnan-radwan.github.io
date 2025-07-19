@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>هوية ثقافية تتكلم – ADNAN RADWAN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      font-family: 'Cairo', sans-serif;
+      text-align: center;
+      padding: 60px 20px;
+    }
+    h2 { color: #FFD700; font-size: 36px; margin-bottom: 20px; }
+    video {
+      max-width: 800px; width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    }
+    p { font-size: 20px; margin-top: 30px; line-height: 1.8; }
+    a.button {
+      display: inline-block; margin-top: 30px;
+      padding: 14px 28px;
+      background-color: #FFD700;
+      color: #111;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 id="video-title">🎞️ ADNAN RADWAN – هوية ثقافية تتكلم</h2>
+
+  <video controls autoplay muted loop>
+    <source src="assets/adnan-identity.mp4" type="video/mp4">
+    متصفحك لا يدعم تشغيل الفيديو.
+  </video>
+
+  <p id="video-description">
+    في هذا الفيلم القصير، تتجلّى الهوية الثقافية كما لم تُعرض من قبل:<br>
+    الحرية، الأدب، الفكر، والرمز يجتمعون في مشاهد تتكلّم باسمك ورؤيتك.<br>
+    بصوت عربي هادئ وموسيقى رمزية، تُروى رسالتك بلمسة فنية خالدة.
+  </p>
+
+  <a id="video-button" class="button" href="#identity-message">اكتشف الرسالة</a>
+
+  <script>
+    const lang = navigator.language || navigator.userLanguage;
+    if (!lang.startsWith('ar')) {
+      document.getElementById("video-title").innerHTML = "🎞️ ADNAN RADWAN – A Cultural Identity Speaks";
+      document.getElementById("video-description").innerHTML = "In this short film, cultural identity unfolds like never before:<br>Freedom, literature, thought, and symbolism converge in scenes that speak your name and vision.<br>With soft Arabic narration and symbolic music, your message is told with lasting elegance.";
+      document.getElementById("video-button").innerHTML = "Discover the Message";
+    }
+  </script>
+
+</body>
+</html>
