@@ -804,3 +804,8 @@ facebook-icon.png, twitter-icon.png, whatsapp-icon.png) موجودة داخل
     <img src="assets/whatsapp-icon.png" alt="WhatsApp" style="width: 32px;" />
   </a>
 </div>
+
+
+git add assets/adnan-identity.mp4
+git commit -m "Add promotional video"
+git push
