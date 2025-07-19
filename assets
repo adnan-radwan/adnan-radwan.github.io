@@ -760,6 +760,9 @@ adnan-cultural-fade.png
     <source src="assets/adnan-identity.mp4" type="video/mp4">
     Your browser does not support video playback.
   </video>
+git add assets/adnan-identity.mp4
+git commit -m "إضافة الفيديو الترويجي"
+git push
 
   <p style="font-size: 20px; margin-top: 30px; line-height: 1.8;">
     In this short film, cultural identity unfolds like never before:<br>
