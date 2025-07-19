@@ -771,3 +771,9 @@ adnan-cultural-fade.png
     Discover the Message
   </a>
 </section>
+
+
+<video controls autoplay muted loop>
+  <source src="assets/adnan-identity.mp4" type="video/mp4">
+  متصفحك لا يدعم تشغيل الفيديو.
+</video>
