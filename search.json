@@ -1,1 +1,98 @@
 <script src="https://unpkg.com/lunr/lunr.js"></script>
+<a href="search.html" style="color: #d4af37; font-weight: bold;">بحث 🔍</a>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>بحث في الموقع – ADNAN RADWAN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lunr/lunr.min.js"></script>
+  <style>
+    body {
+      background-color: #000;
+      color: #d4af37;
+      font-family: 'Cairo', sans-serif;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 26px;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      margin-bottom: 30px;
+      background-color: #111;
+      color: #f5f5f5;
+    }
+    .result {
+      margin-bottom: 24px;
+      border-bottom: 1px dashed #333;
+      padding-bottom: 16px;
+    }
+    .result a {
+      color: #d4af37;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .result p {
+      color: #ccc;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔍 بحث في محتوى الموقع</h1>
+  <input type="text" id="searchBox" placeholder="اكتب كلمة أو عبارة...">
+  <div id="results"></div>
+
+  <script>
+    let idx, documents = [];
+
+    fetch('search.json')
+      .then(response => response.json())
+      .then(data => {
+        documents = data;
+        idx = lunr(function () {
+          this.ref('url');
+          this.field('title');
+          this.field('content');
+          data.forEach(doc => this.add(doc));
+        });
+      });
+
+    document.getElementById('searchBox').addEventListener('input', function () {
+      const query = this.value.trim();
+      const resultsContainer = document.getElementById('results');
+      resultsContainer.innerHTML = '';
+
+      if (!query || !idx) return;
+
+      const results = idx.search(query);
+      if (results.length === 0) {
+        resultsContainer.innerHTML = '<p>لا توجد نتائج مطابقة.</p>';
+      } else {
+        results.forEach(result => {
+          const doc = documents.find(d => d.url === result.ref);
+          const snippet = doc.content.substring(0, 120) + '...';
+          resultsContainer.innerHTML += `
+            <div class="result">
+              <a href="${doc.url}">${doc.title}</a>
+              <p>${snippet}</p>
+            </div>
+          `;
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
