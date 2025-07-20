@@ -816,3 +816,8 @@ git push
   <source src="https://adnan-radwan.github.io/assets/adnan-identity.mp4" type="video/mp4">
   متصفحك لا يدعم عرض الفيديو. يُرجى استخدام رابط مباشر أو تحديث المتصفح.
 </video>
+golden-quill.png
+<h2 style="text-align: center; display: flex; justify-content: center; align-items: center; gap: 12px;">
+  <img src="assets/golden-quill.png" alt="Golden Quill" style="height: 32px;">
+  رسالة تتوهّج في فضاء الهوية
+</h2>
