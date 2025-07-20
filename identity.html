@@ -64,3 +64,50 @@
   <source src="https://adnan-radwan.github.io/assets/adnan-identity.mp4" type="video/mp4">
   متصفحك لا يدعم عرض الفيديو. يُرجى استخدام رابط مباشر أو تحديث المتصفح.
 </video>
+<div style="padding: 40px; background-color: #fffbea; font-family: 'Cairo', sans-serif; border-radius: 20px;">
+  <div style="text-align: center; margin-bottom: 30px;">
+    <button onclick="showArabic()" style="padding: 10px 20px; margin: 5px; font-weight: bold; border-radius: 8px; border: none; background-color: #c7a95b; color: white;">العربية</button>
+    <button onclick="showEnglish()" style="padding: 10px 20px; margin: 5px; font-weight: bold; border-radius: 8px; border: none; background-color: #555; color: white;">English</button>
+  </div>
+
+  <!-- Arabic Message -->
+  <div id="arabic-section" style="display: block; animation: fadeIn 1s ease-in-out;">
+    <h2 style="text-align: center;">رسالة تتوهّج في فضاء الهوية</h2>
+    <p style="font-size: 18px; line-height: 1.9; color: #333;">
+      حين تتداخل الحرية بالقوة، ويتحوّل الفكر إلى أدب نابض بالحياة... يولد فيلمٌ قصيرٌ يُجسّد بصريًا رسالةً لا تُنسى.
+      تتوهج الجملة الأولى في فضاء مظلم: <em>«حريتي أن أكون قويًا»</em>، فتُعلن بداية رحلة الهوية.
+      تكتب الريشة الذهبية على الهواء: <em>«رسالتي إليكم هي رسالة: أدب، فكر، وهوية»</em>.
+      وفي الختام، يسطع الاسم <strong>ADNAN RADWAN</strong> وسط رموز ثقافية تتلاشى، وكأنها تترك أثرًا بصريًا في ذاكرة المتلقي.
+    </p>
+  </div>
+
+  <!-- English Message -->
+  <div id="english-section" style="display: none; animation: fadeIn 1s ease-in-out; font-family: 'Georgia', serif;">
+    <h2 style="text-align: center;">A Message Glowing in the Realm of Identity</h2>
+    <p style="font-size: 18px; line-height: 1.9; color: #333;">
+      When freedom intertwines with strength, and thought transforms into living literature…  
+      a short film emerges—visually embodying a message that resonates.
+      It opens with a luminous phrase in the dark: <em>“My freedom is to be strong.”</em>
+      Then, a golden quill writes through the air: <em>“My message to you is a message of: Literature, Thought, and Identity.”</em>
+      Finally, <strong>ADNAN RADWAN</strong> glows amidst fading cultural symbols, imprinting a visual memory upon the viewer.
+    </p>
+  </div>
+
+  <script>
+    function showArabic() {
+      document.getElementById('arabic-section').style.display = 'block';
+      document.getElementById('english-section').style.display = 'none';
+    }
+    function showEnglish() {
+      document.getElementById('arabic-section').style.display = 'none';
+      document.getElementById('english-section').style.display = 'block';
+    }
+  </script>
+
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</div>
