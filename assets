@@ -821,3 +821,27 @@ golden-quill.png
   <img src="assets/golden-quill.png" alt="Golden Quill" style="height: 32px;">
   رسالة تتوهّج في فضاء الهوية
 </h2>
+<section style="background-color: #000; padding: 60px 20px; color: #f5f5f5; font-family: 'Cairo', sans-serif; text-align: center;">
+  <!-- عنوان سينمائي متوهّج -->
+  <h2 style="font-size: 32px; margin-bottom: 20px; color: #d4af37; letter-spacing: 1px;">
+    «حريتي أن أكون قويًا»
+  </h2>
+
+  <!-- الفيديو داخل إطار فني -->
+  <div style="max-width: 800px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(212,175,55,0.3);">
+    <video controls autoplay muted loop width="100%" style="display: block;">
+      <source src="assets/adnan-identity.mp4" type="video/mp4">
+      متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+  </div>
+
+  <!-- وصف رمزي مختصر -->
+  <p style="margin-top: 30px; font-size: 18px; color: #ccc;">
+    فيلم ترويجي يُعبّر عن هوية ثقافية تنسجها القوة والرسالة، حيث يلتقي الأدب بالفكر، ويُكتب النور بريشة ذهبية.
+  </p>
+
+  <!-- زر أنيق -->
+  <a href="message.html" style="margin-top: 30px; display: inline-block; padding: 14px 28px; background-color: #d4af37; color: #111; text-decoration: none; font-weight: bold; border-radius: 8px;">
+    اكتشف الرسالة الكاملة
+  </a>
+</section>
