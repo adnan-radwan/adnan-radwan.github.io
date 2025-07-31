@@ -64,7 +64,44 @@
   </style>
 </head>
 <body>
+<!-- 🔴 شريط أخبار قناة الإخبارية السورية + توقيع ADNAN RADWAN -->
+<div style="
+  background: linear-gradient(to bottom, #2c2c2c, #4a4a4a);
+  padding: 15px;
+  font-family: 'Cairo', sans-serif;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+">
 
+  <!-- 📰 الشريط الإخباري -->
+  <div id="syrianNewsLive">🟠 جارٍ تحميل الأخبار...</div>
+
+  <!-- 🔖 توقيعك -->
+  <div style="color:#c8ffb0; font-weight:bold;">
+    ★ ADNAN K. RADWAN — رسالة إعلامية بهوية بصرية وشعرية
+  </div>
+
+</div>
+
+<script>
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.youtube.com/feeds/videos.xml?channel_id=UCXwVZb8gYwWZzZzZzZzZzZz") // ← غيّر هذا الـID لاحقًا
+  .then(res => res.json())
+  .then(data => {
+    const item = data.items[0];
+    document.getElementById("syrianNewsLive").innerHTML = `
+      🟠 <strong style="color:#ffeb3b;">${item.title}</strong>  
+      — <a href="${item.link}" target="_blank" style="color:#fff; text-decoration:none;">شاهد</a>`;
+  })
+  .catch(err => {
+    document.getElementById("syrianNewsLive").innerText = "⚠️ تعذر تحميل الأخبار التلقائية.";
+  });
+</script>
+
+  
   <div class="header">
     <h1>🇸🇾 سوريا... أرضُ القصيدة واليقين</h1>
     <p>«رسالتي إليكم هي رسالة: أدب، فكر، وهوية»</p>
