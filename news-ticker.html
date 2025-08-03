@@ -1,2 +1,30 @@
 <div id="news-ticker-container"></div>
 <script src="/assets/js/news-ticker.js"></script>
+<div class="adnan-bar fade-in">
+  <div class="adnan-identity">
+    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgg3R23ltGNcj11F9nQNdUZREICbu9unaMQbQK-SU_9_935WDS7mFP7EV11s6owDvr6R69Y3tPo8eb7FKuchHqgmh1KNJT6orbE-jB3RxjEzRRSHR0aZaEGpmGg_yu3yLXtbvk9g9CNDk721lwIAI2MHQkuEVVDiyz2QVe-0tniIRIrTup_3f1JwIMSg3QB/w139-h139-rw/copilot_image_1752364910850.jpeg" alt="Adnan Radwan Logo" class="logo-pulse">
+    <span>تابعونا</span>
+  </div>
+  <div class="adnan-links">
+    <!-- روابط التواصل كما في النسخة السابقة -->
+    <span class="signature">✒️ «حريتي أن أكون قويًا» ADNAN RADWAN</span>
+  </div>
+</div>
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2.5s ease-in-out forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.logo-pulse {
+  animation: pulse 3s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+<div id="news-ticker-container">
+  <iframe src="/news-ticker.html" style="width:100%; height:70px; border:none;"></iframe>
+</div>
