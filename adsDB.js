@@ -2,6 +2,36 @@ window.adsDB = [
 {"id":1,"title":"هاتف ذكي بشاشة كبيرة","desc":"هاتف ذكي بشاشة 6.5 إنش وبطارية تدوم طوال اليوم.","image":"https://via.placeholder.com/800x450?text=Ad+1","link":"/p/ad1.html","category":"electronics","featured":true,"status":"active","expires":"2025-12-30","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":2,"title":"سماعات بلوتوث لاسلكية","desc":"سماعات عازلة للضوضاء بجودة صوت نقية.","image":"https://via.placeholder.com/800x450?text=Ad+2","link":"/p/ad2.html","category":"electronics","featured":true,"status":"active","expires":"2025-11-15","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":3,"title":"ساعة ذكية متعددة الوظائف","desc":"ساعة ذكية لمتابعة صحتك وإشعارات هاتفك.","image":"https://via.placeholder.com/800x450?text=Ad+3","link":"/p/ad3.html","category":"electronics","featured":false,"status":"active","expires":"2025-10-20","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
+ function generateDbObject() {
+    const id       = document.getElementById('dbId').value       || 1;
+    const title    = document.getElementById('dbTitle').value    || "عنوان الإعلان";
+    const desc     = document.getElementById('dbDesc').value     || "وصف مختصر للإعلان";
+    const image    = document.getElementById('dbImage').value    || ("https://via.placeholder.com/800x450?text=Ad+" + id);
+    const link     = document.getElementById('dbLink').value     || ("/p/ad" + id + ".html");
+    const category = document.getElementById('dbCategory').value || "other";
+    const featured = document.getElementById('dbFeatured').value === "true";
+    const status   = document.getElementById('dbStatus').value   || "active";
+    const expires  = document.getElementById('dbExpires').value  || "2025-12-31";
+    const oldPrice = document.getElementById('dbOldPrice').value || 0;
+    const newPrice = document.getElementById('dbNewPrice').value || 0;
+
+    const obj = {
+      id: Number(id),
+      title: title,
+      desc: desc,
+      image: image,
+      link: link,
+      category: category,
+      featured: featured,
+      status: status,
+      expires: expires,
+      oldPrice: Number(oldPrice),
+      newPrice: Number(newPrice)
+    };
+
+    document.getElementById('dbOutput').value =
+      JSON.stringify(obj, null, 2) + ",";
+  }
 {"id":4,"title":"حاسوب محمول للأعمال","desc":"لابتوب خفيف الوزن بأداء قوي مناسب للأعمال.","image":"https://via.placeholder.com/800x450?text=Ad+4","link":"/p/ad4.html","category":"electronics","featured":true,"status":"active","expires":"2025-09-18","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":5,"title":"شاشة عرض عالية الدقة","desc":"شاشة 27 إنش بدقة عالية لتجربة مشاهدة مريحة.","image":"https://via.placeholder.com/800x450?text=Ad+5","link":"/p/ad5.html","category":"electronics","featured":false,"status":"active","expires":"2025-08-10","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":6,"title":"لوحة مفاتيح ميكانيكية","desc":"كيبورد ميكانيكي بإضاءة خلفية مخصصة للألعاب.","image":"https://via.placeholder.com/800x450?text=Ad+6","link":"/p/ad6.html","category":"electronics","featured":true,"status":"active","expires":"2025-07-25","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
