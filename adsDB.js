@@ -1,37 +1,7 @@
-window.adsDB = [
+window.adsDB=[
 {"id":1,"title":"هاتف ذكي بشاشة كبيرة","desc":"هاتف ذكي بشاشة 6.5 إنش وبطارية تدوم طوال اليوم.","image":"https://via.placeholder.com/800x450?text=Ad+1","link":"/p/ad1.html","category":"electronics","featured":true,"status":"active","expires":"2025-12-30","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":2,"title":"سماعات بلوتوث لاسلكية","desc":"سماعات عازلة للضوضاء بجودة صوت نقية.","image":"https://via.placeholder.com/800x450?text=Ad+2","link":"/p/ad2.html","category":"electronics","featured":true,"status":"active","expires":"2025-11-15","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":3,"title":"ساعة ذكية متعددة الوظائف","desc":"ساعة ذكية لمتابعة صحتك وإشعارات هاتفك.","image":"https://via.placeholder.com/800x450?text=Ad+3","link":"/p/ad3.html","category":"electronics","featured":false,"status":"active","expires":"2025-10-20","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
- function generateDbObject() {
-    const id       = document.getElementById('dbId').value       || 1;
-    const title    = document.getElementById('dbTitle').value    || "عنوان الإعلان";
-    const desc     = document.getElementById('dbDesc').value     || "وصف مختصر للإعلان";
-    const image    = document.getElementById('dbImage').value    || ("https://via.placeholder.com/800x450?text=Ad+" + id);
-    const link     = document.getElementById('dbLink').value     || ("/p/ad" + id + ".html");
-    const category = document.getElementById('dbCategory').value || "other";
-    const featured = document.getElementById('dbFeatured').value === "true";
-    const status   = document.getElementById('dbStatus').value   || "active";
-    const expires  = document.getElementById('dbExpires').value  || "2025-12-31";
-    const oldPrice = document.getElementById('dbOldPrice').value || 0;
-    const newPrice = document.getElementById('dbNewPrice').value || 0;
-
-    const obj = {
-      id: Number(id),
-      title: title,
-      desc: desc,
-      image: image,
-      link: link,
-      category: category,
-      featured: featured,
-      status: status,
-      expires: expires,
-      oldPrice: Number(oldPrice),
-      newPrice: Number(newPrice)
-    };
-
-    document.getElementById('dbOutput').value =
-      JSON.stringify(obj, null, 2) + ",";
-  }
 {"id":4,"title":"حاسوب محمول للأعمال","desc":"لابتوب خفيف الوزن بأداء قوي مناسب للأعمال.","image":"https://via.placeholder.com/800x450?text=Ad+4","link":"/p/ad4.html","category":"electronics","featured":true,"status":"active","expires":"2025-09-18","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":5,"title":"شاشة عرض عالية الدقة","desc":"شاشة 27 إنش بدقة عالية لتجربة مشاهدة مريحة.","image":"https://via.placeholder.com/800x450?text=Ad+5","link":"/p/ad5.html","category":"electronics","featured":false,"status":"active","expires":"2025-08-10","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":6,"title":"لوحة مفاتيح ميكانيكية","desc":"كيبورد ميكانيكي بإضاءة خلفية مخصصة للألعاب.","image":"https://via.placeholder.com/800x450?text=Ad+6","link":"/p/ad6.html","category":"electronics","featured":true,"status":"active","expires":"2025-07-25","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
@@ -58,7 +28,8 @@ window.adsDB = [
 {"id":27,"title":"ماسك للوجه بالفحم","desc":"ماسك ينقي البشرة من الشوائب.","image":"https://via.placeholder.com/800x450?text=Ad+27","link":"/p/ad27.html","category":"beauty","featured":false,"status":"active","expires":"2025-06-10","oldPrice":null,"newPrice":null,"tags":["beauty","care","gold"],"badge":"gold"},
 {"id":28,"title":"عطر منزلي برائحة مميزة","desc":"معطر جو برائحة فاخرة للمنزل والمكتب.","image":"https://via.placeholder.com/800x450?text=Ad+28","link":"/p/ad28.html","category":"beauty","featured":true,"status":"active","expires":"2025-05-14","oldPrice":null,"newPrice":null,"tags":["beauty","care","gold"],"badge":"gold"},
 {"id":29,"title":"مجموعة عناية باليدين","desc":"كريمات وزيوت للعناية اليومية باليدين.","image":"https://via.placeholder.com/800x450?text=Ad+29","link":"/p/ad29.html","category":"beauty","featured":false,"status":"active","expires":"2025-04-20","oldPrice":null,"newPrice":null,"tags":["beauty","care","gold"],"badge":"gold"},
-{"id":30,"title":"فرش مكياج احترافية","desc":"مجموعة فرش ناعمة وعالية الجودة.","image":"https://via.placeholder.com/800x450?text=Ad+30","link":"/p/ad30.html","category":"beauty","featured":false,"status":"active","expires":"2025-03-17","oldPrice":null,"newPrice":null,"tags":["beauty","care","gold"],"badge":"gold"},
+{"id":30,"title":"فرش مكياج احترافية","desc":"مجموعة فرش ناعمة وعالية الجودة.","image":"https://via.placeholder.com/800x450?text=Ad+30","link":"/p/ad30.html","category":"beauty","featured":false,"status":"active","expires":"2025-03-17","oldPrice":null,"newPrice":null,"tags":["beauty","care","gold"],"badge":"gold"}
+];
 {"id":31,"title":"وجبة برغر مميزة","desc":"برغر لحم طازج مع صلصات خاصة.","image":"https://via.placeholder.com/800x450?text=Ad+31","link":"/p/ad31.html","category":"food","featured":true,"status":"active","expires":"2025-12-05","oldPrice":null,"newPrice":null,"tags":["food","restaurant","gold"],"badge":"gold"},
 {"id":32,"title":"بيتزا عائلية كبيرة","desc":"بيتزا بأكثر من نوع جبن وحشوات متنوعة.","image":"https://via.placeholder.com/800x450?text=Ad+32","link":"/p/ad32.html","category":"food","featured":true,"status":"active","expires":"2025-11-12","oldPrice":null,"newPrice":null,"tags":["food","restaurant","gold"],"badge":"gold"},
 {"id":33,"title":"بوفيه مفتوح لعشاء فاخر","desc":"تشكيلة واسعة من الأطباق العالمية.","image":"https://via.placeholder.com/800x450?text=Ad+33","link":"/p/ad33.html","category":"food","featured":false,"status":"active","expires":"2025-10-06","oldPrice":null,"newPrice":null,"tags":["food","restaurant","gold"],"badge":"gold"},
@@ -69,6 +40,7 @@ window.adsDB = [
 {"id":38,"title":"عصائر طبيعية طازجة","desc":"مجموعة عصائر بدون سكريات مضافة.","image":"https://via.placeholder.com/800x450?text=Ad+38","link":"/p/ad38.html","category":"food","featured":false,"status":"active","expires":"2025-05-08","oldPrice":null,"newPrice":null,"tags":["food","restaurant","gold"],"badge":"gold"},
 {"id":39,"title":"مخبوزات طازجة يوميًا","desc":"خبز ومعجنات من الفرن مباشرة.","image":"https://via.placeholder.com/800x450?text=Ad+39","link":"/p/ad39.html","category":"food","featured":false,"status":"active","expires":"2025-04-14","oldPrice":null,"newPrice":null,"tags":["food","restaurant","gold"],"badge":"gold"},
 {"id":40,"title":"مطعم شاورما عربي","desc":"شاورما عربية بنكهات أصلية.","image":"https://via.placeholder.com/800x450?text=Ad+40","link":"/p/ad40.html","category":"food","featured":true,"status":"active","expires":"2025-03-22","oldPrice":null,"newPrice":null,"tags":["food","restaurant","gold"],"badge":"gold"},
+
 {"id":41,"title":"شقة سكنية في موقع مميز","desc":"شقة 3 غرف قريبة من الخدمات.","image":"https://via.placeholder.com/800x450?text=Ad+41","link":"/p/ad41.html","category":"realestate","featured":true,"status":"active","expires":"2025-12-31","oldPrice":null,"newPrice":null,"tags":["realestate","property","gold"],"badge":"gold"},
 {"id":42,"title":"فيلا فاخرة مع حديقة","desc":"فيلا واسعة مع مساحات خضراء.","image":"https://via.placeholder.com/800x450?text=Ad+42","link":"/p/ad42.html","category":"realestate","featured":true,"status":"active","expires":"2025-11-28","oldPrice":null,"newPrice":null,"tags":["realestate","property","gold"],"badge":"gold"},
 {"id":43,"title":"مكتب تجاري للإيجار","desc":"مكتب مجهز في منطقة أعمال مركزية.","image":"https://via.placeholder.com/800x450?text=Ad+43","link":"/p/ad43.html","category":"realestate","featured":false,"status":"active","expires":"2025-10-30","oldPrice":null,"newPrice":null,"tags":["realestate","property","gold"],"badge":"gold"},
