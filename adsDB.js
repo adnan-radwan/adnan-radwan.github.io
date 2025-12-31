@@ -1,4 +1,4 @@
-window.adsDB = [
+window.ads = [
 {"id":1,"title":"هاتف ذكي بشاشة كبيرة","desc":"هاتف ذكي بشاشة 6.5 إنش وبطارية تدوم طوال اليوم.","image":"https://via.placeholder.com/800x450?text=Ad+1","link":"/p/ad1.html","category":"electronics","featured":true,"status":"active","expires":"2025-12-30","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":2,"title":"سماعات بلوتوث لاسلكية","desc":"سماعات عازلة للضوضاء بجودة صوت نقية.","image":"https://via.placeholder.com/800x450?text=Ad+2","link":"/p/ad2.html","category":"electronics","featured":true,"status":"active","expires":"2025-11-15","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
 {"id":3,"title":"ساعة ذكية متعددة الوظائف","desc":"ساعة ذكية لمتابعة صحتك وإشعارات هاتفك.","image":"https://via.placeholder.com/800x450?text=Ad+3","link":"/p/ad3.html","category":"electronics","featured":false,"status":"active","expires":"2025-10-20","oldPrice":null,"newPrice":null,"tags":["electronics","tech","gold"],"badge":"gold"},
