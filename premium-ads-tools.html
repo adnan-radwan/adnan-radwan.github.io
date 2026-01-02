@@ -258,7 +258,7 @@ function generateDbObject() {
    3) توليد مركز الإعلانات
 --------------------------------*/
 function generateCenter() {
-  const dbUrl = dbUrl.value || "https://raw.githubusercontent.com/USERNAME/REPO/main/adsDB.js";
+  const url = dbUrl.value || "";
 
   const html = `
 <div id="premium-ads-center" style="min-height:100vh;background:#050608;padding:20px 0;font-family:system-ui,sans-serif;direction:rtl;">
@@ -273,7 +273,7 @@ function generateCenter() {
   </div>
 </div>
 
-<script src="${dbUrl}"></script>
+<script src="${url}"></script>
 <script>
 (function() {
   if (!window.adsDB) {
@@ -340,8 +340,10 @@ function generateCenter() {
 /* -------------------------------
    4) رفع الإعلانات إلى Supabase
 --------------------------------*/
-const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
-const SUPABASE_KEY = "YOUR_ANON_KEY";
+
+/* ضع قيمتك هنا بنفسك */
+const SUPABASE_URL = "https://ideadhnvvqgtecmuidqn.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlkZWFkaG52dnFndGVjbXVpZHFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczODAwMjUsImV4cCI6MjA4Mjk1NjAyNX0.bJ9jbv-437eJRiWdL8pkkztB9dUqFkPHJdD1ktouAQU";
 
 async function migrateAds() {
   if (!window.ads || !Array.isArray(ads)) {
