@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عرض الإعلان — Golden Ads</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+/* هيدر سينمائي */
+.header {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: #111;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212,175,55,0.35);
+}
+.header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.65);
+}
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85));
+}
+.header-title {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffe9a9;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9);
+}
+
+/* شارة */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-right: 8px;
+}
+.badge-featured {
+  background: linear-gradient(135deg, #f7e29b, #d4af37);
+  color: #2d1b03;
+}
+.badge-expired {
+  background: linear-gradient(135deg, #ff6b6b, #b02020);
+  color: #fff;
+}
+
+/* الجسم */
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 16px 40px;
+}
+
+/* الأسعار */
+.price-box {
+  margin: 14px 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+.price-new {
+  color: #ffe39d;
+}
+.price-old {
+  color: #ff9d9d;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+/* عداد */
+.countdown {
+  margin: 14px 0;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(212,175,55,0.1);
+  border: 1px solid rgba(212,175,55,0.3);
+  font-size: 14px;
+  color: #ffe9b0;
+}
+
+/* أزرار */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+.btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+.btn-share {
+  background: linear-gradient(135deg, #f9e29b, #d4af37);
+  color: #2d1b03;
+}
+.btn-copy {
+  background: #333;
+  color: #fff;
+}
+.btn-back {
+  background: #111;
+  border: 1px solid rgba(212,175,55,0.4);
+  color: #ffe9b0;
+}
+
+/* الوصف */
+.desc {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #f3e7c9;
+}
+</style>
+</head>
+
+<body>
+
+<!-- هيدر -->
+<div class="header">
+  <img id="adImage" src="" alt="">
+  <div class="header-overlay"></div>
+  <div class="header-title" id="adTitle"></div>
+</div>
+
+<!-- المحتوى -->
+<div class="container">
+
+  <div id="badges"></div>
+
+  <div class="price-box" id="priceBox"></div>
+
+  <div class="countdown" id="countdownBox"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-share" onclick="shareAd()">مشاركة الإعلان</button>
+    <button class="btn btn-copy" onclick="copyLink()">نسخ الرابط</button>
+    <button class="btn btn-back" onclick="goBack()">رجوع</button>
+  </div>
+
+  <div class="desc" id="adDesc"></div>
+
+</div>
+
+<!-- تحميل قاعدة البيانات -->
+<script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
+
+<script>
+// قراءة ID من الرابط
+function getId() {
+  const params = new URLSearchParams(window.location.search);
+  return Number(params.get("id"));
+}
+
+const id = getId();
+let ad = null;
+
+// تحميل الإعلان
+function loadAd() {
+  if (!window.ads) {
+    alert("لم يتم تحميل قاعدة البيانات.");
+    return;
+  }
+
+  ad = ads.find(a => a.id === id);
+
+  if (!ad) {
+    document.body.innerHTML = "<h2 style='text-align:center;margin-top:40px;color:#fff;'>الإعلان غير موجود.</h2>";
+    return;
+  }
+
+  document.getElementById("adImage").src = ad.image;
+  document.getElementById("adTitle").textContent = ad.title;
+  document.getElementById("adDesc").textContent = ad.desc;
+
+  // شارات
+  const badgeBox = document.getElementById("badges");
+  badgeBox.innerHTML = "";
+  if (ad.featured) badgeBox.innerHTML += `<span class="badge badge-featured">مميز</span>`;
+
+  const now = new Date();
+  const exp = new Date(ad.expires);
+  if (exp <= now) badgeBox.innerHTML += `<span class="badge badge-expired">منتهٍ</span>`;
+
+  // أسعار
+  const priceBox = document.getElementById("priceBox");
+  priceBox.innerHTML = `
+    ${ad.newPrice ? `<span class="price-new">${ad.newPrice}</span>` : ""}
+    ${ad.oldPrice ? `<span class="price-old">${ad.oldPrice}</span>` : ""}
+  `;
+
+  startCountdown(ad.expires);
+}
+
+// عداد تنازلي
+function startCountdown(dateStr) {
+  const box = document.getElementById("countdownBox");
+  const end = new Date(dateStr).getTime();
+
+  function update() {
+    const now = Date.now();
+    const diff = end - now;
+
+    if (diff <= 0) {
+      box.textContent = "انتهى العرض.";
+      return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((diff / (1000 * 60)) % 60);
+
+    box.textContent = `ينتهي خلال: ${d} يوم — ${h} ساعة — ${m} دقيقة`;
+  }
+
+  update();
+  setInterval(update, 60000);
+}
+
+// مشاركة
+function shareAd() {
+  if (navigator.share) {
+    navigator.share({
+      title: ad.title,
+      text: ad.desc,
+      url: window.location.href
+    });
+  } else {
+    alert("المتصفح لا يدعم المشاركة.");
+  }
+}
+
+// نسخ الرابط
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href);
+  alert("تم نسخ رابط الإعلان.");
+}
+
+// رجوع
+function goBack() {
+  window.history.back();
+}
+
+loadAd();
+</script>
+
+</body>
+</html>
