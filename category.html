@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تصنيف الإعلانات — Golden Ads</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+/* هيدر سينمائي */
+.header {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  background: #111;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(212,175,55,0.35);
+}
+.header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.55);
+}
+.header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85));
+}
+.header-title {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffe9a9;
+  text-shadow: 0 0 12px rgba(0,0,0,0.9);
+}
+
+/* الحاوية */
+.container {
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 0 16px 40px;
+}
+
+/* البحث والفلترة */
+.filter-box {
+  margin-bottom: 20px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(212,175,55,0.08);
+  border: 1px solid rgba(212,175,55,0.25);
+}
+.filter-box input,
+.filter-box select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: #0a0a0a;
+  color: #ffe9b0;
+  font-size: 13px;
+  outline: none;
+}
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* بطاقات الإعلانات */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.card {
+  background: #111;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(212,175,55,0.25);
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 28px rgba(212,175,55,0.25);
+}
+.card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+.card-body {
+  padding: 12px;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffe9b0;
+  margin-bottom: 6px;
+}
+.card-price {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.price-new {
+  color: #ffe39d;
+  font-weight: 700;
+}
+.price-old {
+  color: #ff9d9d;
+  text-decoration: line-through;
+  margin-right: 8px;
+}
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  margin-left: 4px;
+}
+.badge-featured {
+  background: linear-gradient(135deg, #f7e29b, #d4af37);
+  color: #2d1b03;
+}
+.badge-expired {
+  background: linear-gradient(135deg, #ff6b6b, #b02020);
+  color: #fff;
+}
+.countdown {
+  font-size: 12px;
+  color: #d7c7a5;
+  margin-bottom: 8px;
+}
+.card-btn {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 999px;
+  text-align: center;
+  background: linear-gradient(135deg, #f9e29b, #d4af37);
+  color: #2d1b03;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- هيدر -->
+<div class="header">
+  <img id="headerImage" src="" alt="">
+  <div class="header-overlay"></div>
+  <div class="header-title" id="headerTitle"></div>
+</div>
+
+<div class="container">
+
+  <!-- فلترة -->
+  <div class="filter-box">
+    <input id="searchBox" placeholder="بحث عن إعلان بالعنوان..." />
+
+    <div class="filter-row">
+      <select id="filterFeatured">
+        <option value="">الكل</option>
+        <option value="true">مميزة فقط</option>
+        <option value="false">غير مميزة</option>
+      </select>
+
+      <select id="filterStatus">
+        <option value="">الحالة</option>
+        <option value="active">فعّالة</option>
+        <option value="expired">منتهية</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- شبكة الإعلانات -->
+  <div class="grid" id="adsGrid"></div>
+
+</div>
+
+<!-- تحميل قاعدة البيانات -->
+<script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
+
+<script>
+// قراءة التصنيف من الرابط
+function getCategory() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("cat");
+}
+
+const cat = getCategory();
+let list = [];
+
+// تحميل الإعلانات
+function loadCategory() {
+  if (!window.ads) {
+    alert("لم يتم تحميل قاعدة البيانات.");
+    return;
+  }
+
+  list = ads.filter(a => a.category === cat);
+
+  if (list.length === 0) {
+    document.body.innerHTML = "<h2 style='text-align:center;margin-top:40px;color:#fff;'>لا توجد إعلانات في هذا التصنيف.</h2>";
+    return;
+  }
+
+  // هيدر ديناميكي
+  document.getElementById("headerImage").src = list[0].image;
+  document.getElementById("headerTitle").textContent = getCategoryName(cat);
+
+  renderGrid(list);
+}
+
+// أسماء التصنيفات
+function getCategoryName(c) {
+  const map = {
+    electronics: "تقنية",
+    fashion: "أزياء",
+    beauty: "جمال",
+    food: "طعام",
+    realestate: "عقارات",
+    cars: "سيارات",
+    services: "خدمات",
+    education: "تعليم",
+    health: "صحة",
+    home: "منزل"
+  };
+  return map[c] || "تصنيف";
+}
+
+// عرض البطاقات
+function renderGrid(arr) {
+  const grid = document.getElementById("adsGrid");
+  const now = new Date();
+
+  grid.innerHTML = arr.map(ad => {
+    const exp = new Date(ad.expires);
+    const expired = exp <= now;
+
+    return `
+      <div class="card">
+        <img class="card-img" src="${ad.image}" alt="">
+        <div class="card-body">
+          <div class="card-title">${ad.title}</div>
+
+          <div class="card-price">
+            ${ad.newPrice ? `<span class="price-new">${ad.newPrice}</span>` : ""}
+            ${ad.oldPrice ? `<span class="price-old">${ad.oldPrice}</span>` : ""}
+          </div>
+
+          <div>
+            ${ad.featured ? `<span class="badge badge-featured">مميز</span>` : ""}
+            ${expired ? `<span class="badge badge-expired">منتهٍ</span>` : ""}
+          </div>
+
+          <div class="countdown" id="cd-${ad.id}"></div>
+
+          <a class="card-btn" href="/p/ad-view.html?id=${ad.id}">عرض الإعلان</a>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  arr.forEach(ad => startCountdown(ad.id, ad.expires));
+}
+
+// عداد صغير
+function startCountdown(id, dateStr) {
+  const box = document.getElementById("cd-" + id);
+  const end = new Date(dateStr).getTime();
+
+  function update() {
+    const now = Date.now();
+    const diff = end - now;
+
+    if (diff <= 0) {
+      box.textContent = "انتهى العرض";
+      return;
+    }
+
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    box.textContent = `متبقٍ: ${d} يوم`;
+  }
+
+  update();
+  setInterval(update, 60000);
+}
+
+// بحث
+document.getElementById("searchBox").addEventListener("input", function() {
+  const q = this.value.trim().toLowerCase();
+  const filtered = list.filter(ad => ad.title.toLowerCase().includes(q));
+  renderGrid(filtered);
+});
+
+// فلترة
+document.getElementById("filterFeatured").addEventListener("change", applyFilters);
+document.getElementById("filterStatus").addEventListener("change", applyFilters);
+
+function applyFilters() {
+  const feat = document.getElementById("filterFeatured").value;
+  const status = document.getElementById("filterStatus").value;
+  const now = new Date();
+
+  let filtered = [...list];
+
+  if (feat) filtered = filtered.filter(a => String(a.featured) === feat);
+
+  if (status === "active") filtered = filtered.filter(a => new Date(a.expires) > now);
+  if (status === "expired") filtered = filtered.filter(a => new Date(a.expires) <= now);
+
+  renderGrid(filtered);
+}
+
+loadCategory();
+</script>
+
+</body>
+</html>
