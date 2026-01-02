@@ -161,7 +161,45 @@ body {
 </div>
 
 <!-- تحميل قاعدة البيانات -->
-<script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
+/* إعدادات Supabase */
+const SUPABASE_URL = "https://ideadhnvvqgtecmuidqn.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlkZWFkaG52dnFndGVjbXVpZHFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczODAwMjUsImV4cCI6MjA4Mjk1NjAyNX0.bJ9jbv-437eJRiWdL8pkkztB9dUqFkPHJdD1ktouAQU
+";
+
+/* دالة جلب إعلان واحد */
+async function loadAd() {
+  const id = new URLSearchParams(window.location.search).get("id");
+  const ad = await fetchAdById(id);
+
+  if (!ad) {
+    document.body.innerHTML = "<h2 style='text-align:center;margin-top:40px;color:#fff;'>الإعلان غير موجود.</h2>";
+    return;
+  }
+
+  document.getElementById("adImage").src = ad.image;
+  document.getElementById("adTitle").textContent = ad.title;
+  document.getElementById("adDesc").textContent = ad.desc;
+
+  const badgeBox = document.getElementById("badges");
+  badgeBox.innerHTML = "";
+  if (ad.featured) badgeBox.innerHTML += `<span class="badge badge-featured">مميز</span>`;
+
+  const now = new Date();
+  const exp = new Date(ad.expires);
+  if (exp <= now) badgeBox.innerHTML += `<span class="badge badge-expired">منتهٍ</span>`;
+
+  const priceBox = document.getElementById("priceBox");
+  priceBox.innerHTML = `
+    ${ad.new_price ? `<span class="price-new">${ad.new_price}</span>` : ""}
+    ${ad.old_price ? `<span class="price-old">${ad.old_price}</span>` : ""}
+  `;
+
+  startCountdown(ad.expires);
+}
+
+loadAd();
+
+
 
 <script>
 // قراءة ID من الرابط
@@ -264,3 +302,4 @@ loadAd();
 
 </body>
 </html>
+
