@@ -258,6 +258,230 @@ function applyAll() {
     if (sortBy === "expiresAsc") {
       return new Date(a.expires) - new Date(b.expires);
     } else if (sortBy === "expiresDesc") {
+      return new Date(b.expires) - new Date(a.ex  max-width: 1100px;
+  margin: 20px auto 40px;
+  padding: 0 16px;
+}
+
+/* البحث والفلترة والفرز */
+.filter-box {
+  margin-bottom: 20px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(212,175,55,0.08);
+  border: 1px solid rgba(212,175,55,0.25);
+}
+.filter-box input,
+.filter-box select {
+  width: 100%;
+  padding: 9px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: #0a0a0a;
+  color: #ffe9b0;
+  font-size: 13px;
+  outline: none;
+}
+.filter-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+.badge-count {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #d7c7a5;
+}
+
+/* بطاقات */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.card {
+  background: #111;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(212,175,55,0.25);
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
+  transition: transform 0.15s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+.card-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  filter: brightness(0.8);
+}
+.card-body {
+  padding: 12px;
+}
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffe9b0;
+  margin-bottom: 6px;
+}
+.card-price {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.price-new {
+  color: #ffe39d;
+  font-weight: 700;
+}
+.price-old {
+  color: #ff9d9d;
+  text-decoration: line-through;
+  margin-right: 8px;
+}
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  margin-left: 4px;
+}
+.badge-featured {
+  background: linear-gradient(135deg, #f7e29b, #d4af37);
+  color: #2d1b03;
+}
+.badge-expired {
+  background: linear-gradient(135deg, #ff6b6b, #b02020);
+  color: #fff;
+}
+.countdown {
+  font-size: 12px;
+  color: #d7c7a5;
+  margin-bottom: 8px;
+}
+.card-btn {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  border-radius: 999px;
+  text-align: center;
+  background: linear-gradient(135deg, #f9e29b, #d4af37);
+  color: #2d1b03;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="header-title">كل الإعلانات</div>
+  <div class="header-sub">استعرض جميع الإعلانات مع بحث وفلترة وفرز متقدم</div>
+</div>
+
+<div class="container">
+
+  <div class="filter-box">
+    <input id="searchBox" placeholder="بحث بالعنوان أو الوصف أو ID..." />
+
+    <div class="filter-row">
+      <select id="filterCategory">
+        <option value="">كل التصنيفات</option>
+        <option value="electronics">تقنية</option>
+        <option value="fashion">أزياء</option>
+        <option value="beauty">جمال</option>
+        <option value="food">طعام</option>
+        <option value="realestate">عقارات</option>
+        <option value="cars">سيارات</option>
+        <option value="services">خدمات</option>
+        <option value="education">تعليم</option>
+        <option value="health">صحة</option>
+        <option value="home">منزل</option>
+      </select>
+
+      <select id="filterFeatured">
+        <option value="">كل الإعلانات</option>
+        <option value="true">مميزة فقط</option>
+        <option value="false">غير مميزة</option>
+      </select>
+
+      <select id="filterStatus">
+        <option value="">كل الحالات</option>
+        <option value="active">فعّالة</option>
+        <option value="expired">منتهية</option>
+      </select>
+
+      <select id="sortBy">
+        <option value="expiresAsc">الأقرب للانتهاء</option>
+        <option value="expiresDesc">الأبعد عن الانتهاء</option>
+        <option value="idDesc">الأحدث (ID أعلى)</option>
+        <option value="idAsc">الأقدم (ID أقل)</option>
+      </select>
+    </div>
+
+    <div class="badge-count" id="countInfo"></div>
+  </div>
+
+  <div class="grid" id="adsGrid"></div>
+
+</div>
+
+<!-- تحميل قاعدة البيانات -->
+<script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
+
+<script>
+let baseList = [];
+let viewList = [];
+
+function init() {
+  if (!window.ads) {
+    alert("لم يتم تحميل قاعدة البيانات.");
+    return;
+  }
+  baseList = [...ads];
+  applyAll();
+}
+
+// تطبيق البحث + الفلترة + الفرز
+function applyAll() {
+  const now = new Date();
+  const q = document.getElementById("searchBox").value.trim().toLowerCase();
+  const cat = document.getElementById("filterCategory").value;
+  const feat = document.getElementById("filterFeatured").value;
+  const status = document.getElementById("filterStatus").value;
+  const sortBy = document.getElementById("sortBy").value;
+
+  let list = [...baseList];
+
+  // بحث
+  if (q) {
+    list = list.filter(ad =>
+      (ad.title || "").toLowerCase().includes(q) ||
+      (ad.desc || "").toLowerCase().includes(q) ||
+      String(ad.id).includes(q)
+    );
+  }
+
+  // تصنيف
+  if (cat) list = list.filter(a => a.category === cat);
+
+  // مميز
+  if (feat) list = list.filter(a => String(a.featured) === feat);
+
+  // حالة
+  if (status === "active") list = list.filter(a => new Date(a.expires) > now);
+  if (status === "expired") list = list.filter(a => new Date(a.expires) <= now);
+
+  // فرز
+  list.sort((a, b) => {
+    if (sortBy === "expiresAsc") {
+      return new Date(a.expires) - new Date(b.expires);
+    } else if (sortBy === "expiresDesc") {
       return new Date(b.expires) - new Date(a.expires);
     } else if (sortBy === "idDesc") {
       return b.id - a.id;
@@ -349,3 +573,4 @@ init();
 
 </body>
 </html>
+
