@@ -6,295 +6,356 @@
 <title>عرض الإعلان — Golden Ads</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: "Tajawal", sans-serif;
-  background: #000;
-  color: #fff;
+
+/* إصلاح القصّ داخل Blogger */
+html, body, #main, .main, #content, .content,
+.post-body, .entry-content, .post, .post-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
 }
 
-/* هيدر سينمائي */
+/* خلفية سوداء مخملية */
+body {
+  font-family: "Tajawal", sans-serif;
+  background: #0a0a0a; /* Velvet Black */
+  color: #e8d8b0;
+}
+
+/* هيدر مع خط ذهبي أعلى وأسفل */
 .header {
-  position: relative;
-  width: 100%;
-  height: 320px;
-  background: #111;
-  overflow: hidden;
-  border-bottom: 1px solid rgba(212,175,55,0.35);
-}
-.header img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.65);
-}
-.header-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85));
+  background: #0a0a0a;
+  padding: 22px 0px;
+  text-align: center;
+  border-top: 3px solid #d4af37;   /* خط ذهبي رفيع */
+  border-bottom: 3px solid #d4af37; /* خط ذهبي رفيع */
 }
 .header-title {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-size: 26px;
-  font-weight: 700;
-  color: #ffe9a9;
-  text-shadow: 0 0 12px rgba(0,0,0,0.9);
+  font-size: 30px;
+  font-weight: 900;
+  color: #d8c28a;
 }
-
-/* شارة */
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  margin-right: 8px;
-}
-.badge-featured {
-  background: linear-gradient(135deg, #f7e29b, #d4af37);
-  color: #2d1b03;
-}
-.badge-expired {
-  background: linear-gradient(135deg, #ff6b6b, #b02020);
-  color: #fff;
-}
-
-/* الجسم */
+  }
+/* الحاوية */
 .container {
   max-width: 900px;
-  margin: 20px auto;
-  padding: 0 16px 40px;
+  margin: 20px auto 40px;
+  padding: –0 16px;
 }
-
-/* الأسعار */
-.price-box {
-  margin: 14px 0;
+/* صورة الإعلان */
+.ad-image {
+  width: 97%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 1px solid #d4af37;
+  box-shadow: 0 0 18px rgba(0,0,0,0.7);
+}
+/* صندوق الإعلان */
+.ad-box {
+  margin-top: 15px;
+  background: #000; /* سواد كامل */
+  padding: 16px;
+  border-radius: 15px;
+  border: 1px solid #d4af37;
+  box-shadow: 0 0 18px rgba(0,0,0,0.6);
+}
+.ad-title {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 800;
+  color: #e8d8b0;
 }
-.price-new {
-  color: #ffe39d;
+.ad-price {
+  margin: 12px 0;
+  font-size: 17px;
 }
-.price-old {
-  color: #ff9d9d;
-  text-decoration: line-through;
-  margin-right: 10px;
-}
+.price-new { color: #d8c28a; font-weight: bold; }
+.price-old { color: #777; text-decoration: line-through; margin-right: 6px; }
 
-/* عداد */
+/* شارات */
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-right: 6px;
+}
+.badge-featured { background: #d4af37; color: #000; }
+.badge-expired { background: #555; color: #eee; }
+
+/* العدّاد */
 .countdown {
-  margin: 14px 0;
-  padding: 10px;
-  border-radius: 12px;
-  background: rgba(212,175,55,0.1);
-  border: 1px solid rgba(212,175,55,0.3);
+  margin-top: 12px;
   font-size: 14px;
-  color: #ffe9b0;
-}
-
-/* أزرار */
-.btn-row {
-  display: flex;
-  gap: 10px;
-  margin: 20px 0;
-}
-.btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 600;
-}
-.btn-share {
-  background: linear-gradient(135deg, #f9e29b, #d4af37);
-  color: #2d1b03;
-}
-.btn-copy {
-  background: #333;
-  color: #fff;
-}
-.btn-back {
-  background: #111;
-  border: 1px solid rgba(212,175,55,0.4);
-  color: #ffe9b0;
+  color: #b8a98a;
 }
 
 /* الوصف */
-.desc {
-  margin-top: 20px;
+.ad-desc {
+  margin-top: 18px;
+  line-height: 1.9;
   font-size: 15px;
-  line-height: 1.8;
-  color: #f3e7c9;
+  color: #d6c9a5;
 }
+
+/* أزرار النسخ والمشاركة */
+.action-row {
+  margin-top: 25px;
+  display: flex;
+  gap: 18px;
+}
+.action-btn {
+  flex: 1;
+  padding: 18px;
+  background: #000;
+  border: 3px solid #d4af37;
+  color: #d8c28a;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.25s;
+}
+.action-btn:hover {
+  background: #d4af37;
+  color: #000;
+  transform: translateY(-3px);
+}
+
+/* زر تواصل */
+.ad-btn {
+  display: block;
+  margin-top: 30px;
+  padding: 18px;
+  background: #d4af37;
+  color: #000;
+  text-align: center;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.25s;
+}
+.ad-btn:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+/* عنوان قسم الإعلانات */
+.similar-title {
+  margin-top: 48px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #d8c28a;
+}
+
+/* شبكة الإعلانات */
+#similarGrid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+/* بطاقة مشابهة */
+.sim-card {
+  background: #000;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+.sim-card:hover {
+  transform: translateY(-6px);
+  border-color: #f1d98c;
+}
+.sim-img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+}
+.sim-body {
+  padding: 12px;
+  font-size: 14px;
+  color: #e8d8b0;
+}
+.sim-link {
+  display: block;
+  margin-top: 10px;
+  padding: 8px;
+  background: #d4af37;
+  color: #000;
+  text-align: center;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.sim-link:hover {
+  opacity: 0.85;
+}
+
+/* زر عرض كل الإعلانات */
+.all-ads-btn {
+  display: block;
+  margin: 30px auto 0;
+  width: 220px;
+  padding: 12px;
+  background: #d4af37;
+  color: #000;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- هيدر -->
 <div class="header">
-  <img id="adImage" src="" alt="">
-  <div class="header-overlay"></div>
-  <div class="header-title" id="adTitle"></div>
+  <div class="header-title">عرض الإعلان</div>
 </div>
 
-<!-- المحتوى -->
 <div class="container">
 
-  <div id="badges"></div>
+  <img id="adImage" class="ad-image" src="" alt="">
 
-  <div class="price-box" id="priceBox"></div>
+  <div class="ad-box">
+    <div id="adTitle" class="ad-title"></div>
 
-  <div class="countdown" id="countdownBox"></div>
+    <div id="adPrice" class="ad-price"></div>
 
-  <div class="btn-row">
-    <button class="btn btn-share" onclick="shareAd()">مشاركة الإعلان</button>
-    <button class="btn btn-copy" onclick="copyLink()">نسخ الرابط</button>
-    <button class="btn btn-back" onclick="goBack()">رجوع</button>
+    <div id="adBadges"></div>
+
+    <div id="countdown" class="countdown"></div>
+
+    <div id="adDesc" class="ad-desc"></div>
+
+    <div class="action-row">
+      <div class="action-btn" onclick="copyLink()">نسخ الرابط</div>
+      <div class="action-btn" onclick="shareAd()">مشاركة</div>
+    </div>
+
+    <a id="contactBtn" class="ad-btn" href="#">تواصل مع المعلن</a>
   </div>
 
-  <div class="desc" id="adDesc"></div>
+  <div class="similar-title">إعلانات مشابهة</div>
+  <div id="similarGrid"></div>
 
 </div>
 
-<!-- تحميل قاعدة البيانات -->
-/* إعدادات Supabase */
-const SUPABASE_URL = "https://ideadhnvvqgtecmuidqn.supabase.co";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlkZWFkaG52dnFndGVjbXVpZHFuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczODAwMjUsImV4cCI6MjA4Mjk1NjAyNX0.bJ9jbv-437eJRiWdL8pkkztB9dUqFkPHJdD1ktouAQU
-";
-
-/* دالة جلب إعلان واحد */
-async function loadAd() {
-  const id = new URLSearchParams(window.location.search).get("id");
-  const ad = await fetchAdById(id);
-
-  if (!ad) {
-    document.body.innerHTML = "<h2 style='text-align:center;margin-top:40px;color:#fff;'>الإعلان غير موجود.</h2>";
-    return;
-  }
-
-  document.getElementById("adImage").src = ad.image;
-  document.getElementById("adTitle").textContent = ad.title;
-  document.getElementById("adDesc").textContent = ad.desc;
-
-  const badgeBox = document.getElementById("badges");
-  badgeBox.innerHTML = "";
-  if (ad.featured) badgeBox.innerHTML += `<span class="badge badge-featured">مميز</span>`;
-
-  const now = new Date();
-  const exp = new Date(ad.expires);
-  if (exp <= now) badgeBox.innerHTML += `<span class="badge badge-expired">منتهٍ</span>`;
-
-  const priceBox = document.getElementById("priceBox");
-  priceBox.innerHTML = `
-    ${ad.new_price ? `<span class="price-new">${ad.new_price}</span>` : ""}
-    ${ad.old_price ? `<span class="price-old">${ad.old_price}</span>` : ""}
-  `;
-
-  startCountdown(ad.expires);
-}
-
-loadAd();
-
-
+<script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
 
 <script>
-// قراءة ID من الرابط
-function getId() {
+let currentAd = null;
+
+function getAdID() {
   const params = new URLSearchParams(window.location.search);
   return Number(params.get("id"));
 }
 
-const id = getId();
-let ad = null;
-
-// تحميل الإعلان
 function loadAd() {
-  if (!window.ads) {
-    alert("لم يتم تحميل قاعدة البيانات.");
-    return;
-  }
+  const id = getAdID();
+  if (!id || !window.ads) return;
 
-  ad = ads.find(a => a.id === id);
+  currentAd = ads.find(a => a.id === id);
+  if (!currentAd) return;
 
-  if (!ad) {
-    document.body.innerHTML = "<h2 style='text-align:center;margin-top:40px;color:#fff;'>الإعلان غير موجود.</h2>";
-    return;
-  }
+  document.getElementById("adImage").src = currentAd.image;
+  document.getElementById("adTitle").textContent = currentAd.title;
 
-  document.getElementById("adImage").src = ad.image;
-  document.getElementById("adTitle").textContent = ad.title;
-  document.getElementById("adDesc").textContent = ad.desc;
-
-  // شارات
-  const badgeBox = document.getElementById("badges");
-  badgeBox.innerHTML = "";
-  if (ad.featured) badgeBox.innerHTML += `<span class="badge badge-featured">مميز</span>`;
-
-  const now = new Date();
-  const exp = new Date(ad.expires);
-  if (exp <= now) badgeBox.innerHTML += `<span class="badge badge-expired">منتهٍ</span>`;
-
-  // أسعار
-  const priceBox = document.getElementById("priceBox");
-  priceBox.innerHTML = `
-    ${ad.newPrice ? `<span class="price-new">${ad.newPrice}</span>` : ""}
-    ${ad.oldPrice ? `<span class="price-old">${ad.oldPrice}</span>` : ""}
+  document.getElementById("adPrice").innerHTML = `
+    ${currentAd.newPrice ? `<span class="price-new">${currentAd.newPrice}</span>` : ""}
+    ${currentAd.oldPrice ? `<span class="price-old">${currentAd.oldPrice}</span>` : ""}
   `;
 
-  startCountdown(ad.expires);
+  const now = new Date();
+  const exp = new Date(currentAd.expires);
+
+  let badges = "";
+  if (currentAd.featured) badges += `<span class="badge badge-featured">مميز</span>`;
+  if (exp <= now) badges += `<span class="badge badge-expired">منتهٍ</span>`;
+
+  document.getElementById("adBadges").innerHTML = badges;
+
+  document.getElementById("adDesc").textContent = currentAd.desc || "لا يوجد وصف.";
+
+  document.getElementById("contactBtn").href = currentAd.link || "#";
+
+  startCountdown(currentAd.expires);
+
+  loadSimilar(currentAd.category, currentAd.id);
 }
 
-// عداد تنازلي
 function startCountdown(dateStr) {
-  const box = document.getElementById("countdownBox");
+  const box = document.getElementById("countdown");
   const end = new Date(dateStr).getTime();
 
   function update() {
-    const now = Date.now();
-    const diff = end - now;
-
+    const diff = end - Date.now();
     if (diff <= 0) {
-      box.textContent = "انتهى العرض.";
+      box.textContent = "انتهى العرض";
       return;
     }
-
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const m = Math.floor((diff / (1000 * 60)) % 60);
-
-    box.textContent = `ينتهي خلال: ${d} يوم — ${h} ساعة — ${m} دقيقة`;
+    box.textContent = `متبقٍ: ${d} يوم`;
   }
 
   update();
   setInterval(update, 60000);
 }
 
-// مشاركة
 function shareAd() {
   if (navigator.share) {
     navigator.share({
-      title: ad.title,
-      text: ad.desc,
+      title: currentAd.title,
+      text: "إعلان مميز على Golden Ads",
       url: window.location.href
     });
   } else {
-    alert("المتصفح لا يدعم المشاركة.");
+    alert("المشاركة غير مدعومة على هذا الجهاز");
   }
 }
 
-// نسخ الرابط
 function copyLink() {
   navigator.clipboard.writeText(window.location.href);
-  alert("تم نسخ رابط الإعلان.");
+  alert("تم نسخ رابط الإعلان");
 }
 
-// رجوع
-function goBack() {
-  window.history.back();
+function loadSimilar(category, excludeID) {
+  const titleBox = document.querySelector(".similar-title");
+  const grid = document.getElementById("similarGrid");
+
+  let similar = ads.filter(a => a.category === category && a.id !== excludeID);
+
+  if (similar.length === 0) {
+    titleBox.textContent = "أحدث الإعلانات";
+    similar = ads.filter(a => a.id !== excludeID).sort((a, b) => b.id - a.id);
+  }
+
+  similar = similar.slice(0, 4);
+
+  grid.innerHTML = similar.map(ad => `
+    <div class="sim-card">
+      <img class="sim-img" src="${ad.image}">
+      <div class="sim-body">
+        ${ad.title}
+        <a class="sim-link" href="/p/ad-view.html?id=${ad.id}">عرض</a>
+      </div>
+    </div>
+  `).join("");
+
+  const container = document.querySelector(".container");
+  if (!document.getElementById("allAdsBtn")) {
+    container.insertAdjacentHTML("beforeend", `
+      <a id="allAdsBtn" class="all-ads-btn" href="/p/all-ads.html">عرض كل الإعلانات</a>
+    `);
+  }
 }
 
 loadAd();
@@ -302,4 +363,3 @@ loadAd();
 
 </body>
 </html>
-
