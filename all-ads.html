@@ -574,4 +574,614 @@ init();
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كل الإعلانات — Golden Ads</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* SLIDER GOLDEN */
+.slider-wrap {
+  width: 100%;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  margin-bottom: 22px;
+  box-shadow: 0 0 22px rgba(212,175,55,0.35);
+}
+
+.slider-slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 1.2s ease, transform 1.8s ease;
+  background-size: cover;
+  background-position: center;
+  border-radius: 14px;
+}
+
+.slider-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.slider-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.75));
+  color: #f5d27a;
+  font-size: 16px;
+  font-weight: 700;
+  text-shadow: 0 0 6px #000;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.45);
+  color: #f5d27a;
+  border: 1px solid rgba(212,175,55,0.6);
+  padding: 8px 12px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: 0.25s;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  background: rgba(212,175,55,0.8);
+  color: #000;
+}
+
+.slider-btn.left { left: 12px; }
+.slider-btn.right { right: 12px; }
+
+.slider-dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.slider-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin: 0 4px;
+  background: rgba(212,175,55,0.4);
+  border-radius: 50%;
+  transition: 0.25s;
+}
+
+.slider-dot.active {
+  background: #f5d27a;
+  transform: scale(1.3);
+}
+ <div class="slider-wrap" id="goldSlider">
+  <div class="slider-btn left" onclick="prevSlide()">❮</div>
+  <div class="slider-btn right" onclick="nextSlide()">❯</div>
+  <div class="slider-dots" id="sliderDots"></div>
+</div>
+ 
+*{box-sizing:border-box}
+body{margin:0;padding:0;background:#050505;font-family:"Tajawal",sans-serif;color:#e8d8b0}
+
+/* الشريط العلوي */
+.top-bar{width:100%;background:linear-gradient(90deg,#d4af37,#f3e2a9,#d4af37);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 0 18px rgba(0,0,0,.7)}
+.top-bar-title{font-weight:900;color:#2b1b00;font-size:18px}
+.nav-buttons{display:flex;gap:10px}
+.top-bar-btn{background:#000;color:#f5d988;padding:6px 14px;border-radius:999px;font-size:13px;text-decoration:none;border:1px solid rgba(255,255,255,.2);display:inline-flex;align-items:center;gap:6px}
+
+/* خلفية الصفحة */
+.page-bg{min-height:100vh;padding:18px 10px 40px;background:radial-gradient(circle at top,#15100a 0,#050505 55%,#000 100%);display:flex;justify-content:center}
+.main-wrap{width:100%;max-width:1200px}
+
+/* عنوان الصفحة */
+.page-header{padding:12px 4px 10px;color:#f4e2b0}
+.page-header-title{font-size:24px;font-weight:900;margin:0 0 4px}
+.page-header-sub{font-size:13px;color:#b99d6a}
+
+/* شريط التحكم */
+.control-bar-wrapper{position:sticky;top:52px;z-index:90;background:linear-gradient(180deg,rgba(5,5,5,.97),rgba(5,5,5,.92),transparent);padding-bottom:6px;backdrop-filter:blur(10px)}
+.control-bar{padding:10px 8px 8px;border-radius:14px;border:1px solid rgba(212,175,55,.35);background:linear-gradient(145deg,rgba(12,10,6,.98),rgba(4,4,4,.98));box-shadow:0 0 18px rgba(0,0,0,.9),0 0 24px rgba(0,0,0,.75)}
+.control-row-top{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+
+/* البحث */
+.search-box{flex:1.4;min-width:180px;position:relative}
+.search-input{width:100%;padding:9px 32px 9px 10px;border-radius:999px;border:1px solid rgba(244,206,120,.6);background:radial-gradient(circle at top,#19130a 0,#050505 55%);color:#f2e4bc;font-size:13px;outline:none}
+.search-input::placeholder{color:#8f7a52}
+.search-icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:15px;color:#d0b06c}
+
+/* الترتيب */
+.sort-box{flex:.8;min-width:150px}
+.sort-select{width:100%;padding:9px 10px;border-radius:999px;border:1px solid rgba(244,206,120,.6);background:radial-gradient(circle at top,#19130a 0,#050505 55%);color:#f2e4bc;font-size:13px;outline:none}
+
+/* التصنيفات */
+.filter-row{display:flex;flex-wrap:wrap;gap:6px}
+.filter-chip{padding:5px 12px;border-radius:999px;border:1px solid rgba(212,175,55,.45);font-size:12px;color:#f1dd9a;background:radial-gradient(circle at top,#18120b 0,#050505 60%);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:.2s}
+.filter-chip.active{background:linear-gradient(135deg,#f4ce78,#c8972a);color:#1e1403;border-color:rgba(243,226,169,.95);box-shadow:0 0 20px rgba(0,0,0,.9),0 0 20px rgba(212,175,55,.4);transform:translateY(-1px)}
+
+/* معلومات النتائج */
+.results-info{display:flex;justify-content:space-between;align-items:center;padding:10px 4px 4px;font-size:12px;color:#b99d6a}
+.reset-link{cursor:pointer;color:#f4ce78}
+
+/* الشبكة */
+.grid-wrap{margin-top:6px}
+.ads-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media(max-width:900px){.ads-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.ads-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* كروت الإعلانات */
+.ad-card{background:radial-gradient(circle at top,#18120b 0,#060606 55%,#000 100%);border-radius:16px;border:1px solid rgba(212,175,55,.4);overflow:hidden;box-shadow:0 0 18px rgba(0,0,0,.9),0 0 22px rgba(0,0,0,.85);transition:.22s;position:relative}
+.ad-card:hover{transform:translateY(-6px);border-color:rgba(243,226,169,.9);box-shadow:0 0 30px rgba(0,0,0,.95),0 0 26px rgba(212,175,55,.35)}
+.card-img-wrap{position:relative;overflow:hidden;height:170px}
+.card-img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.06) contrast(1.08);transition:.4s}
+.ad-card:hover .card-img{transform:scale(1.06);filter:saturate(1.12) contrast(1.12)}
+
+/* شارات */
+.card-badges-top{position:absolute;top:8px;right:8px;display:flex;flex-wrap:wrap;gap:4px;z-index:2}
+.badge{padding:3px 8px;border-radius:999px;font-size:11px;border:1px solid rgba(255,255,255,.18)}
+.badge-featured{background:rgba(244,206,120,.2);color:#f7d673}
+.badge-gold{background:rgba(244,206,120,.3);color:#fbe7a0}
+.badge-expired{background:rgba(90,90,90,.45);color:#e0e0e0}
+
+/* جسم الكرت */
+.card-body{padding:10px 11px 11px}
+.card-title{font-size:14px;font-weight:700;color:#f4e2b0;margin-bottom:4px}
+.card-category{font-size:11px;color:#c39c5a;margin-bottom:6px}
+.card-price{font-size:13px;margin-bottom:7px}
+.price-old{text-decoration:line-through;color:#b18b5a;margin-left:6px;font-size:12px}
+.price-new{color:#f7d673;font-weight:700}
+
+/* الفوتر داخل الكرت */
+.card-footer{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
+.view-link{font-size:11px;text-decoration:none;color:#000;background:linear-gradient(90deg,#8a6b1f,#d4af37,#f5d27a);padding:6px 10px;border-radius:999px;font-weight:700;box-shadow:0 0 6px rgba(212,175,55,.8);transition:.2s;white-space:nowrap}
+.view-link:hover{transform:scale(1.04);box-shadow:0 0 10px rgba(212,175,55,1)}
+.card-meta-small{font-size:10px;color:#9f8454}
+
+/* لا توجد نتائج */
+.no-results{margin-top:18px;padding:14px 10px;border-radius:12px;border:1px dashed rgba(212,175,55,.6);color:#d8c48a;font-size:12px;background:rgba(10,8,5,.9)}
+
+/* أنيميشن */
+.fade-up{opacity:0;transform:translateY(10px);transition:.45s ease}
+.fade-up.show{opacity:1;transform:translateY(0)}
+
+/* الفوتر العام */
+.footer{margin-top:22px;padding-top:14px;border-top:1px solid rgba(212,175,55,.35);text-align:center;font-size:12px;color:#b99d6a}
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-title">Golden Ads — كل الإعلانات</div>
+  <div class="nav-buttons">
+    <a class="top-bar-btn" href="https://www.adnan-radwan.com/p/golden-ads-home-page_4.html">
+      ⟵ الرئيسية
+    </a>
+  </div>
+</div>
+
+<div class="page-bg">
+  <div class="main-wrap">
+
+    <div class="page-header fade-up">
+      <h1 class="page-header-title">كل الإعلانات</h1>
+      <div class="page-header-sub">
+        تصفّح جميع الإعلانات الذهبية في منصة Golden Ads مع إمكانيات البحث والتصنيف الذكي.
+      </div>
+    </div>
+
+    <div class="control-bar-wrapper">
+      <div class="control-bar fade-up">
+
+        <div class="control-row-top">
+          <div class="search-box">
+            <input id="searchInput" type="text" class="search-input" placeholder="ابحث بالعنوان أو الوصف أو الفئة...">
+            <span class="search-icon">🔍</span>
+          </div>
+
+          <div class="sort-box">
+            <select id="sortSelect" class="sort-select">
+              <option value="latest">الأحدث أولًا</option>
+              <option value="priceHigh">الأعلى سعرًا</option>
+              <option value="priceLow">الأقل سعرًا</option>
+              <option value="featured">المميز أولًا</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-row" id="filtersRow"></div>
+
+      </div>
+    </div>
+
+    <div class="results-info fade-up">
+      <div class="results-count" id="resultsCount"></div>
+      <div class="reset-link" id="resetAll">إعادة التعيين</div>
+    </div>
+
+    <div class="grid-wrap fade-up">
+      <div id="adsGrid" class="ads-grid"></div>
+    </div>
+
+    <div id="noResults" class="no-results" style="display:none;">
+      لا توجد إعلانات مطابقة لبحثك أو لتصنيفاتك الحالية.
+    </div>
+
+    <div class="footer fade-up">
+      © Golden Ads — كل الحقوق محفوظة لعدنان كمال رضوان
+    </div>
+
+  </div>
+</div>
+
+<!-- تحميل قاعدة بيانات الإعلانات -->
+<script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
+
+<script>
+// الإعلانات الثلاثة الخاصة بالصفحة الرئيسية (homeAds)
+const homeAds = [
+  {
+    id: "home-1",
+    title: "عسل السدر الملكي من مناحل أبو شيبان",
+    desc: "عسل السدر الملكي  مذاق يحكي عراقة التاريخ.\nمناحل أبو شيبان  سلامة الاسم تكفي\nالفروع: القيم - شاكه - الحفاه\n0090550799978 / 0090558702021",
+    image: "https://scontent-phx1-1.xx.fbcdn.net/v/t39.30808-6/493606224_1268923275240867_3938786692175811882_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=833d8c&_nc_ohc=86l3XGv90JgQ7kNvwF-4ynp&_nc_oc=AdmFZ1wxTRNqCpc-GTiOAEiIwU4uzWAh5zi3TvplSeOoVDSZn5jypaZWaH6_etw6bvaGIMaO0nzuN-cu0T_5xIzb&_nc_zt=23&_nc_ht=scontent-phx1-1.xx&_nc_gid=91lLz_eDskl6FbIouoM1Sw&oh=00_AfmmUx2U0c8duo8BzRrQ_QXtPPd5-jL3Wlbdp5ZJxtMH2Q&oe=6953B216",
+    newPrice: "",
+    oldPrice: "",
+    category: "عسل",
+    featured: true,
+    badge: "gold",
+    location: "",
+    link: "https://www.facebook.com/abushayban1"
+  },
+  {
+    id: "home-2",
+    title: "اسم المنتج الثاني",
+    desc: "وصف قصير للمنتج الثاني",
+    image: "رابط_صورة_ثانية",
+    newPrice: "",
+    oldPrice: "",
+    category: "منتجات",
+    featured: true,
+    badge: "gold",
+    location: "",
+    link: "رابط_المنتج_الثاني"
+  },
+  {
+    id: "home-3",
+    title: "اسم المنتج الثالث",
+    desc: "وصف قصير للمنتج الثالث",
+    image: "رابط_صورة_ثالثة",
+    newPrice: "",
+    oldPrice: "",
+    category: "منتجات",
+    featured: true,
+    badge: "gold",
+    location: "",
+    link: "رابط_المنتج_الثالث"
+  }
+];
+  
+  
+
+let allAds = [];
+let filteredAds = [];
+let activeFilter = "all";
+let searchQuery = "";
+let sortMode = "latest";
+
+function normalizePriceToNumber(priceStr) {
+  if (!priceStr) return 0;
+  const digits = String(priceStr).replace(/[^\d\.]/g, "");
+  const num = parseFloat(digits);
+  return isNaN(num) ? 0 : num;
+}
+
+function initAdsData() {
+  const externalAds = Array.isArray(window.ads) ? window.ads : [];
+
+  // دمج إعلانات الصفحة الرئيسية مع إعلانات adsDB.js
+  const mergedAds = [...homeAds, ...externalAds];
+
+  allAds = mergedAds.map((ad, idx) => ({
+    ...ad,
+    _index: idx,
+    _price: normalizePriceToNumber(ad.newPrice || ad.oldPrice || "")
+  }));
+}
+
+/* بناء التصنيفات */
+function buildFilters() {
+  const row = document.getElementById("filtersRow");
+  if (!row) return;
+
+  const categoriesSet = new Set();
+  allAds.forEach(ad => {
+    if (ad.category) categoriesSet.add(ad.category);
+  });
+
+  const categories = Array.from(categoriesSet);
+
+  let html = `
+    <div class="filter-chip" data-filter="all">
+      <span>⭐</span>
+      <span>كل الإعلانات</span>
+    </div>
+    <div class="filter-chip" data-filter="featured">
+      <span>🔥</span>
+      <span>الإعلانات المميزة</span>
+    </div>
+    <div class="filter-chip" data-filter="gold">
+      <span>👑</span>
+      <span>الإعلانات الذهبية</span>
+    </div>
+  `;
+
+  categories.forEach(cat => {
+    html += `
+      <div class="filter-chip" data-filter="category:${cat}">
+        <span>📂</span>
+        <span>${cat}</span>
+      </div>
+    `;
+  });
+
+  row.innerHTML = html;
+
+  row.querySelectorAll(".filter-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      activeFilter = chip.getAttribute("data-filter");
+      updateFilterChipsActive();
+      applyAllFilters();
+    });
+  });
+
+  updateFilterChipsActive();
+}
+
+function updateFilterChipsActive() {
+  document.querySelectorAll(".filter-chip").forEach(chip => {
+    chip.classList.toggle("active", chip.getAttribute("data-filter") === activeFilter);
+  });
+}
+
+/* الفلاتر + البحث + الترتيب */
+function applyAllFilters() {
+  let adsArr = allAds.slice();
+
+  // الفلتر
+  adsArr = adsArr.filter(ad => {
+    if (activeFilter === "all") return true;
+    if (activeFilter === "featured") return !!ad.featured;
+    if (activeFilter === "gold") return ad.badge === "gold";
+    if (activeFilter.startsWith("category:")) {
+      return ad.category === activeFilter.replace("category:", "");
+    }
+    return true;
+  });
+
+  // البحث
+  const q = searchQuery.trim().toLowerCase();
+  if (q) {
+    adsArr = adsArr.filter(ad =>
+      (ad.title || "").toLowerCase().includes(q) ||
+      (ad.desc || "").toLowerCase().includes(q) ||
+      (ad.category || "").toLowerCase().includes(q)
+    );
+  }
+
+  // الترتيب
+  adsArr.sort((a, b) => {
+    if (sortMode === "priceHigh") return b._price - a._price;
+    if (sortMode === "priceLow") return a._price - b._price;
+
+    if (sortMode === "featured") {
+      const fA = a.featured ? 1 : 0;
+      const fB = b.featured ? 1 : 0;
+      if (fA !== fB) return fB - fA;
+
+      const gA = a.badge === "gold" ? 1 : 0;
+      const gB = b.badge === "gold" ? 1 : 0;
+      if (gA !== gB) return gB - gA;
+
+      return b._index - a._index;
+    }
+
+    return b._index - a._index;
+  });
+
+  filteredAds = adsArr;
+  renderAdsGrid();
+  updateResultsCount();
+}
+
+/* عدد النتائج */
+function updateResultsCount() {
+  const el = document.getElementById("resultsCount");
+  el.textContent = `إظهار ${filteredAds.length} من ${allAds.length} إعلان`;
+}
+
+/* الأسعار */
+function renderPriceHTML(ad) {
+  if (ad.newPrice && ad.oldPrice)
+    return `<span class="price-old">${ad.oldPrice}</span><span class="price-new">${ad.newPrice}</span>`;
+  if (ad.newPrice) return `<span class="price-new">${ad.newPrice}</span>`;
+  if (ad.oldPrice) return `<span class="price-old">${ad.oldPrice}</span>`;
+  return `<span class="price-new">السعر عند التواصل</span>`;
+}
+
+/* رسم الشبكة */
+function renderAdsGrid() {
+  const grid = document.getElementById("adsGrid");
+  const noRes = document.getElementById("noResults");
+
+  if (!filteredAds.length) {
+    grid.innerHTML = "";
+    noRes.style.display = "block";
+    return;
+  }
+
+  noRes.style.display = "none";
+
+  grid.innerHTML = filteredAds
+    .map((ad, i) => {
+      const priceHTML = renderPriceHTML(ad);
+      const targetLink = ad.link || "#";
+
+      let badges = "";
+      if (ad.featured) badges += `<div class="badge badge-featured">★ مميز</div>`;
+      if (ad.badge === "gold") badges += `<div class="badge badge-gold">👑 ذهبي</div>`;
+      if (ad.expired) badges += `<div class="badge badge-expired">⏰ منتهي</div>`;
+
+      return `
+        <div class="ad-card fade-up" style="transition-delay:${i * 0.04}s;">
+          <div class="card-img-wrap">
+            <img class="card-img" src="${ad.image}" alt="${ad.title}">
+            <div class="card-badges-top">${badges}</div>
+          </div>
+          <div class="card-body">
+            <div class="card-title">${ad.title}</div>
+            <div class="card-category">${ad.category || ""}</div>
+            <div class="card-price">${priceHTML}</div>
+            <div class="card-footer">
+              <a class="view-link" href="${targetLink}" target="_blank" rel="noopener">
+                🔗 شاهد التفاصيل
+              </a>
+              <div class="card-meta-small">${ad.location || ""}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  triggerEntranceAnimation();
+}
+
+/* أنيميشن الدخول */
+function triggerEntranceAnimation() {
+  document.querySelectorAll(".fade-up").forEach(el => {
+    requestAnimationFrame(() => el.classList.add("show"));
+  });
+}
+
+/* إعادة التعيين */
+function resetAll() {
+  activeFilter = "all";
+  searchQuery = "";
+  sortMode = "latest";
+
+  document.getElementById("searchInput").value = "";
+  document.getElementById("sortSelect").value = "latest";
+
+  updateFilterChipsActive();
+  applyAllFilters();
+}
+
+/* بداية التشغيل */
+document.addEventListener("DOMContentLoaded", () => {
+  initAdsData();
+  buildFilters();
+  applyAllFilters();
+
+  document.getElementById("searchInput").addEventListener("input", e => {
+    searchQuery = e.target.value;
+    applyAllFilters();
+  });
+
+  document.getElementById("sortSelect").addEventListener("change", e => {
+    sortMode = e.target.value;
+    applyAllFilters();
+  });
+
+  document.getElementById("resetAll").addEventListener("click", resetAll);
+
+  triggerEntranceAnimation();
+});
+// SLIDER GOLDEN — يستخدم homeAds فقط
+let sliderIndex = 0;
+
+function buildSlider() {
+  const slider = document.getElementById("goldSlider");
+  const dots = document.getElementById("sliderDots");
+
+  slider.innerHTML = `
+    <div class="slider-btn left" onclick="prevSlide()">❮</div>
+    <div class="slider-btn right" onclick="nextSlide()">❯</div>
+    <div class="slider-dots" id="sliderDots"></div>
+  `;
+
+  homeAds.forEach((ad, i) => {
+    const slide = document.createElement("div");
+    slide.className = "slider-slide";
+    slide.style.backgroundImage = `url('${ad.image}')`;
+
+    slide.innerHTML = `
+      <div class="slider-overlay">
+        ${ad.title}
+      </div>
+    `;
+
+    slider.appendChild(slide);
+
+    const dot = document.createElement("span");
+    dot.className = "slider-dot";
+    dot.onclick = () => goToSlide(i);
+    dots.appendChild(dot);
+  });
+
+  updateSlider();
+}
+
+function updateSlider() {
+  const slides = document.querySelectorAll(".slider-slide");
+  const dots = document.querySelectorAll(".slider-dot");
+
+  slides.forEach((s, i) => {
+    s.classList.toggle("active", i === sliderIndex);
+  });
+
+  dots.forEach((d, i) => {
+    d.classList.toggle("active", i === sliderIndex);
+  });
+}
+
+function nextSlide() {
+  sliderIndex = (sliderIndex + 1) % homeAds.length;
+  updateSlider();
+}
+
+function prevSlide() {
+  sliderIndex = (sliderIndex - 1 + homeAds.length) % homeAds.length;
+  updateSlider();
+}
+
+function goToSlide(i) {
+  sliderIndex = i;
+  updateSlider();
+}
+
+setInterval(nextSlide, 6000);
+
+document.addEventListener("DOMContentLoaded", buildSlider);
+  
+</script>
+
+</body>
+</html>
+
 
