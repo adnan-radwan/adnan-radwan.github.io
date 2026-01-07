@@ -90,7 +90,23 @@ window.allAds = [
 {"id":80,"title":"دورة الذكاء الاصطناعي","desc":"مقدمة في تقنيات الذكاء الاصطناعي.","image":"https://via.placeholder.com/800x450?text=Ad+80","link":"/p/ad80.html","category":"education","featured":true,"status":"active","expires":"2025-03-29","oldPrice":0,"newPrice":0,"currency":"$","tags":["education","learning","gold"],"badge":"gold"},
 
 {"id":81,"title":"منتج صحي طبيعي","desc":"مكمل غذائي لتحسين المناعة.","image":"https://via.placeholder.com/800x450?text=Ad+81","link":"/p/ad81.html","category":"health","featured":true,"status":"active","expires":"2025-12-22","oldPrice":0,"newPrice":0,"currency":"$","tags":["health","fitness","gold"],"badge":"gold"},
-{"id":82,"title":"جهاز رياضي منزلي","desc":"جهاز متعدد التمارين.","image":"https://via.placeholder.com/800x450?text=Ad+82","link":"/p/ad82.html","category":"health","featured":false,"status":"active","expires":"2025-11-27","oldPrice":0,"newPrice":0,"currency":"$","tags":["health","fitness","gold"],"badge":"gold"},
+{
+  "id": 82,
+  "title": "جهاز رياضي منزلي",
+  "desc": "جهاز متعدد التمارين.",
+  "image": "https://via.placeholder.com/800x450?text=Ad+82",
+  "link": "/p/ad82.html",
+  "category": "health",
+  "featured": false,
+  "status": "active",
+  "expires": "2025-11-27",
+  "oldPrice": 0,
+  "newPrice": 0,
+  "currency": "$",
+  "tags": ["health", "fitness", "gold"],
+  "badge": "gold"
+}
+
 {"id":83,"title":"ميزان ذكي","desc":"يقيس الوزن ونسبة الدهون.","image":"https://via.placeholder.com/800x450?text=Ad+83","link":"/p/ad83.html","category":"health","featured":true,"status":"active","expires":"2025-10-30","oldPrice":0,"newPrice":0,"currency":"$","tags":["health","fitness","gold"],"badge":"gold"},
 
 {"id":84,"title":"دفتر ملاحظات فاخر","desc":"دفتر جلد فاخر مناسب للكتابة اليومية وتدوين الأفكار.","image":"https://via.placeholder.com/800x450?text=Ad+84","link":"/p/ad84.html","category":"culture","featured":true,"status":"active","expires":"2025-12-20","oldPrice":0,"newPrice":0,"currency":"$","tags":["culture","stationery","gold"],"badge":"gold"},
