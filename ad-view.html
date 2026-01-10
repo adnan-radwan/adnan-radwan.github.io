@@ -54,6 +54,31 @@ body {
   border: 1px solid #d4af37;
   box-shadow: 0 0 18px rgba(0,0,0,0.7);
 }
+/* غلاف مربع العرض */
+.ad-view-wrapper {
+  position: relative;
+}
+
+/* العربة الذهبية (Emoji) */
+.golden-car {
+  position: absolute;
+  top: -40px;        /* أعلى مربع العرض مباشرة */
+  right: -100px;     /* تبدأ خارج الشاشة يمين */
+  font-size: 45px;   /* حجم العربة */
+  z-index: 20;
+  animation: moveGoldenCar 5s linear infinite;
+}
+
+/* حركة العربة */
+@keyframes moveGoldenCar {
+  from {
+    right: -100px;
+  }
+  to {
+    right: 110%;
+  }
+}
+  
 /* صندوق الإعلان */
 .ad-box {
   margin-top: 15px;
@@ -363,3 +388,4 @@ loadAd();
 
 </body>
 </html>
+
