@@ -31,6 +31,131 @@
   <div class="news-label">الأخبار</div>
   <div id="newsTicker" class="news-ticker"></div>
 </div>
+<!-- مساحة الفيديو الدعائي السينمائي — Golden Ads -->
+<style>
+/* صندوق الفيديو */
+.featured-video-box {
+  width: 100%;
+  max-width: 1100px;
+  margin: 20px auto 40px auto;
+  border: 2px solid #d4af37;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 25px rgba(212,175,55,0.5);
+  position: relative;
+}
+
+/* الفيديو */
+.featured-video-box video {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+}
+
+/* طبقة ذهبية ثابتة */
+.featured-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: radial-gradient(circle at top,
+              rgba(255,220,150,0.08),
+              transparent 70%);
+}
+
+/* ضوء ذهبي متحرك */
+.featured-video-overlay::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  50% { left: 120%; }
+  100% { left: 120%; }
+}
+
+/* شعار Golden Ads */
+.featured-logo {
+  position: absolute;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  opacity: 0;
+  animation: logoFade 2.2s ease-out forwards;
+  filter: drop-shadow(0 0 12px rgba(212,175,55,0.8));
+}
+
+@keyframes logoFade {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* النص السينمائي */
+.featured-video-title {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+  text-align: center;
+  font-size: 32px;
+  color: #d4af37;
+  font-weight: bold;
+  text-shadow: 0 0 12px rgba(212,175,55,0.8);
+  animation: fadeIn 2.5s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* زر ذهبي */
+.featured-video-btn {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 28px;
+  background: #d4af37;
+  color: #000;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(212,175,55,0.6);
+  transition: 0.3s;
+}
+
+.featured-video-btn:hover {
+  background: #f1d27a;
+  box-shadow: 0 0 25px rgba(212,175,55,0.9);
+}
+</style>
+
+<!-- HTML الخاص بالمساحة -->
+<div class="featured-video-box">
+  <video autoplay muted playsinline loop>
+    <source src="https://drive.google.com/file/d/1mhdBNu7PWTncF6utcWtvAGu8_boNxE-Q/view?usp=sharing" type="video/mp4">
+  </video>
+
+  <img class="featured-logo" src="رابط_شعار_Golden_Ads.png" alt="Golden Ads Logo">
+
+  <div class="featured-video-title">Golden Ads — الإعلان يبدأ هنا</div>
+
+  <a class="featured-video-btn" href="/p/add-ad.html">ابدأ إعلانك الآن</a>
+
+  <div class="featured-video-overlay"></div>
+</div>
 
 <!-- السلايدر السينمائي -->
 <section class="slider-section">
