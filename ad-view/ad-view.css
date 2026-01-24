@@ -1,0 +1,171 @@
+body {
+  margin: 0;
+  font-family: "Tajawal", sans-serif;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* خلفية ذهبية متحركة */
+.gold-bg {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #1a1205, #000);
+  overflow: hidden;
+  z-index: -1;
+}
+.gold-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://i.imgur.com/7E5ZQ0R.png");
+  opacity: 0.12;
+  animation: move 18s linear infinite;
+}
+@keyframes move {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+/* حاوية الإعلان */
+.ad-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 30px;
+}
+@media (max-width: 900px) {
+  .ad-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* صورة الإعلان */
+.ad-image-box {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(212,175,55,0.4);
+}
+.ad-image-box img {
+  width: 100%;
+  display: block;
+  border-radius: 20px;
+}
+
+/* محتوى الإعلان */
+.ad-content {
+  background: rgba(10,10,10,0.85);
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+  animation: fadeIn 0.8s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ad-title {
+  font-size: 26px;
+  color: #ffe9a9;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(212,175,55,0.5);
+}
+
+.ad-desc {
+  font-size: 14px;
+  color: #e8d6ac;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* الأسعار */
+.price-box {
+  margin-bottom: 20px;
+}
+.new-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f7e29b;
+}
+.old-price {
+  font-size: 16px;
+  color: #ff8080;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+/* العد التنازلي */
+.expires-box {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #ffe9b0;
+}
+.countdown {
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* الأزرار */
+.buttons-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn.gold {
+  background: linear-gradient(135deg, #f9e29b, #d4af37, #a97910);
+  color: #2a1c03;
+}
+.btn.dark {
+  background: #222;
+  color: #fff;
+}
+
+/* الإعلانات المشابهة */
+.similar-section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 10px 20px;
+}
+.similar-section h2 {
+  color: #ffe9a9;
+  margin-bottom: 20px;
+}
+.similar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.similar-card {
+  background: rgba(12,12,12,0.85);
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.similar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(212,175,55,0.3);
+}
+.similar-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+.similar-card-title {
+  padding: 10px;
+  font-size: 13px;
+  color: #ffe9b0;
+}
