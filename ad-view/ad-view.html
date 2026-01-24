@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عرض الإعلان — Golden Ads</title>
+
+  <!-- خط Tajawal -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://i.imgur.com/2R7wI1N.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="ad-view.css">
+</head>
+
+<body>
+
+  <!-- خلفية سينمائية -->
+  <div class="gold-bg"></div>
+
+  <!-- حاوية الإعلان -->
+  <div class="ad-container">
+
+    <!-- صورة الإعلان -->
+    <div class="ad-image-box">
+      <img id="adImage" alt="صورة الإعلان">
+    </div>
+
+    <!-- محتوى الإعلان -->
+    <div class="ad-content">
+
+      <h1 id="adTitle" class="ad-title"></h1>
+
+      <p id="adDesc" class="ad-desc"></p>
+
+      <div class="price-box">
+        <span id="newPrice" class="new-price"></span>
+        <span id="oldPrice" class="old-price"></span>
+      </div>
+
+      <div class="expires-box">
+        <span>ينتهي خلال:</span>
+        <span id="countdown" class="countdown"></span>
+      </div>
+
+      <div class="buttons-row">
+        <button class="btn gold" id="openLink">زيارة الرابط</button>
+        <button class="btn dark" id="copyLink">نسخ رابط الإعلان</button>
+        <button class="btn dark" onclick="history.back()">رجوع</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- قسم الإعلانات المشابهة -->
+  <div class="similar-section">
+    <h2>إعلانات مشابهة</h2>
+    <div id="similarAds" class="similar-grid"></div>
+  </div>
+
+  <!-- تحميل قاعدة البيانات -->
+  <script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
+
+  <!-- JS -->
+  <script src="ad-view.js"></script>
+
+</body>
+</html>
