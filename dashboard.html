@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>لوحة التحكم الذهبية — Golden Ads</title>
+
+  <!-- خط Tajawal -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon ذهبي -->
+  <link rel="icon" type="image/png" href="https://i.imgur.com/2R7wI1N.png">
+
+  <!-- ملف CSS الخارجي -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="dashboard-header">
+    <h1>لوحة التحكم الذهبية — Golden Ads</h1>
+  </div>
+
+  <!-- شاشة كلمة المرور -->
+  <div class="login-box" id="loginScreen">
+    <h2>لوحة التحكم الذهبية</h2>
+    <p>أدخل كلمة المرور للدخول إلى نظام إدارة الإعلانات.</p>
+    <input id="dashboardPassword" placeholder="كلمة المرور الذهبية" type="password" />
+    <button onclick="checkPassword()">دخول</button>
+    <div class="login-error" id="loginError"></div>
+  </div>
+
+  <!-- لوحة التحكم -->
+  <div class="dashboard-container" id="dashboard" style="display:none;">
+
+    <h1 class="dashboard-title">لوحة التحكم الذهبية للإعلانات</h1>
+    <div class="dashboard-subtitle">
+      إدارة متكاملة للإعلانات مع هوية بصرية سينمائية ورفع صور عبر Cloudinary ونسخ احتياطي واستيراد JSON
+    </div>
+
+    <div class="stats-box">
+      <div class="stat"><h3>عدد الإعلانات</h3><p id="statTotal">-</p></div>
+      <div class="stat"><h3>المميزة</h3><p id="statFeatured">-</p></div>
+      <div class="stat"><h3>الفعّالة</h3><p id="statActive">-</p></div>
+      <div class="stat"><h3>المنتهية</h3><p id="statExpired">-</p></div>
+    </div>
+
+    <!-- فلترة وبحث -->
+    <div class="box" style="margin-bottom: 14px;">
+      <div class="box-title">فلترة وبحث في الإعلانات</div>
+
+      <input id="searchBox" placeholder="بحث عن إعلان بالعنوان / الوصف / ID..." class="search-input">
+
+      <div class="filter-row">
+        <select id="filterCategory">
+          <option value="">كل التصنيفات</option>
+          <option value="electronics">تقنية</option>
+          <option value="fashion">أزياء</option>
+          <option value="beauty">جمال</option>
+          <option value="food">طعام</option>
+          <option value="realestate">عقارات</option>
+          <option value="cars">سيارات</option>
+          <option value="services">خدمات</option>
+          <option value="education">تعليم</option>
+          <option value="health">صحة</option>
+          <option value="home">منزل</option>
+        </select>
+
+        <select id="filterFeatured">
+          <option value="">الكل</option>
+          <option value="true">مميزة فقط</option>
+          <option value="false">غير مميزة</option>
+        </select>
+
+        <select id="filterStatus">
+          <option value="">الحالة</option>
+          <option value="active">فعّالة</option>
+          <option value="expired">منتهية</option>
+        </select>
+
+        <button class="main small" onclick="applyFilters()">تطبيق الفلترة</button>
+        <button class="main small dark" onclick="clearFilters()">مسح الفلاتر</button>
+      </div>
+    </div>
+
+    <div class="dashboard-layout">
+
+      <!-- قائمة الإعلانات -->
+      <div class="box">
+        <div class="box-title">قائمة الإعلانات</div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>العنوان</th>
+                <th>تصنيف</th>
+                <th>مميز</th>
+                <th>ينتهي</th>
+                <th>تحكم</th>
+              </tr>
+            </thead>
+            <tbody id="adsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- نموذج الإضافة / التعديل -->
+      <div class="box">
+        <div class="box-title">إضافة / تعديل إعلان</div>
+
+        <label>وضع العمل</label>
+        <select id="modeSelect">
+          <option value="add">إضافة إعلان جديد</option>
+          <option value="edit">تعديل إعلان موجود</option>
+        </select>
+
+        <label>رقم الإعلان (ID)</label>
+        <input id="adId" readonly />
+        <div class="preview-link" id="previewLinkBox"></div>
+
+        <label>العنوان</label>
+        <input id="title" />
+
+        <label>الوصف</label>
+        <textarea id="desc"></textarea>
+
+        <label>الصورة (رابط مباشر)</label>
+        <div class="upload-row">
+          <input id="image" placeholder="رابط الصورة (يتم تعبئته بعد الرفع)" />
+          <button class="upload-button" onclick="triggerFileInput()" type="button">
+            رفع صورة عبر Cloudinary
+          </button>
+        </div>
+        <input accept="image/*" id="imageFile" onchange="uploadToCloudinary(event)" style="display:none;" type="file" />
+        <div class="upload-status" id="uploadStatus"></div>
+
+        <label>الرابط</label>
+        <input id="link" placeholder="/p/ad-view.html?id=ID أو رابط خارجي" />
+
+        <label>التصنيف</label>
+        <select id="category">
+          <option value="electronics">تقنية</option>
+          <option value="fashion">أزياء</option>
+          <option value="beauty">جمال</option>
+          <option value="food">طعام</option>
+          <option value="realestate">عقارات</option>
+          <option value="cars">سيارات</option>
+          <option value="services">خدمات</option>
+          <option value="education">تعليم</option>
+          <option value="health">صحة</option>
+          <option value="home">منزل</option>
+        </select>
+
+        <label>السعر الجديد</label>
+        <input id="newPrice" />
+
+        <label>السعر القديم (اختياري)</label>
+        <input id="oldPrice" />
+
+        <label>تاريخ الانتهاء</label>
+        <input id="expires" type="date" />
+
+        <label>إعلان مميز؟</label>
+        <select id="featured">
+          <option value="false">لا</option>
+          <option value="true">نعم</option>
+        </select>
+
+        <button class="main" onclick="applyChanges()">تطبيق وحساب النسخة الجديدة</button>
+        <button class="main dark" onclick="resetForm()">إعادة ضبط النموذج</button>
+        <button class="main" onclick="copyFullJSON()">نسخ ملف adsDB.js كامل</button>
+        <button class="main dark" onclick="downloadBackup()">تنزيل نسخة احتياطية (JSON)</button>
+
+        <div class="box-title" style="margin-top: 20px;">استيراد ملف JSON ودمجه</div>
+
+        <input type="file" id="importFile" accept="application/json" class="file-input">
+
+        <button class="main dark" onclick="importJSON()">استيراد ودمج JSON</button>
+
+        <div id="importStatus" class="import-status"></div>
+
+        <div class="box-title" style="margin-top: 14px;">نسخة adsDB.js الجديدة</div>
+        <pre id="jsonOutput"></pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- تحميل قاعدة البيانات -->
+  <script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
+
+  <!-- ملف JS الخارجي -->
+  <script src="script.js"></script>
+
+</body>
+</html>
