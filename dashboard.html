@@ -1,3 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>لوحة التحكم - Golden Ads</title>
+<style>
+body { font-family: sans-serif; direction: rtl; padding: 20px; }
+input, button { padding: 8px; margin: 5px; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+td, th { border: 1px solid #ccc; padding: 10px; }
+</style>
+</head>
+
+<body>
+
+<h2>لوحة التحكم - Golden Ads</h2>
+
+<!-- كلمة المرور -->
+<div id="loginBox">
+    <input id="pass" type="password" placeholder="أدخل كلمة المرور">
+    <button onclick="login()">دخول</button>
+</div>
+
+<!-- المحتوى بعد تسجيل الدخول -->
+<div id="panel" style="display:none;">
+
+    <h3>إضافة إعلان جديد</h3>
+    <input id="title" placeholder="عنوان الإعلان">
+    <input id="price" placeholder="السعر">
+    <input id="image" placeholder="رابط الصورة">
+    <button onclick="addAd()">إضافة</button>
+
+    <h3>الإعلانات</h3>
+    <table id="adsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>العنوان</th>
+                <th>السعر</th>
+                <th>الصورة</th>
+                <th>حذف</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+</div>
+
+<script src="adsDB.js"></script>
+<script>
+const PASSWORD = "1234"; // غيّرها لاحقاً
+
+function login() {
+    if (document.getElementById("pass").value === PASSWORD) {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("panel").style.display = "block";
+        loadAds();
+    } else {
+        alert("كلمة المرور خاطئة");
+    }
+}
+
+function loadAds() {
+    const tbody = document.querySelector("#adsTable tbody");
+    tbody.innerHTML = "";
+    ads.forEach((ad, i) => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${i}</td>
+                <td>${ad.title}</td>
+                <td>${ad.price}</td>
+                <td><img src="${ad.image}" width="80"></td>
+                <td><button onclick="deleteAd(${i})">حذف</button></td>
+            </tr>
+        `;
+    });
+}
+
+function addAd() {
+    ads.push({
+        title: document.getElementById("title").value,
+        price: document.getElementById("price").value,
+        image: document.getElementById("image").value
+    });
+    saveAds();
+}
+
+function deleteAd(i) {
+    ads.splice(i, 1);
+    saveAds();
+}
+
+function saveAds() {
+    const output = "window.ads = " + JSON.stringify(ads, null, 2) + ";";
+    const blob = new Blob([output], { type: "text/javascript" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "adsDB.js";
+    a.click();
+}
+</script>
+
+</body>
+</html>
+
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -978,3 +1086,4 @@ async function uploadToCloudinary(event) {
 
 </body>
 </html>
+
