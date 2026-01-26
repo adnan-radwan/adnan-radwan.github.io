@@ -120,5 +120,3 @@ window.ads = [
 {"id":99,"title":"مذكرة جيب صغيرة","desc":"مذكرة صغيرة للكتابة أثناء التنقل.","image":"https://via.placeholder.com/800x450?text=Ad+99","link":"/p/ad99.html","category":"culture","featured":false,"status":"active","expires":"2025-07-15","oldPrice":0,"newPrice":0,"currency":"$","tags":["culture","stationery","gold"],"badge":"gold"},
 {"id":100,"title":"قلم توقيع فاخر","desc":"قلم توقيع معدني فاخر بتصميم راقٍ.","image":"https://via.placeholder.com/800x450?text=Ad+100","link":"/p/ad100.html","category":"culture","featured":true,"status":"active","expires":"2025-06-10","oldPrice":0,"newPrice":0,"currency":"$","tags":["culture","luxury","gold"],"badge":"gold"},
 ];
- 
-  
