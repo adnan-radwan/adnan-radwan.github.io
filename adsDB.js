@@ -3228,5 +3228,21 @@ window.ads = [
 "currency":"$",
 "tags":["health","beauty","gold"],
 "badge":"gold"
-}
+},
+{
+  "id": 201,
+  "title": "عسل السدر الملكي — المنتج الأصلي",
+  "desc": "إعلان رسمي لعسل السدر الملكي من مناحل أبو شيبان. منتج فاخر ونقي 100%، موثّق ومعتمد.",
+  "image": "https://res.cloudinary.com/dm5yknnvi/image/upload/v1769506323/xbj21sbflquhdinnsizz.jpg",
+  "link": "/p/ad-honey.html",
+  "category": "health",
+  "featured": true,
+  "status": "active",
+  "expires": "2027-01-01",
+  "oldPrice": 0,
+  "newPrice": 0,
+  "currency": "$",
+  "tags": ["honey", "natural", "recommended"],
+  "badge": "recommended"
+} 
 ];
