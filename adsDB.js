@@ -1,6 +1,4 @@
 window.ads = [
-window.ads = [
-
 {
 "id":1,
 "title":"هاتف ذكي بشاشة كبيرة",
