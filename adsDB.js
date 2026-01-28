@@ -79,7 +79,6 @@ window.ads = [
 "tags":["electronics","tech","gold"],
 "badge":"gold"
 },
-
 {
 "id":6,
 "title":"كاميرا رقمية احترافية",
@@ -160,7 +159,6 @@ window.ads = [
 "tags":["electronics","audio","gold"],
 "badge":"gold"
 },
-
 {
 "id":11,
 "title":"طابعة منزلية",
@@ -241,7 +239,6 @@ window.ads = [
 "tags":["electronics","audio","gold"],
 "badge":"gold"
 },
-
 {
 "id":16,
 "title":"شاحن متنقل",
@@ -402,7 +399,6 @@ window.ads = [
 "tags":["electronics","audio","gold"],
 "badge":"gold"
 },
-
 {
 "id":26,
 "title":"سماعات أذن رياضية",
@@ -483,7 +479,6 @@ window.ads = [
 "tags":["electronics","gaming","gold"],
 "badge":"gold"
 },
-
 {
 "id":31,
 "title":"ماوس ألعاب",
@@ -564,7 +559,6 @@ window.ads = [
 "tags":["electronics","camera","gold"],
 "badge":"gold"
 },
-
 {
 "id":36,
 "title":"سماعات رأس مكتبية",
@@ -725,7 +719,6 @@ window.ads = [
 "tags":["services","painting","gold"],
 "badge":"gold"
 },
-
 {
 "id":46,
 "title":"خدمة حدائق",
@@ -806,7 +799,6 @@ window.ads = [
 "tags":["services","delivery","gold"],
 "badge":"gold"
 },
-
 {
 "id":51,
 "title":"سيارة سيدان اقتصادية",
@@ -887,7 +879,6 @@ window.ads = [
 "tags":["cars","vehicles","gold"],
 "badge":"gold"
 },
-
 {
 "id":56,
 "title":"دراجة نارية عملية",
@@ -1048,7 +1039,6 @@ window.ads = [
 "tags":["services","business","gold"],
 "badge":"gold"
 },
-
 {
 "id":66,
 "title":"خدمة ترجمة احترافية",
@@ -1129,7 +1119,6 @@ window.ads = [
 "tags":["services","business","gold"],
 "badge":"gold"
 },
-
 {
 "id":71,
 "title":"دورة تصميم جرافيك",
@@ -1210,7 +1199,6 @@ window.ads = [
 "tags":["education","learning","gold"],
 "badge":"gold"
 },
-
 {
 "id":76,
 "title":"دورة مهارات القيادة",
@@ -1371,7 +1359,6 @@ window.ads = [
 "tags":["health","wellness","gold"],
 "badge":"gold"
 },
-
 {
 "id":86,
 "title":"جهاز قياس ضغط الدم",
@@ -1452,7 +1439,6 @@ window.ads = [
 "tags":["health","wellness","gold"],
 "badge":"gold"
 },
-
 {
 "id":91,
 "title":"مكمل مغنيسيوم",
@@ -1533,7 +1519,6 @@ window.ads = [
 "tags":["health","supplement","gold"],
 "badge":"gold"
 },
-
 {
 "id":96,
 "title":"مكمل كولاجين",
@@ -1742,7 +1727,6 @@ window.ads = [
 "tags":["electronics","audio","gold"],
 "badge":"gold"
 },
-
 {
 "id":109,
 "title":"ماوس ألعاب RGB",
@@ -1823,7 +1807,6 @@ window.ads = [
 "tags":["electronics","camera","gold"],
 "badge":"gold"
 },
-
 {
 "id":114,
 "title":"سماعات رأس للأطفال",
@@ -1904,7 +1887,6 @@ window.ads = [
 "tags":["electronics","gaming","gold"],
 "badge":"gold"
 },
-
 {
 "id":119,
 "title":"قارئ بطاقات ذاكرة",
@@ -2017,7 +1999,6 @@ window.ads = [
 "tags":["electronics","audio","gold"],
 "badge":"gold"
 },
-
 {
 "id":126,
 "title":"لوحة مفاتيح ألعاب RGB",
@@ -2098,7 +2079,6 @@ window.ads = [
 "tags":["electronics","audio","gold"],
 "badge":"gold"
 },
-
 {
 "id":131,
 "title":"خدمة تنظيف منازل فاخرة",
@@ -2179,7 +2159,6 @@ window.ads = [
 "tags":["services","painting","gold"],
 "badge":"gold"
 },
-
 {
 "id":136,
 "title":"خدمة حدائق وتنسيق",
@@ -2340,7 +2319,6 @@ window.ads = [
 "tags":["cars","vehicles","gold"],
 "badge":"gold"
 },
-
 {
 "id":146,
 "title":"دراجة نارية رياضية",
@@ -2421,7 +2399,6 @@ window.ads = [
 "tags":["cars","vehicles","gold"],
 "badge":"gold"
 },
-
 {
 "id":151,
 "title":"خدمة تصميم مواقع",
@@ -2502,7 +2479,6 @@ window.ads = [
 "tags":["services","business","gold"],
 "badge":"gold"
 },
-
 {
 "id":156,
 "title":"خدمة كتابة محتوى",
@@ -2663,7 +2639,6 @@ window.ads = [
 "tags":["education","management","gold"],
 "badge":"gold"
 },
-
 {
 "id":166,
 "title":"دورة مهارات القيادة",
@@ -2744,7 +2719,6 @@ window.ads = [
 "tags":["education","ai","gold"],
 "badge":"gold"
 },
-
 {
 "id":171,
 "title":"منتج صحي طبيعي فاخر",
@@ -2825,7 +2799,6 @@ window.ads = [
 "tags":["health","wellness","gold"],
 "badge":"gold"
 },
-
 {
 "id":176,
 "title":"جهاز قياس ضغط الدم",
@@ -2986,7 +2959,6 @@ window.ads = [
 "tags":["health","supplement","gold"],
 "badge":"gold"
 },
-
 {
 "id":186,
 "title":"مكمل كولاجين بحري",
@@ -3067,7 +3039,6 @@ window.ads = [
 "tags":["health","supplement","gold"],
 "badge":"gold"
 },
-
 {
 "id":191,
 "title":"مكمل فيتامين ك2",
@@ -3148,7 +3119,6 @@ window.ads = [
 "tags":["health","vitamin","gold"],
 "badge":"gold"
 },
-
 {
 "id":196,
 "title":"مكمل فيتامين ب5",
