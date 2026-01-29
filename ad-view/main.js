@@ -65,7 +65,7 @@ document.addEventListener("mousemove", function(e) {
 });
 
 // =========================
-//  FLOATING ICONS (STATIC)
+//  FLOATING ICONS
 // =========================
 (function addFloatingIcons() {
   var icons = [
@@ -86,18 +86,18 @@ document.addEventListener("mousemove", function(e) {
 })();
 
 // =========================
-//  DATA SPLITTING FROM adsDB
+//  DATA SPLITTING
 // =========================
 
-// الموصى بها (السلايدر) — نأخذ أول 7
+// الموصى بها (السلايدر)
 var emperorAds = adsDB.slice(0, 7);
 
-// المميزة (featured = true)
+// المميزة
 var featuredAds = adsDB.filter(function(ad) {
   return ad.featured === true;
 });
 
-// أحدث الإعلانات (حسب التاريخ)
+// أحدث الإعلانات
 var latestAds = adsDB
   .slice()
   .sort(function(a, b) {
@@ -117,13 +117,16 @@ var dotsBox = document.getElementById("emperorDots");
 for (var i = 0; i < emperorAds.length; i++) {
   var slide =
     '<div class="emperor-slide' + (i === 0 ? ' active' : '') + '">' +
-    '<img src="' + emperorAds[i].image + '">' +
-    '</div>';
+    '<img src="' + emperorAds[i].image + '">'
+    + '">'
+    + '</div>';
+
   slidesBox.innerHTML += slide;
 
   var dot =
     '<span class="emperor-dot' + (i === 0 ? ' active' : '') +
     '" data-index="' + i + '"></span>';
+
   dotsBox.innerHTML += dot;
 }
 
@@ -137,9 +140,11 @@ function showSlide(index) {
     slides[i].classList.remove("prev");
     dots[i].classList.remove("active");
   }
+
   slides[current].classList.add("prev");
   slides[index].classList.add("active");
   dots[index].classList.add("active");
+
   current = index;
 }
 
