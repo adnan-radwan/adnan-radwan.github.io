@@ -6,114 +6,86 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>GOLDEN ADS — Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOLDEN ADS — الصفحة الرئيسية</title>
 
-  <!-- الخط -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700;900&display=swap" rel="stylesheet">
-
-  <!-- ملف التنسيق -->
+  <!-- CSS الرئيسي -->
   <link rel="stylesheet" href="main.css">
-
-  <!-- قاعدة البيانات -->
-  <script src="https://adnan-radwan.github.io/adsDB.js"></script>
 </head>
 
 <body>
 
-  <!-- خلفية الفيديو -->
+  <!-- شريط علوي -->
+  <nav id="goldNav">
+    <div>GOLDEN ADS</div>
+    <div>
+      <a href="/">الرئيسية</a>
+      <a href="#allAdsGrid">الإعلانات</a>
+      <a href="/p/contact.html">تواصل</a>
+    </div>
+  </nav>
+
+  <!-- فيديو الخلفية -->
   <video id="bg-video" autoplay muted loop>
-    <source src="/p/bg.mp4" type="video/mp4">
+    <source src="https://adnan-radwan.github.io/p/bg.mp4" type="video/mp4">
   </video>
   <div class="video-overlay"></div>
-
-  <!-- البارتكلز -->
   <canvas id="particlesCanvas"></canvas>
 
-  <!-- الهيدر السينمائي -->
-  <header class="hero-header">
-    <div class="hero-light"></div>
-    <div class="hero-content">
+  <!-- هيدر -->
+  <header class="hero-header reveal">
+    <div>
       <h1 class="hero-title">GOLDEN ADS</h1>
       <p class="hero-subtitle">Ultra Cinematic Gold Experience</p>
     </div>
   </header>
 
-  <!-- سلايدر Netflix -->
-  <section class="latest-slider-container section-reveal">
-    <h2 class="latest-slider-title">🆕 أحدث الإعلانات</h2>
-    <button class="latest-nav latest-prev">❮</button>
-    <button class="latest-nav latest-next">❯</button>
-    <div id="latestSlider" class="latest-slider"></div>
+  <!-- السلايدر (موصى بها) -->
+  <section class="emperor-slider-container reveal">
+    <div id="emperorSlides"></div>
+    <div class="emperor-prev emperor-nav"></div>
+    <div class="emperor-next emperor-nav"></div>
+    <div class="emperor-dots" id="emperorDots"></div>
   </section>
 
-  <!-- الإعلانات المميزة -->
-  <section class="featured-section section-reveal">
-    <h2 class="categories-title">⭐ الإعلانات المميزة</h2>
-    <div id="featuredGrid" class="ads-grid"></div>
+  <div class="gold-separator reveal"></div>
+
+  <!-- المميزة (صف أفقي) -->
+  <section class="ads-section reveal">
+    <h2 class="categories-title">المميزة</h2>
+    <div id="featuredRow" class="horizontal-row"></div>
   </section>
 
   <!-- أحدث الإعلانات -->
-  <section class="ads-section section-reveal">
-    <h2 class="categories-title">📌 أحدث الإعلانات</h2>
-    <div id="ads-container" class="ads-grid"></div>
+  <section class="ads-section reveal">
+    <h2 class="categories-title">أحدث الإعلانات</h2>
+    <div id="latestGrid" class="ads-grid"></div>
   </section>
 
-  <!-- الفلترة + الشبكة -->
-  <section class="ads-section section-reveal">
-    <div class="filter-bar">
-      <button class="filter-btn active" data-category="all">الكل</button>
-      <button class="filter-btn" data-category="health">🧪 صحة</button>
-      <button class="filter-btn" data-category="cars">🚗 سيارات</button>
-      <button class="filter-btn" data-category="realestate">🏡 عقارات</button>
-      <button class="filter-btn" data-category="electronics">📱 إلكترونيات</button>
-      <button class="filter-btn" data-category="jobs">👔 وظائف</button>
-      <button class="filter-btn" data-category="services">⚙️ خدمات</button>
-      <button class="filter-btn" data-category="shopping">🛍️ تسوق</button>
-    </div>
-    <div id="adsGrid" class="ads-grid"></div>
+  <!-- كل الإعلانات -->
+  <section class="ads-section reveal">
+    <h2 class="categories-title">كل الإعلانات</h2>
+    <div id="allAdsGrid" class="ads-grid"></div>
   </section>
 
-  <!-- لماذا Golden Ads -->
-  <section class="why-section section-reveal">
-    <h2 class="categories-title">✨ لماذا Golden Ads؟</h2>
-    <div class="why-grid">
-      <div class="why-box">🎬 تصميم سينمائي فاخر</div>
-      <div class="why-box">⚡ سرعة في التصفح</div>
-      <div class="why-box">📱 متوافق مع جميع الأجهزة</div>
-      <div class="why-box">🔒 التزام بالقوانين الأمريكية</div>
-      <div class="why-box">📡 نظام إدارة إعلانات احترافي</div>
-      <div class="why-box">💎 هوية ذهبية فريدة</div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section section-reveal">
-    <a href="/p/blog-page_23.html" class="cta-big" target="_blank">✨ أضف إعلانك الآن</a>
-  </section>
-
-  <!-- الفوتر -->
-  <footer class="footer section-reveal">
+  <!-- فوتر -->
+  <footer class="footer reveal">
     <div class="footer-title">GOLDEN ADS</div>
-    <div class="footer-links">
-      <a href="/ad-view/home.html">الرئيسية</a>
-      <a href="/p/blog-page_23.html">أضف إعلانك</a>
-      <a href="/p/privacy-policy.html">سياسة الخصوصية</a>
-      <a href="/p/terms.html">الشروط والأحكام</a>
-      <a href="/p/contact.html">اتصل بنا</a>
-    </div>
-    <div class="footer-copy">
-      © 2026 — تصميم وبرمجة: <strong>عدنان رضوان</strong>
-    </div>
+    <div class="footer-copy">© 2026 — تصميم وبرمجة: عدنان رضوان</div>
   </footer>
 
-  <!-- أزرار التواصل -->
-  <div class="floating-buttons">
-    <a class="float-btn" href="https://wa.me/0000000000" target="_blank">💬</a>
-    <a class="float-btn" href="https://m.me/yourpage" target="_blank">📨</a>
-    <a class="float-btn" href="https://t.me/yourusername" target="_blank">📡</a>
+  <!-- زر العودة للأعلى -->
+  <div id="backTop">↑</div>
+
+  <!-- شاشة سينمائية -->
+  <div id="introScreen">
+    <div id="introLogo">GOLDEN ADS</div>
   </div>
 
-  <!-- ملف السكربت -->
+  <!-- قاعدة البيانات -->
+  <script src="adsDB.js"></script>
+
+  <!-- سكربتات الصفحة -->
   <script src="main.js"></script>
 
 </body>
