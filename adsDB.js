@@ -3214,7 +3214,7 @@ window.ads = [
   "currency": "$",
   "tags": ["honey", "natural", "recommended"],
   "badge": "recommended"
-}
+},
  {"id":202,"title":"مزهرية فاخرة من الكريستال الأزرق","desc":"مزهرية كريستالية زرقاء مع لمسات ذهبية راقية.","image":"https://images.unsplash.com/photo-1519183071298-a2962be96c85","link":"/p/ad202.html","category":"decor","featured":true,"status":"active","expires":"2025-06-01","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vase","gold"],"badge":"gold"},
 {"id":203,"title":"صندوق ديكور محفور يدويًا","desc":"صندوق خشبي محفور يدويًا مع إطار ذهبي فاخر.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad203.html","category":"decor","featured":false,"status":"active","expires":"2025-05-30","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","box","gold"],"badge":"gold"},
 {"id":204,"title":"شمعدان كريستالي فاخر","desc":"شمعدان من الكريستال الشفاف مع قاعدة ذهبية.","image":"https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10","link":"/p/ad204.html","category":"decor","featured":true,"status":"active","expires":"2025-05-28","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","candle","gold"],"badge":"gold"},
