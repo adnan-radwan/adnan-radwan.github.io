@@ -289,3 +289,20 @@ window.addEventListener("load", function() {
   renderLatest();
   renderAllAds();
 });
+function renderRecommended() {
+  const container = document.getElementById("recommendedGrid");
+  if (!container || !window.internalAds) return;
+
+  container.innerHTML = window.internalAds.map(ad => `
+    <div class="recommended-card">
+      <img src="${ad.image}" alt="${ad.title}">
+      <div class="rec-content">
+        <h3 class="rec-title">${ad.title}</h3>
+        <p class="rec-desc">${ad.desc}</p>
+        <a href="${ad.link}" class="rec-btn">عرض الإعلان</a>
+      </div>
+    </div>
+  `).join("");
+}
+
+document.addEventListener("DOMContentLoaded", renderRecommended);
