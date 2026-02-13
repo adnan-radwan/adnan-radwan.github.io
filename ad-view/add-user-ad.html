@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>إضافة إعلان — GOLDEN ADS</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<style>
+body { font-family: Tajawal, sans-serif; background:#111; color:#fff; padding:40px; }
+.box { max-width:600px; margin:auto; background:#222; padding:20px; border-radius:10px; }
+input, textarea { width:100%; padding:10px; margin:8px 0; border-radius:6px; border:none; }
+button { width:100%; padding:12px; background:#d4af37; border:none; border-radius:6px; cursor:pointer; margin-top:10px; }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>إضافة إعلان جديد</h2>
+
+  <label>عنوان الإعلان</label>
+  <input id="title" type="text">
+
+  <label>وصف الإعلان</label>
+  <textarea id="description"></textarea>
+
+  <label>صورة الإعلان</label>
+  <input id="image" type="file" accept="image/*">
+
+  <button onclick="addAd()">إضافة الإعلان</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+const supabaseClient = supabase.createClient(
+  "https://jhnixraeajtupkqwqghr.supabase.co",
+  "sb_publishable_5sjJVc_U0iPxcQns6LYiDw_MyQDXFsG"
+);
+
+// حماية الصفحة — لا يدخلها إلا مستخدم مسجّل
+let currentUser = null;
+
+supabaseClient.auth.getUser().then(({ data }) => {
+  if (!data.user) {
+    window.location.href = "login.html";
+  } else {
+    currentUser = data.user;
+  }
+});
+
+async function addAd() {
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const file = document.getElementById("image").files[0];
+  const msg = document.getElementById("msg");
+
+  if (!title || !description || !file) {
+    msg.textContent = "الرجاء تعبئة جميع الحقول.";
+    return;
+  }
+
+  msg.textContent = "جاري رفع الصورة...";
+
+  const fileName = `user-${currentUser.id}-${Date.now()}.jpg`;
+
+  const { data: uploadData, error: uploadError } = await supabaseClient.storage
+    .from("ads-images")
+    .upload(fileName, file);
+
+  if (uploadError) {
+    msg.textContent = "فشل رفع الصورة.";
+    return;
+  }
+
+  const imageURL = supabaseClient
+    .storage
+    .from("ads-images")
+    .getPublicUrl(fileName).data.publicUrl;
+
+  msg.textContent = "جاري حفظ الإعلان...";
+
+  const { error } = await supabaseClient
+    .from("user_ads")
+    .insert({
+      user_id: currentUser.id,
+      title,
+      description,
+      image: imageURL,
+      status: "pending"
+    });
+
+  if (error) {
+    msg.textContent = "حدث خطأ أثناء حفظ الإعلان.";
+    return;
+  }
+
+  msg.textContent = "تم إضافة الإعلان بنجاح!";
+  setTimeout(() => window.location.href = "user-dashboard.html", 1500);
+}
+</script>
+
+</body>
+</html>
