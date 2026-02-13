@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>تعديل الإعلان — GOLDEN ADS</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+body { font-family: Tajawal, sans-serif; background:#111; color:#fff; padding:40px; }
+.box { max-width:600px; margin:auto; background:#222; padding:20px; border-radius:10px; }
+input, textarea { width:100%; padding:10px; margin:8px 0; border-radius:6px; border:none; }
+button { width:100%; padding:12px; background:#d4af37; border:none; border-radius:6px; cursor:pointer; margin-top:10px; }
+img { width:100%; border-radius:10px; margin:10px 0; }
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>تعديل الإعلان</h2>
+
+  <label>عنوان الإعلان</label>
+  <input id="title" type="text">
+
+  <label>وصف الإعلان</label>
+  <textarea id="description"></textarea>
+
+  <label>الصورة الحالية</label>
+  <img id="currentImage" src="" alt="">
+
+  <label>تغيير الصورة (اختياري)</label>
+  <input id="image" type="file" accept="image/*">
+
+  <button onclick="updateAd()">حفظ التعديلات</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+const supabaseClient = supabase.createClient(
+  "https://jhnixraeajtupkqwqghr.supabase.co",
+  "sb_publishable_5sjJVc_U0iPxcQns6LYiDw_MyQDXFsG"
+);
+
+let currentUser = null;
+let adId = null;
+
+// الحصول على ID من الرابط
+const params = new URLSearchParams(window.location.search);
+adId = params.get("id");
+
+// حماية الصفحة
+supabaseClient.auth.getUser().then(({ data }) => {
+  if (!data.user) {
+    window.location.href = "login.html";
+  } else {
+    currentUser = data.user;
+    loadAd();
+  }
+});
+
+async function loadAd() {
+  const msg = document.getElementById("msg");
+
+  const { data, error } = await supabaseClient
+    .from("user_ads")
+    .select("*")
+    .eq("id", adId)
+    .eq("user_id", currentUser.id)
+    .single();
+
+  if (error || !data) {
+    msg.textContent = "لا يمكنك تعديل هذا الإعلان.";
+    return;
+  }
+
+  document.getElementById("title").value = data.title;
+  document.getElementById("description").value = data.description;
+  document.getElementById("currentImage").src = data.image;
+}
+
+async function updateAd() {
+  const title = document.getElementById("title").value.trim();
+  const description = document.getElementById("description").value.trim();
+  const file = document.getElementById("image").files[0];
+  const msg = document.getElementById("msg");
+
+  if (!title || !description) {
+    msg.textContent = "الرجاء تعبئة جميع الحقول.";
+    return;
+  }
+
+  let imageURL = null;
+
+  // إذا تم اختيار صورة جديدة
+  if (file) {
+    msg.textContent = "جاري رفع الصورة الجديدة...";
+
+    const fileName = `user-${currentUser.id}-${Date.now()}.jpg`;
+
+    const { error: uploadError } = await supabaseClient.storage
+      .from("ads-images")
+      .upload(fileName, file);
+
+    if (uploadError) {
+      msg.textContent = "فشل رفع الصورة.";
+      return;
+    }
+
+    imageURL = supabaseClient
+      .storage
+      .from("ads-images")
+      .getPublicUrl(fileName).data.publicUrl;
+  }
+
+  msg.textContent = "جاري حفظ التعديلات...";
+
+  const updateData = {
+    title,
+    description
+  };
+
+  if (imageURL) updateData.image = imageURL;
+
+  const { error } = await supabaseClient
+    .from("user_ads")
+    .update(updateData)
+    .eq("id", adId)
+    .eq("user_id", currentUser.id);
+
+  if (error) {
+    msg.textContent = "حدث خطأ أثناء حفظ التعديلات.";
+    return;
+  }
+
+  msg.textContent = "تم حفظ التعديلات بنجاح!";
+  setTimeout(() => window.location.href = "my-ads.html", 1500);
+}
+</script>
+
+</body>
+</html>
