@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>إعلاناتي — GOLDEN ADS</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+body { font-family: Tajawal, sans-serif; background:#111; color:#fff; padding:40px; }
+.box { max-width:900px; margin:auto; }
+.card {
+  background:#222; padding:15px; border-radius:10px; margin-bottom:15px;
+  border:1px solid #333; display:flex; gap:15px;
+}
+.card img {
+  width:140px; height:140px; object-fit:cover; border-radius:8px;
+}
+.card-body { flex:1; }
+.status {
+  display:inline-block; padding:4px 10px; border-radius:6px; font-size:13px;
+}
+.pending { background:#f1c40f; color:#000; }
+.approved { background:#2ecc71; }
+.rejected { background:#e74c3c; }
+button {
+  padding:8px 14px; background:#d4af37; border:none; border-radius:6px;
+  cursor:pointer; margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>إعلاناتي</h2>
+  <div id="adsContainer"></div>
+  <p id="msg"></p>
+  <button onclick="goBack()">عودة للوحة المستخدم</button>
+</div>
+
+<script>
+const supabaseClient = supabase.createClient(
+  "https://jhnixraeajtupkqwqghr.supabase.co",
+  "sb_publishable_5sjJVc_U0iPxcQns6LYiDw_MyQDXFsG"
+);
+
+let currentUser = null;
+
+// حماية الصفحة
+supabaseClient.auth.getUser().then(({ data }) => {
+  if (!data.user) {
+    window.location.href = "login.html";
+  } else {
+    currentUser = data.user;
+    loadMyAds();
+  }
+});
+
+async function loadMyAds() {
+  const container = document.getElementById("adsContainer");
+  const msg = document.getElementById("msg");
+
+  msg.textContent = "جاري تحميل إعلاناتك...";
+
+  const { data, error } = await supabaseClient
+    .from("user_ads")
+    .select("*")
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    msg.textContent = "حدث خطأ أثناء تحميل الإعلانات.";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    msg.textContent = "لا توجد إعلانات حتى الآن.";
+    return;
+  }
+
+  msg.textContent = "";
+  container.innerHTML = "";
+
+  data.forEach(ad => {
+    container.innerHTML += `
+      <div class="card">
+        <img src="${ad.image}">
+        <div class="card-body">
+          <h3>${ad.title}</h3>
+          <p>${ad.description}</p>
+
+          <span class="status ${ad.status}">
+            ${ad.status === "pending" ? "قيد المراجعة" :
+              ad.status === "approved" ? "مقبول" :
+              "مرفوض"}
+          </span>
+
+          <br>
+          <button onclick="deleteAd('${ad.id}')">حذف الإعلان</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+async function deleteAd(id) {
+  const msg = document.getElementById("msg");
+
+  const { error } = await supabaseClient
+    .from("user_ads")
+    .delete()
+    .eq("id", id)
+    .eq("user_id", currentUser.id);
+
+  if (error) {
+    msg.textContent = "تعذر حذف الإعلان.";
+    return;
+  }
+
+  msg.textContent = "تم حذف الإعلان.";
+  loadMyAds();
+}
+
+function goBack() {
+  window.location.href = "user-dashboard.html";
+}
+</script>
+
+</body>
+</html>
