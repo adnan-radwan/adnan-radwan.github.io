@@ -1,10 +1,4 @@
-// Supabase Client
-const supabaseClient = supabase.createClient(
-  "YOUR_SUPABASE_URL",
-  "YOUR_SUPABASE_ANON_KEY"
-);
-
-// Category Map + Emojis
+// خريطة التصنيفات + الإيموجي
 const CATEGORY_MAP = {
   tech:       { ar: "تقنية 💻",      en: "Tech 💻" },
   fashion:    { ar: "أزياء 👗",      en: "Fashion 👗" },
@@ -23,31 +17,37 @@ let CURRENT_CATEGORY = null;
 let CATEGORY_PAGE = 1;
 const PAGE_SIZE = 9;
 
-// Toggle Language
+// تبديل اللغة
 function toggleLanguage() {
   document.body.classList.toggle("lang-en-active");
 }
 
-// Load Ads
+// تحميل الإعلانات من Supabase
 async function loadCategoryAds() {
-  const { data, error } = await supabaseClient
-    .from("ads")
-    .select("*")
-    .order("created_at", { ascending: false });
+  try {
+    const { data, error } = await supabaseClient
+      .from("ads")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-  if (error) {
-    console.error(error);
-    return;
+    if (error) {
+      console.error("Error loading ads:", error);
+      return;
+    }
+
+    ALL_ADS = data || [];
+    setupCategoryTabs();
+    renderCategorySection();
+  } catch (e) {
+    console.error("Unexpected error:", e);
   }
-
-  ALL_ADS = data || [];
-  setupCategoryTabs();
-  renderCategorySection();
 }
 
-// Setup Tabs
+// إنشاء Tabs التصنيفات
 function setupCategoryTabs() {
   const tabs = document.getElementById("ga-category-tabs");
+  if (!tabs) return;
+
   tabs.innerHTML = `
     <button type="button" data-cat="" class="ga-cat-tab active">
       <span class="lang-ar">كل التصنيفات</span>
@@ -76,13 +76,17 @@ function setupCategoryTabs() {
   });
 }
 
-// Render Grid + Pagination
+// عرض الإعلانات + Pagination
 function renderCategorySection() {
   const grid = document.getElementById("ga-category-grid");
   const pag  = document.getElementById("ga-category-pagination");
 
+  if (!grid || !pag) return;
+
   let list = [...ALL_ADS];
-  if (CURRENT_CATEGORY) list = list.filter(ad => ad.category === CURRENT_CATEGORY);
+  if (CURRENT_CATEGORY) {
+    list = list.filter(ad => ad.category === CURRENT_CATEGORY);
+  }
 
   const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
   if (CATEGORY_PAGE > totalPages) CATEGORY_PAGE = totalPages;
@@ -139,10 +143,10 @@ function renderCategorySection() {
   });
 }
 
-// Open Ad Page
+// فتح صفحة الإعلان
 function viewOfficialAd(id) {
   window.location.href = "/ad-view/ad-details.html?id=" + id;
 }
 
-// Start
+// تشغيل النظام
 loadCategoryAds();
