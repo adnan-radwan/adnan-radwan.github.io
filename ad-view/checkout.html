@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>شراء خدمة — GOLDEN ADS</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+body { font-family: Tajawal, sans-serif; background:#111; color:#fff; padding:40px; }
+.box { max-width:600px; margin:auto; background:#222; padding:20px; border-radius:10px; }
+h2 { color:#d4af37; }
+button {
+  width:100%; padding:12px; background:#d4af37; border:none;
+  border-radius:6px; cursor:pointer; margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2 id="serviceTitle">جاري التحميل...</h2>
+
+  <p id="serviceDesc"></p>
+  <p><strong>السعر:</strong> <span id="servicePrice"></span> ريال</p>
+
+  <button onclick="confirmOrder()">تأكيد الشراء</button>
+
+  <p id="msg"></p>
+</div>
+
+<script>
+const supabaseClient = supabase.createClient(
+  "https://jhnixraeajtupkqwqghr.supabase.co",
+  "sb_publishable_5sjJVc_U0iPxcQns6LYiDw_MyQDXFsG"
+);
+
+let currentUser = null;
+
+// الحصول على بيانات الخدمة من الرابط
+const params = new URLSearchParams(window.location.search);
+const service = params.get("service");
+const title = params.get("title");
+const price = params.get("price");
+
+// عرض البيانات
+document.getElementById("serviceTitle").textContent = title || "خدمة";
+document.getElementById("serviceDesc").textContent = "شراء خدمة: " + (title || "");
+document.getElementById("servicePrice").textContent = price || "0";
+
+// حماية الصفحة
+supabaseClient.auth.getUser().then(({ data }) => {
+  if (!data.user) {
+    window.location.href = "login.html";
+  } else {
+    currentUser = data.user;
+  }
+});
+
+async function confirmOrder() {
+  const msg = document.getElementById("msg");
+
+  msg.textContent = "جاري إنشاء الطلب...";
+
+  const { error } = await supabaseClient
+    .from("orders")
+    .insert({
+      user_id: currentUser.id,
+      service: service,
+      description: title,
+      amount: price,
+      status: "pending"
+    });
+
+  if (error) {
+    msg.textContent = "حدث خطأ أثناء إنشاء الطلب.";
+    return;
+  }
+
+  msg.textContent = "تم إنشاء الطلب بنجاح!";
+  setTimeout(() => window.location.href = "my-orders.html", 1500);
+}
+</script>
+
+</body>
+</html>
