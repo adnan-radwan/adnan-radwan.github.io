@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>طلباتي — GOLDEN ADS</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+body { font-family: Tajawal, sans-serif; background:#111; color:#fff; padding:40px; }
+.box { max-width:900px; margin:auto; }
+.card {
+  background:#222; padding:15px; border-radius:10px; margin-bottom:15px;
+  border:1px solid #333;
+}
+.status {
+  display:inline-block; padding:4px 10px; border-radius:6px; font-size:13px;
+}
+.pending { background:#f1c40f; color:#000; }
+.paid { background:#2ecc71; }
+.canceled { background:#e74c3c; }
+button {
+  padding:8px 14px; background:#d4af37; border:none; border-radius:6px;
+  cursor:pointer; margin-top:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2>طلباتي</h2>
+  <div id="ordersContainer"></div>
+  <p id="msg"></p>
+  <button onclick="goBack()">عودة للوحة المستخدم</button>
+</div>
+
+<script>
+const supabaseClient = supabase.createClient(
+  "https://jhnixraeajtupkqwqghr.supabase.co",
+  "sb_publishable_5sjJVc_U0iPxcQns6LYiDw_MyQDXFsG"
+);
+
+let currentUser = null;
+
+// حماية الصفحة
+supabaseClient.auth.getUser().then(({ data }) => {
+  if (!data.user) {
+    window.location.href = "login.html";
+  } else {
+    currentUser = data.user;
+    loadOrders();
+  }
+});
+
+async function loadOrders() {
+  const container = document.getElementById("ordersContainer");
+  const msg = document.getElementById("msg");
+
+  msg.textContent = "جاري تحميل طلباتك...";
+
+  const { data, error } = await supabaseClient
+    .from("orders")
+    .select("*")
+    .eq("user_id", currentUser.id)
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    msg.textContent = "حدث خطأ أثناء تحميل الطلبات.";
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    msg.textContent = "لا توجد طلبات حتى الآن.";
+    return;
+  }
+
+  msg.textContent = "";
+  container.innerHTML = "";
+
+  data.forEach(order => {
+    container.innerHTML += `
+      <div class="card">
+        <h3>رقم الطلب: ${order.id}</h3>
+        <p>الوصف: ${order.description || "—"}</p>
+        <p>السعر: ${order.amount} ريال</p>
+        <p>التاريخ: ${new Date(order.created_at).toLocaleString("ar-SA")}</p>
+
+        <span class="status ${order.status}">
+          ${
+            order.status === "pending" ? "قيد المعالجة" :
+            order.status === "paid" ? "مدفوع" :
+            "ملغي"
+          }
+        </span>
+      </div>
+    `;
+  });
+}
+
+function goBack() {
+  window.location.href = "user-dashboard.html";
+}
+</script>
+
+</body>
+</html>
