@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>تفاصيل الإعلان — GOLDEN ADS</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+body { font-family: Tajawal, sans-serif; background:#111; color:#fff; padding:40px; }
+.box { max-width:800px; margin:auto; background:#222; padding:20px; border-radius:10px; }
+img { width:100%; border-radius:10px; margin-bottom:20px; }
+.status {
+  display:inline-block; padding:6px 12px; border-radius:6px; font-size:14px;
+}
+.pending { background:#f1c40f; color:#000; }
+.approved { background:#2ecc71; }
+.rejected { background:#e74c3c; }
+button {
+  padding:10px 18px; background:#d4af37; border:none; border-radius:6px;
+  cursor:pointer; margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+  <h2 id="title">جاري التحميل...</h2>
+  <img id="image" src="">
+  <p id="description"></p>
+  <p id="statusBox"></p>
+
+  <button onclick="goBack()">عودة</button>
+</div>
+
+<script>
+const supabaseClient = supabase.createClient(
+  "https://jhnixraeajtupkqwqghr.supabase.co",
+  "sb_publishable_5sjJVc_U0iPxcQns6LYiDw_MyQDXFsG"
+);
+
+// الحصول على ID من الرابط
+const params = new URLSearchParams(window.location.search);
+const adId = params.get("id");
+
+async function loadAd() {
+  const titleEl = document.getElementById("title");
+  const descEl = document.getElementById("description");
+  const imgEl = document.getElementById("image");
+  const statusBox = document.getElementById("statusBox");
+
+  // 1) البحث في جدول الإعلانات الرسمية
+  let { data: officialAd } = await supabaseClient
+    .from("ads")
+    .select("*")
+    .eq("id", adId)
+    .single();
+
+  if (officialAd) {
+    titleEl.textContent = officialAd.title;
+    descEl.textContent = officialAd.description;
+    imgEl.src = officialAd.image;
+    statusBox.innerHTML = `<span class="status approved">إعلان رسمي</span>`;
+    return;
+  }
+
+  // 2) البحث في جدول user_ads
+  let { data: userAd } = await supabaseClient
+    .from("user_ads")
+    .select("*")
+    .eq("id", adId)
+    .single();
+
+  if (userAd) {
+    titleEl.textContent = userAd.title;
+    descEl.textContent = userAd.description;
+    imgEl.src = userAd.image;
+
+    let statusClass =
+      userAd.status === "pending" ? "pending" :
+      userAd.status === "approved" ? "approved" :
+      "rejected";
+
+    let statusText =
+      userAd.status === "pending" ? "قيد المراجعة" :
+      userAd.status === "approved" ? "مقبول" :
+      "مرفوض";
+
+    statusBox.innerHTML = `<span class="status ${statusClass}">${statusText}</span>`;
+    return;
+  }
+
+  // 3) إذا لم يتم العثور على الإعلان
+  titleEl.textContent = "الإعلان غير موجود";
+  descEl.textContent = "";
+  imgEl.style.display = "none";
+}
+
+function goBack() {
+  window.history.back();
+}
+
+loadAd();
+</script>
+
+</body>
+</html>
