@@ -1,3 +1,10 @@
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const supabaseClient = supabase.createClient(
+    "https://jhnixraeajtupkqwqghr.supabase.co",
+    "YOUR_PUBLIC_ANON_KEY"
+  );
+</script>
 // خريطة التصنيفات + الإيموجي
 const CATEGORY_MAP = {
   tech:       { ar: "تقنية 💻",      en: "Tech 💻" },
