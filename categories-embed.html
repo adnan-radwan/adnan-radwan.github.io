@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>Golden Ads Categories</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#050509; color:#f5f5f5; margin:0; padding:20px; }
+    h1 { margin-bottom:16px; }
+    #ga-category-tabs { margin-bottom:16px; display:flex; flex-wrap:wrap; gap:8px; }
+    #ga-category-tabs button {
+      background:#11121a; color:#f5f5f5; border:1px solid #333; padding:6px 10px;
+      border-radius:999px; cursor:pointer; font-size:14px;
+    }
+    #ga-category-tabs button.active { border-color:#f5d27a; color:#f5d27a; }
+    #ga-category-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+      margin-bottom:16px;
+    }
+    .ga-card {
+      background:#11121a; border-radius:12px; padding:12px;
+      border:1px solid rgba(245,210,122,0.15);
+    }
+    .ga-card h3 { margin:0 0 6px; font-size:15px; }
+    .ga-card p { margin:0 0 8px; font-size:13px; color:#ccc; }
+    .ga-card small { font-size:11px; color:#999; }
+    #ga-category-pagination { display:flex; gap:6px; flex-wrap:wrap; }
+    #ga-category-pagination button {
+      background:#11121a; color:#f5f5f5; border:1px solid #333;
+      padding:4px 8px; border-radius:6px; cursor:pointer; font-size:13px;
+    }
+    #ga-category-pagination button.current {
+      border-color:#f5d27a; color:#f5d27a; font-weight:bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>تصنيفات جولدن أدز</h1>
+
+  <div id="ga-category-tabs"></div>
+  <div id="ga-category-grid"></div>
+  <div id="ga-category-pagination"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const supabase = supabase.createClient(
+      "https://jhnixraeajtupkqwqghr.supabase.co",
+      "sb_publishable_5sjJVc_U0iPxcQns6LYiDw_MyQDXFsG"
+    );
+
+    const CATEGORY_MAP = {
+      tech:{ar:"تقنية 💻",en:"Tech 💻"},
+      fashion:{ar:"أزياء 👗",en:"Fashion 👗"},
+      beauty:{ar:"جمال 💄",en:"Beauty 💄"},
+      food:{ar:"طعام 🍽️",en:"Food 🍽️"},
+      realestate:{ar:"عقارات 🏠",en:"Real Estate 🏠"},
+      cars:{ar:"سيارات 🚗",en:"Cars 🚗"},
+      services:{ar:"خدمات 🛠️",en:"Services 🛠️"},
+      education:{ar:"تعليم 🎓",en:"Education 🎓"},
+      health:{ar:"صحة 🩺",en:"Health 🩺"},
+      home:{ar:"منزل 🏡",en:"Home 🏡"}
+    };
+
+    let ALL_ADS = [];
+    let CURRENT_CATEGORY = null;
+    let PAGE = 1;
+    const PAGE_SIZE = 9;
+
+    async function loadAds() {
+      const { data, error } = await supabase
+        .from("ads")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (error) {
+        console.error("Supabase error:", error);
+        return;
+      }
+
+      ALL_ADS = data || [];
+      buildTabs();
+      render();
+    }
+
+    function buildTabs() {
+      const tabs = document.getElementById("ga-category-tabs");
+      tabs.innerHTML = `<button data-cat="" class="active">كل التصنيفات</button>`;
+      Object.keys(CATEGORY_MAP).forEach(k => {
+        tabs.innerHTML += `<button data-cat="${k}">${CATEGORY_MAP[k].ar}</button>`;
+      });
+
+      tabs.querySelectorAll("button").forEach(btn => {
+        btn.onclick = () => {
+          tabs.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          CURRENT_CATEGORY = btn.dataset.cat || null;
+          PAGE = 1;
+          render();
+        };
+      });
+    }
+
+    function render() {
+      const grid = document.getElementById("ga-category-grid");
+      const pag  = document.getElementById("ga-category-pagination");
+      let list = [...ALL_ADS];
+
+      if (CURRENT_CATEGORY) {
+        list = list.filter(a => a.category === CURRENT_CATEGORY);
+      }
+
+      const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
+      if (PAGE > totalPages) PAGE = totalPages;
+
+      const start = (PAGE - 1) * PAGE_SIZE;
+      const items = list.slice(start, start + PAGE_SIZE);
+
+      grid.innerHTML = items.map(ad => `
+        <div class="ga-card">
+          <h3>${ad.title}</h3>
+          <p>${ad.description || ""}</p>
+          <small>${new Date(ad.created_at).toLocaleDateString()}</small>
+        </div>
+      `).join("");
+
+      pag.innerHTML = "";
+      if (PAGE > 1) {
+        pag.innerHTML += `<button data-p="${PAGE - 1}">‹</button>`;
+      }
+      for (let p = 1; p <= totalPages; p++) {
+        pag.innerHTML += `<button data-p="${p}" class="${p === PAGE ? 'current' : ''}">${p}</button>`;
+      }
+      if (PAGE < totalPages) {
+        pag.innerHTML += `<button data-p="${PAGE + 1}">›</button>`;
+      }
+
+      pag.querySelectorAll("button").forEach(btn => {
+        btn.onclick = () => {
+          PAGE = parseInt(btn.dataset.p, 10);
+          render();
+        };
+      });
+    }
+
+    loadAds();
+  </script>
+</body>
+</html>
