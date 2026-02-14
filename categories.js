@@ -2,7 +2,7 @@
 <script>
   const supabaseClient = supabase.createClient(
     "https://jhnixraeajtupkqwqghr.supabase.co",
-    "YOUR_PUBLIC_ANON_KEY"
+    "sb_publishable_5sjJVc_U0iPxcQns6LYiDw_MyQDXFsG"
   );
 </script>
 // خريطة التصنيفات + الإيموجي
