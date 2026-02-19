@@ -1,3 +1,11 @@
+// بناء شريط الفئات ديناميكيًا
+const bar = document.getElementById("categoriesBar");
+bar.innerHTML = categoriesDB.map(cat => `
+  <a class="cat-tab" href="#${cat.slug}">
+    ${cat.icon} ${cat.name_ar}
+  </a>
+`).join("");
+
 fetch("https://adnan-radwan.github.io/ad-view/adsDB.js")
   .then(() => {
 
