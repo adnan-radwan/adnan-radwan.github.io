@@ -1,3 +1,76 @@
+/* الغلاف */
+.page-header {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #111, #000);
+  color: #ffd700;
+  border-bottom: 1px solid rgba(255,215,0,0.3);
+}
+
+.page-header h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.page-header p {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* الشريط الثابت */
+.top-sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  padding: 12px 18px;
+  background: rgba(5,5,12,0.85);
+  border-bottom: 1px solid rgba(212,175,55,0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffd700;
+  font-size: 1rem;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+}
+
+.top-left { font-weight: bold; font-size: 1.1rem; }
+.top-right a {
+  color: #ffd700;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 20px;
+  transition: 0.3s;
+}
+.top-right a:hover { background: rgba(212,175,55,0.2); }
+
+/* شريط الفئات */
+.categories-bar {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 15px;
+  background: #111;
+  border-bottom: 1px solid rgba(255,215,0,0.3);
+}
+
+.cat-tab {
+  padding: 10px 18px;
+  background: #222;
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 30px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  color: #ffd700;
+  text-decoration: none;
+}
+.cat-tab:hover { background: #333; transform: translateY(-3px); }
+
 body {
   background:#000;
   color:#fff;
