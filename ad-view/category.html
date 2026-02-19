@@ -2,197 +2,158 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>التصنيف</title>
+<title>التصنيفات | GOLDEN ADS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 body {
-  background: #000;
-  color: white;
   margin: 0;
+  background: #000;
+  color: #fff;
   font-family: sans-serif;
 }
 
-/* HERO */
-.category-hero-royal {
-  position: relative;
-  text-align: center;
-  padding: 90px 20px 70px;
-  background-size: cover;
-  background-position: center;
-  border-bottom: 1px solid rgba(255,215,0,0.25);
+/* شريط التصنيفات */
+.categories-bar {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 15px;
+  background: #111;
+  border-bottom: 1px solid rgba(255,215,0,0.3);
 }
 
-.cat-hero-icon {
-  font-size: 70px;
-  margin-bottom: 12px;
+.cat-tab {
+  padding: 10px 18px;
+  background: #222;
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 30px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+}
+
+.cat-tab:hover {
+  background: #333;
+  transform: translateY(-3px);
+}
+
+/* الأقسام */
+.section-title {
+  font-size: 26px;
+  margin: 30px 20px 10px;
   color: #ffd700;
-  text-shadow: 0 0 20px rgba(255,215,0,0.6);
+  border-right: 4px solid #ffd700;
+  padding-right: 10px;
 }
 
-.cat-hero-title {
-  font-size: 38px;
-  font-weight: bold;
-  color: #ffd700;
-}
-
-.cat-hero-desc {
-  font-size: 17px;
-  color: #f5e7b8;
-  opacity: 0.9;
-}
-
-/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 18px;
   padding: 20px;
 }
 
-.ad-card {
+.cat-card {
   background: #111;
   border: 1px solid rgba(255,215,0,0.2);
-  border-radius: 10px;
-  overflow: hidden;
-  color: white;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.ad-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
+.cat-card:hover {
+  background: #222;
+  transform: translateY(-5px);
 }
 
-.ad-info {
-  padding: 12px;
+.cat-icon {
+  font-size: 45px;
+  margin-bottom: 10px;
+}
+
+.cat-name {
+  font-size: 20px;
+  color: #ffd700;
 }
 </style>
 </head>
 
 <body>
 
-<div class="page-container">
+<!-- شريط التصنيفات -->
+<div class="categories-bar" id="categoriesBar"></div>
 
-  <!-- CATEGORY HERO -->
-  <section class="category-hero-royal" id="catHero">
-    <div class="cat-hero-icon" id="catHeroIcon">📂</div>
-    <h1 class="cat-hero-title" id="catHeroTitle">Category</h1>
-    <p class="cat-hero-desc" id="catHeroDesc">جارٍ التحميل...</p>
-  </section>
-
-  <!-- GRID -->
-  <section>
-    <div class="grid" id="categoryGrid"></div>
-
-    <div style="text-align:center; margin:20px;">
-      <button id="btnLoadMoreCat">تحميل المزيد</button>
-    </div>
-  </section>
-
-</div>
+<!-- الأقسام -->
+<div id="categoriesSections"></div>
 
 <script>
-/* قاعدة البيانات */
-const categoriesDB = [
-  { slug: "decor", name_ar: "ديكور", icon: "🏛️" },
-  { slug: "cars", name_ar: "سيارات", icon: "🚗" },
-  { slug: "tech", name_ar: "تقنية", icon: "💻" },
-  { slug: "fashion", name_ar: "أزياء", icon: "👗" },
-  { slug: "beauty", name_ar: "جمال", icon: "💄" },
-  { slug: "food", name_ar: "مطاعم", icon: "🍽️" },
-  { slug: "realestate", name_ar: "عقارات", icon: "🏠" },
-  { slug: "services", name_ar: "خدمات", icon: "🛠️" },
-  { slug: "education", name_ar: "تعليم", icon: "📚" },
-  { slug: "health", name_ar: "صحة", icon: "⚕️" },
-  { slug: "home", name_ar: "منزل", icon: "🛋️" }
+/* قاعدة بيانات التصنيفات */
+const categories = [
+  { slug: "decor", name: "ديكور", icon: "🏛️", group: "المنزل" },
+  { slug: "home", name: "منزل", icon: "🛋️", group: "المنزل" },
+
+  { slug: "cars", name: "سيارات", icon: "🚗", group: "المركبات" },
+  { slug: "bikes", name: "دراجات", icon: "🏍️", group: "المركبات" },
+
+  { slug: "tech", name: "تقنية", icon: "💻", group: "التقنية" },
+  { slug: "phones", name: "هواتف", icon: "📱", group: "التقنية" },
+
+  { slug: "fashion", name: "أزياء", icon: "👗", group: "الأزياء" },
+  { slug: "beauty", name: "جمال", icon: "💄", group: "الأزياء" },
+
+  { slug: "services", name: "خدمات", icon: "🛠️", group: "الخدمات" },
+  { slug: "education", name: "تعليم", icon: "📚", group: "الخدمات" },
+  { slug: "health", name: "صحة", icon: "⚕️", group: "الخدمات" }
 ];
 
-const adsDB = [
-  {
-    id: 1,
-    title: "كنبة فاخرة",
-    description: "كنبة ملكية بتصميم فاخر",
-    image: "https://i.imgur.com/4ZQZ4Zy.jpeg",
-    category: "decor"
-  }
-];
-
-/* خلفيات خاصة لكل تصنيف */
-const categoryBackgrounds = {
-  decor: "https://i.imgur.com/8QnQYkT.jpeg",
-  cars: "https://i.imgur.com/0ZQZ4Zy.jpeg",
-  tech: "https://i.imgur.com/7QnQYkT.jpeg",
-  fashion: "https://i.imgur.com/3ZQZ4Zy.jpeg",
-  beauty: "https://i.imgur.com/2ZQZ4Zy.jpeg",
-  food: "https://i.imgur.com/1ZQZ4Zy.jpeg",
-  realestate: "https://i.imgur.com/9QnQYkT.jpeg",
-  services: "https://i.imgur.com/5ZQZ4Zy.jpeg",
-  education: "https://i.imgur.com/6ZQZ4Zy.jpeg",
-  health: "https://i.imgur.com/7ZQZ4Zy.jpeg",
-  home: "https://i.imgur.com/4ZQZ4Zy.jpeg"
-};
-
-/* وصف لكل تصنيف */
-const categoryDescriptions = {
-  decor: "أفخم إعلانات الديكور الملكي.",
-  cars: "أفضل عروض السيارات الجديدة والمستعملة.",
-  tech: "أحدث أجهزة التقنية والإلكترونيات.",
-  fashion: "أزياء راقية وإكسسوارات فاخرة.",
-  beauty: "منتجات العناية والجمال.",
-  food: "مطاعم ومقاهي ونكهات عالمية.",
-  realestate: "عقارات — بيع، إيجار، استثمار.",
-  services: "خدمات احترافية متنوعة.",
-  education: "دورات وتدريب وتعليم.",
-  health: "منتجات وخدمات طبية وصحية.",
-  home: "أثاث وأدوات منزلية."
-};
-
-/* تشغيل صفحة التصنيف */
-function loadCategoryPage() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const currentCat = urlParams.get("cat");
-
-  const cat = categoriesDB.find(c => c.slug === currentCat);
-  if (!cat) return;
-
-  document.getElementById("catHeroIcon").textContent = cat.icon;
-  document.getElementById("catHeroTitle").textContent = cat.name_ar;
-  document.getElementById("catHeroDesc").textContent =
-    categoryDescriptions[cat.slug];
-
-  document.getElementById("catHero").style.backgroundImage =
-    `url('${categoryBackgrounds[cat.slug]}')`;
-
-  const filtered = adsDB.filter(ad => ad.category === currentCat);
-
-  let page = 1;
-  const limit = 12;
-
-  function render() {
-    const list = filtered.slice(0, page * limit);
-    document.getElementById("categoryGrid").innerHTML = list
-      .map(ad => `
-        <div class="ad-card">
-          <img src="${ad.image}" class="ad-img">
-          <div class="ad-info">
-            <h3>${ad.title}</h3>
-            <p>${ad.description}</p>
-          </div>
-        </div>
-      `)
-      .join("");
-  }
-
-  render();
-
-  document.getElementById("btnLoadMoreCat").onclick = () => {
-    page++;
-    render();
+/* بناء شريط التصنيفات */
+const bar = document.getElementById("categoriesBar");
+categories.forEach(cat => {
+  const tab = document.createElement("div");
+  tab.className = "cat-tab";
+  tab.innerHTML = `${cat.icon} ${cat.name}`;
+  tab.onclick = () => {
+    window.location.href = `category.html?cat=${cat.slug}`;
   };
-}
+  bar.appendChild(tab);
+});
 
-loadCategoryPage();
+/* بناء الأقسام */
+const sections = document.getElementById("categoriesSections");
+const groups = [...new Set(categories.map(c => c.group))];
+
+groups.forEach(group => {
+  const title = document.createElement("div");
+  title.className = "section-title";
+  title.textContent = group;
+  sections.appendChild(title);
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  categories
+    .filter(c => c.group === group)
+    .forEach(cat => {
+      const card = document.createElement("div");
+      card.className = "cat-card";
+      card.onclick = () => {
+        window.location.href = `category.html?cat=${cat.slug}`;
+      };
+
+      card.innerHTML = `
+        <div class="cat-icon">${cat.icon}</div>
+        <div class="cat-name">${cat.name}</div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+  sections.appendChild(grid);
+});
 </script>
 
 </body>
