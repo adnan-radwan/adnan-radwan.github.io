@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>التصنيف</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  background: #000;
+  color: white;
+  margin: 0;
+  font-family: sans-serif;
+}
+
+/* HERO */
+.category-hero-royal {
+  position: relative;
+  text-align: center;
+  padding: 90px 20px 70px;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(255,215,0,0.25);
+}
+
+.cat-hero-icon {
+  font-size: 70px;
+  margin-bottom: 12px;
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255,215,0,0.6);
+}
+
+.cat-hero-title {
+  font-size: 38px;
+  font-weight: bold;
+  color: #ffd700;
+}
+
+.cat-hero-desc {
+  font-size: 17px;
+  color: #f5e7b8;
+  opacity: 0.9;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  padding: 20px;
+}
+
+.ad-card {
+  background: #111;
+  border: 1px solid rgba(255,215,0,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  color: white;
+}
+
+.ad-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.ad-info {
+  padding: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-container">
+
+  <!-- CATEGORY HERO -->
+  <section class="category-hero-royal" id="catHero">
+    <div class="cat-hero-icon" id="catHeroIcon">📂</div>
+    <h1 class="cat-hero-title" id="catHeroTitle">Category</h1>
+    <p class="cat-hero-desc" id="catHeroDesc">جارٍ التحميل...</p>
+  </section>
+
+  <!-- GRID -->
+  <section>
+    <div class="grid" id="categoryGrid"></div>
+
+    <div style="text-align:center; margin:20px;">
+      <button id="btnLoadMoreCat">تحميل المزيد</button>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* قاعدة البيانات */
+const categoriesDB = [
+  { slug: "decor", name_ar: "ديكور", icon: "🏛️" },
+  { slug: "cars", name_ar: "سيارات", icon: "🚗" },
+  { slug: "tech", name_ar: "تقنية", icon: "💻" },
+  { slug: "fashion", name_ar: "أزياء", icon: "👗" },
+  { slug: "beauty", name_ar: "جمال", icon: "💄" },
+  { slug: "food", name_ar: "مطاعم", icon: "🍽️" },
+  { slug: "realestate", name_ar: "عقارات", icon: "🏠" },
+  { slug: "services", name_ar: "خدمات", icon: "🛠️" },
+  { slug: "education", name_ar: "تعليم", icon: "📚" },
+  { slug: "health", name_ar: "صحة", icon: "⚕️" },
+  { slug: "home", name_ar: "منزل", icon: "🛋️" }
+];
+
+const adsDB = [
+  {
+    id: 1,
+    title: "كنبة فاخرة",
+    description: "كنبة ملكية بتصميم فاخر",
+    image: "https://i.imgur.com/4ZQZ4Zy.jpeg",
+    category: "decor"
+  }
+];
+
+/* خلفيات خاصة لكل تصنيف */
+const categoryBackgrounds = {
+  decor: "https://i.imgur.com/8QnQYkT.jpeg",
+  cars: "https://i.imgur.com/0ZQZ4Zy.jpeg",
+  tech: "https://i.imgur.com/7QnQYkT.jpeg",
+  fashion: "https://i.imgur.com/3ZQZ4Zy.jpeg",
+  beauty: "https://i.imgur.com/2ZQZ4Zy.jpeg",
+  food: "https://i.imgur.com/1ZQZ4Zy.jpeg",
+  realestate: "https://i.imgur.com/9QnQYkT.jpeg",
+  services: "https://i.imgur.com/5ZQZ4Zy.jpeg",
+  education: "https://i.imgur.com/6ZQZ4Zy.jpeg",
+  health: "https://i.imgur.com/7ZQZ4Zy.jpeg",
+  home: "https://i.imgur.com/4ZQZ4Zy.jpeg"
+};
+
+/* وصف لكل تصنيف */
+const categoryDescriptions = {
+  decor: "أفخم إعلانات الديكور الملكي.",
+  cars: "أفضل عروض السيارات الجديدة والمستعملة.",
+  tech: "أحدث أجهزة التقنية والإلكترونيات.",
+  fashion: "أزياء راقية وإكسسوارات فاخرة.",
+  beauty: "منتجات العناية والجمال.",
+  food: "مطاعم ومقاهي ونكهات عالمية.",
+  realestate: "عقارات — بيع، إيجار، استثمار.",
+  services: "خدمات احترافية متنوعة.",
+  education: "دورات وتدريب وتعليم.",
+  health: "منتجات وخدمات طبية وصحية.",
+  home: "أثاث وأدوات منزلية."
+};
+
+/* تشغيل صفحة التصنيف */
+function loadCategoryPage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const currentCat = urlParams.get("cat");
+
+  const cat = categoriesDB.find(c => c.slug === currentCat);
+  if (!cat) return;
+
+  document.getElementById("catHeroIcon").textContent = cat.icon;
+  document.getElementById("catHeroTitle").textContent = cat.name_ar;
+  document.getElementById("catHeroDesc").textContent =
+    categoryDescriptions[cat.slug];
+
+  document.getElementById("catHero").style.backgroundImage =
+    `url('${categoryBackgrounds[cat.slug]}')`;
+
+  const filtered = adsDB.filter(ad => ad.category === currentCat);
+
+  let page = 1;
+  const limit = 12;
+
+  function render() {
+    const list = filtered.slice(0, page * limit);
+    document.getElementById("categoryGrid").innerHTML = list
+      .map(ad => `
+        <div class="ad-card">
+          <img src="${ad.image}" class="ad-img">
+          <div class="ad-info">
+            <h3>${ad.title}</h3>
+            <p>${ad.description}</p>
+          </div>
+        </div>
+      `)
+      .join("");
+  }
+
+  render();
+
+  document.getElementById("btnLoadMoreCat").onclick = () => {
+    page++;
+    render();
+  };
+}
+
+loadCategoryPage();
+</script>
+
+</body>
+</html>
