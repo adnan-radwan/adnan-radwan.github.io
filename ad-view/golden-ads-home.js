@@ -1,4 +1,3 @@
-<script>
 /* حماية الصفحة من أي Metadata يتم حقنها من Edge Sidebar */
 (function cleanInjectedMetadata() {
   const bad = [
@@ -26,8 +25,7 @@
     s.textContent = txt;
   }
 })();
-</script>
-<script>
+
 /* ============================================================
    GOLDEN ADS — EFFECTS ENGINE
 ============================================================ */
@@ -149,8 +147,7 @@ window.addEventListener("scroll", function () {
   if (!btn) return;
   btn.classList.toggle("show", window.scrollY > 300);
 });
-</script>
-<script>
+
 /* ============================================================
    GOLDEN ADS — DATA ENGINE (Standalone v7.0 Clean)
 ============================================================ */
@@ -350,4 +347,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-</script>
