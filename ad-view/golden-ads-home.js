@@ -1,3 +1,6 @@
+<!-- قواعد البيانات الخارجية -->
+<script src="https://adnan-radwan.github.io/ad-view/categoriesDB.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/adnan-radwan/adnan-radwan.github.io/ad-view/adsDB.js"></script>
 /* حماية الصفحة من أي Metadata يتم حقنها من Edge Sidebar */
 (function cleanInjectedMetadata() {
   const bad = [
