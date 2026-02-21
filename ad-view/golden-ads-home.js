@@ -1,34 +1,3 @@
-<!-- قواعد البيانات الخارجية -->
-<script src="https://adnan-radwan.github.io/ad-view/categoriesDB.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/adnan-radwan/adnan-radwan.github.io/ad-view/adsDB.js"></script>
-/* حماية الصفحة من أي Metadata يتم حقنها من Edge Sidebar */
-(function cleanInjectedMetadata() {
-  const bad = [
-    "edge_all_open_tabs",
-    "User's Edge browser tabs metadata",
-    "WebsiteContent_",
-    "The edge_all_open_tabs metadata"
-  ];
-
-  const scripts = document.getElementsByTagName("script");
-  for (let s of scripts) {
-    if (!s.textContent) continue;
-
-    let txt = s.textContent;
-    bad.forEach(b => {
-      if (txt.includes(b)) {
-        console.warn("Blocked Edge metadata:", b);
-        txt = txt
-          .split("\n")
-          .filter(line => !line.includes(b))
-          .join("\n");
-      }
-    });
-
-    s.textContent = txt;
-  }
-})();
-
 /* ============================================================
    GOLDEN ADS — EFFECTS ENGINE
 ============================================================ */
