@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-<script>
+
 const CATEGORY_PAGE = "https://www.adnan-radwan.net/p/category.html";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -53,4 +53,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-</script>
