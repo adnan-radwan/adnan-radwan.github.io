@@ -1,4 +1,3 @@
-<script>  
 window.categoriesDB = [
   { id: 1, slug: "electronics", name_ar: "إلكترونيات", icon: "📱" },
   { id: 2, slug: "fashion", name_ar: "أزياء", icon: "👗" },
@@ -13,8 +12,7 @@ window.categoriesDB = [
   { id: 11, slug: "shopping", name_ar: "تسوق", icon: "🛍️" },
   { id: 12, slug: "other", name_ar: "أخرى", icon: "✨" }
 ];
-</script>
-<script>
+
 const CATEGORY_PAGE = "/p/categories.html"; // غيّرها للرابط الحقيقي لصفحة التصنيفات
 
 function goToCategory(slug) {
@@ -39,4 +37,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-</script>
