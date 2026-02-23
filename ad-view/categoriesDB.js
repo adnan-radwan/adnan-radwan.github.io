@@ -13,27 +13,18 @@ window.categoriesDB = [
   { id: 12, slug: "other", name_ar: "أخرى", icon: "✨" }
 ];
 
-const CATEGORY_PAGE = "/p/categories.html"; // غيّرها للرابط الحقيقي لصفحة التصنيفات
-
-function goToCategory(slug) {
-  // ينقلك لصفحة التصنيفات مع البراميتر
-  window.location.href = CATEGORY_PAGE + "?cat=" + encodeURIComponent(slug);
-}
+const CATEGORY_PAGE = "https://www.adnan-radwan.net/p/category.html";
 
 document.addEventListener("DOMContentLoaded", function () {
-  // أزرار التصنيفات في الرئيسية
-  document.querySelectorAll(".ga-cat-pill").forEach(function (el) {
-    el.addEventListener("click", function () {
+
+  document.querySelectorAll("[data-cat]").forEach(btn => {
+    btn.addEventListener("click", function () {
       const slug = this.getAttribute("data-cat");
-      if (slug) goToCategory(slug);
+      if (slug) {
+        const url = CATEGORY_PAGE + "?cat=" + encodeURIComponent(slug);
+        window.open(url, "_blank"); // فتح في تبويب جديد
+      }
     });
   });
 
-  // أزرار التصنيفات في صفحة التصنيفات (الشريط الثاني)
-  document.querySelectorAll(".gaCatsScroll-pill").forEach(function (el) {
-    el.addEventListener("click", function () {
-      const slug = this.getAttribute("data-cat");
-      if (slug) goToCategory(slug);
-    });
-  });
 });
