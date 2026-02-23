@@ -100,26 +100,45 @@ window.categoriesDB = [
   { id: 12, slug: "other", name_ar: "أخرى", icon: "✨" }
 ];
 
-function renderCategories(targetId) {
-  const box = document.getElementById(targetId);
-  if (!box || !window.getSmartCategories()
-) return;
+function renderCategoriesHome() {
+  const box = document.getElementById("gaCatsBar");
+  if (!box) return;
 
+  const list = getSmartCategories();
   let html = "";
-  for (let i = 0; i < categoriesDB.length; i++) {
-    const c = getSmartCategories()
-[i];
+
+  list.forEach(c => {
     html += `
       <div class="ga-cat-pill" data-cat="${c.slug}">
         <span class="icon">${c.icon}</span>
         <span class="text">${c.name_ar}</span>
       </div>
     `;
-  }
+  });
 
   box.innerHTML = html;
 }
-  
-document.addEventListener("DOMContentLoaded", () => {
-  renderCategories("gaCatsScroll");
-});
+
+document.addEventListener("DOMContentLoaded", renderCategoriesHome);
+
+
+function renderCategoriesPage() {
+  const box = document.getElementById("gaCatsScroll");
+  if (!box) return;
+
+  const list = getSmartCategories();
+  let html = "";
+
+  list.forEach(c => {
+    html += `
+      <div class="gaCatsScroll-pill" data-cat="${c.slug}">
+        <span>${c.icon}</span>
+        <span>${c.name_ar}</span>
+      </div>
+    `;
+  });
+
+  box.innerHTML = html;
+}
+
+document.addEventListener("DOMContentLoaded", renderCategoriesPage);
