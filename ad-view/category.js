@@ -50,28 +50,6 @@ window.categoriesDB = [
   { id: 11, slug: "shopping", name_ar: "تسوق", icon: "🛍️" },
   { id: 12, slug: "other", name_ar: "أخرى", icon: "✨" }
 ];
-
-function renderCategories(targetId) {
-  const box = document.getElementById(targetId);
-  if (!box || !window.categoriesDB) return;
-
-  let html = "";
-  for (let i = 0; i < categoriesDB.length; i++) {
-    const c = categoriesDB[i];
-    html += `
-      <div class="ga-cat-pill" data-cat="${c.slug}">
-        <span class="icon">${c.icon}</span>
-        <span class="text">${c.name_ar}</span>
-      </div>
-    `;
-  }
-
-  box.innerHTML = html;
-}
-  
-document.addEventListener("DOMContentLoaded", () => {
-  renderCategories("gaCatsScroll");
-});
 <script>
 const CATEGORY_PAGE = "/p/categories.html"; // غيّرها للرابط الحقيقي لصفحة التصنيفات
 
