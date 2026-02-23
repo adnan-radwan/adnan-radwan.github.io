@@ -12,7 +12,7 @@ window.categoriesDB = [
   { id: 11, slug: "shopping", name_ar: "تسوق", icon: "🛍️" },
   { id: 12, slug: "other", name_ar: "أخرى", icon: "✨" }
 ];
-
+<script>
 const CATEGORY_PAGE = "https://www.adnan-radwan.net/p/category.html";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -28,3 +28,4 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+</script>
