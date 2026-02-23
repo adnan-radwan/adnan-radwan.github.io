@@ -102,11 +102,13 @@ window.categoriesDB = [
 
 function renderCategories(targetId) {
   const box = document.getElementById(targetId);
-  if (!box || !window.categoriesDB) return;
+  if (!box || !window.getSmartCategories()
+) return;
 
   let html = "";
   for (let i = 0; i < categoriesDB.length; i++) {
-    const c = categoriesDB[i];
+    const c = getSmartCategories()
+[i];
     html += `
       <div class="ga-cat-pill" data-cat="${c.slug}">
         <span class="icon">${c.icon}</span>
