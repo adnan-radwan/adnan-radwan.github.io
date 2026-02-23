@@ -121,7 +121,6 @@ function renderCategoriesHome() {
 
 document.addEventListener("DOMContentLoaded", renderCategoriesHome);
 
-
 function renderCategoriesPage() {
   const box = document.getElementById("gaCatsScroll");
   if (!box) return;
