@@ -1,4 +1,4 @@
-
+<script>
 var categoriesDB = [
    {
     id: 1,
@@ -85,6 +85,7 @@ var categoriesDB = [
     icon: "✨"
   }
 ];
+<script/>
 <script>
 const CATEGORY_PAGE = "/p/categories.html"; // غيّرها للرابط الحقيقي لصفحة التصنيفات
 
