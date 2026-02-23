@@ -37,20 +37,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
-
-
-const CATEGORY_PAGE = "https://www.adnan-radwan.net/p/category.html";
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  document.querySelectorAll("[data-cat]").forEach(btn => {
-    btn.addEventListener("click", function () {
-      const slug = this.getAttribute("data-cat");
-      if (slug) {
-        const url = CATEGORY_PAGE + "?cat=" + encodeURIComponent(slug);
-        window.open(url, "_blank"); // فتح في تبويب جديد
-      }
-    });
-  });
-
-});
