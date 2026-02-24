@@ -5,8 +5,6 @@ bar.innerHTML = categoriesDB.map(cat => `
     ${cat.icon} ${cat.name_ar}
   </a>
 `).join("");
-const CATEGORY_PAGE = "https://www.adnan-radwan.net/p/category.html";
-
 document.addEventListener("DOMContentLoaded", function () {
 
   document.querySelectorAll("[data-cat]").forEach(btn => {
