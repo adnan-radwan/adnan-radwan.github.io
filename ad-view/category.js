@@ -1,105 +1,63 @@
-// ===============================
-// بناء شريط الفئات ديناميكيًا
-// ===============================
-const bar = document.getElementById("categoriesBar");
+/* ============================================================
+   GOLDEN ADS — CATEGORY PAGE ENGINE (Final Clean Version)
+============================================================ */
 
-bar.innerHTML = categoriesDB.map(cat => `
-  <a class="cat-tab" data-cat="${cat.slug}">
-    ${cat.icon} ${cat.name_ar}
-  </a>
-`).join("");
-
-
-// ===============================
-// تفعيل الانتقال إلى صفحة التصنيف
-// ===============================
+/* 1) بناء شريط الفئات ديناميكيًا */
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".cat-tab").forEach(tab => {
+  const bar = document.getElementById("categoriesBar");
+  if (!bar || !window.categoriesDB) return;
+
+  bar.innerHTML = categoriesDB.map(cat => `
+    <div class="ga-cat-pill" data-cat="${cat.slug}">
+      <span class="icon">${cat.icon}</span>
+      <span class="text">${cat.name_ar}</span>
+    </div>
+  `).join("");
+});
+
+
+/* 2) تفعيل الانتقال إلى صفحة التصنيف */
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("[data-cat]").forEach(tab => {
     tab.addEventListener("click", function () {
       const slug = this.getAttribute("data-cat");
       const url = "https://www.adnan-radwan.net/p/category.html?cat=" + slug;
-      window.open(url, "_blank"); // فتح في تبويب جديد
+      window.open(url, "_blank");
     });
   });
 });
 
 
-// ===============================
-// تحميل قاعدة بيانات الإعلانات
-// ===============================
-fetch("https://adnan-radwan.github.io/ad-view/adsDB.js")
-  .then(() => {
+/* 3) تحميل الإعلانات وعرضها حسب الفئة */
+document.addEventListener("DOMContentLoaded", () => {
 
-    const container = document.getElementById("categoriesContainer");
+  const container = document.getElementById("categoriesContainer");
+  if (!container) return;
 
-    categoriesDB.forEach(cat => {
+  // adsDB جاهز لأنك تستدعيه قبل هذا الملف في HTML
+  categoriesDB.forEach(cat => {
 
-      const ads = window.adsDB.filter(a => a.category === cat.slug);
+    const ads = window.adsDB.filter(a => a.category === cat.slug);
 
-      if (ads.length === 0) return;
+    if (ads.length === 0) return;
 
-      const section = document.createElement("div");
-      section.innerHTML = `
-        <div class="section-title">${cat.icon} ${cat.name_ar} (${ads.length})</div>
-        <div class="grid">
-          ${ads.map(ad => `
-            <a class="ad-card" href="${ad.link}" target="_blank">
-              <img class="ad-img" src="${ad.img}">
-              <div class="ad-title">${ad.title}</div>
-              <div class="ad-desc">${ad.desc}</div>
-            </a>
-          `).join("")}
-        </div>
-      `;
+    const section = document.createElement("div");
+    section.className = "category-section";
 
-      container.appendChild(section);
-    });
+    section.innerHTML = `
+      <div class="section-title">${cat.icon} ${cat.name_ar} (${ads.length})</div>
+      <div class="grid">
+        ${ads.map(ad => `
+          <a class="ad-card" href="${ad.link}" target="_blank">
+            <img class="ad-img" src="${ad.img}">
+            <div class="ad-title">${ad.title}</div>
+            <div class="ad-desc">${ad.desc || ""}</div>
+          </a>
+        `).join("")}
+      </div>
+    `;
 
-  });
-/* بناء الأقسام */
-const sections = document.getElementById("categoriesSections");
-const groups = [...new Set(categories.map(c => c.group))];
-
-groups.forEach(group => {
-  const title = document.createElement("div");
-  title.className = "section-title";
-  title.textContent = group;
-  sections.appendChild(title);
-
-  const grid = document.createElement("div");
-  grid.className = "grid";
-
-  categories
-    .filter(c => c.group === group)
-    .forEach(cat => {
-      const card = document.createElement("div");
-      card.className = "cat-card";
-      card.onclick = () => {
-        window.location.href = `category.html?cat=${cat.slug}`;
-      };
-
-      card.innerHTML = `
-        <div class="cat-icon">${cat.icon}</div>
-        <div class="cat-name">${cat.name}</div>
-      `;
-
-      grid.appendChild(card);
-    });
-
-  sections.appendChild(grid);
-});
-const CATEGORY_PAGE = "https://www.adnan-radwan.net/p/category.html";
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  document.querySelectorAll("[data-cat]").forEach(btn => {
-    btn.addEventListener("click", function () {
-      const slug = this.getAttribute("data-cat");
-      if (slug) {
-        const url = CATEGORY_PAGE + "?cat=" + encodeURIComponent(slug);
-        window.open(url, "_blank");
-      }
-    });
+    container.appendChild(section);
   });
 
 });
