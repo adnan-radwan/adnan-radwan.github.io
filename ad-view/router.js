@@ -26,3 +26,29 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
+
+const CATEGORY_PAGE = "/p/categories.html";
+
+function goToCategory(slug) {
+  window.location.href = CATEGORY_PAGE + "?cat=" + encodeURIComponent(slug);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  // أزرار التصنيفات في الرئيسية
+  document.querySelectorAll(".ga-cat-pill").forEach(function (el) {
+    el.addEventListener("click", function () {
+      const slug = this.getAttribute("data-cat");
+      if (slug) goToCategory(slug);
+    });
+  });
+
+  // أزرار التصنيفات في صفحة التصنيفات (الشريط الثاني)
+  document.querySelectorAll(".gaCatsScroll-pill").forEach(function (el) {
+    el.addEventListener("click", function () {
+      const slug = this.getAttribute("data-cat");
+      if (slug) goToCategory(slug);
+    });
+  });
+
+});
