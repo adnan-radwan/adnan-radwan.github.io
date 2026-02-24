@@ -1,3 +1,4 @@
+// قاعدة بيانات الفئات فقط
 window.categoriesDB = [
   { id: 1, slug: "electronics", name_ar: "إلكترونيات", icon: "📱" },
   { id: 2, slug: "fashion", name_ar: "أزياء", icon: "👗" },
@@ -12,28 +13,3 @@ window.categoriesDB = [
   { id: 11, slug: "shopping", name_ar: "تسوق", icon: "🛍️" },
   { id: 12, slug: "other", name_ar: "أخرى", icon: "✨" }
 ];
-
-const CATEGORY_PAGE = "/p/categories.html"; // غيّرها للرابط الحقيقي لصفحة التصنيفات
-
-function goToCategory(slug) {
-  // ينقلك لصفحة التصنيفات مع البراميتر
-  window.location.href = CATEGORY_PAGE + "?cat=" + encodeURIComponent(slug);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  // أزرار التصنيفات في الرئيسية
-  document.querySelectorAll(".ga-cat-pill").forEach(function (el) {
-    el.addEventListener("click", function () {
-      const slug = this.getAttribute("data-cat");
-      if (slug) goToCategory(slug);
-    });
-  });
-
-  // أزرار التصنيفات في صفحة التصنيفات (الشريط الثاني)
-  document.querySelectorAll(".gaCatsScroll-pill").forEach(function (el) {
-    el.addEventListener("click", function () {
-      const slug = this.getAttribute("data-cat");
-      if (slug) goToCategory(slug);
-    });
-  });
-});
