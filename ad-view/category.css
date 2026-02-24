@@ -171,3 +171,27 @@ body {
   font-size: 14px;
   opacity: 0.8;
 }
+.categories-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  padding: 15px;
+}
+
+.ga-cat-pill {
+  background: #111;
+  border: 1px solid #444;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+  color: #eee;
+}
+
+.ga-cat-pill:hover {
+  background: #222;
+  border-color: gold;
+  transform: translateY(-3px);
+}
