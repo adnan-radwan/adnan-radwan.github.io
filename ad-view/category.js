@@ -56,3 +56,35 @@ fetch("https://adnan-radwan.github.io/ad-view/adsDB.js")
     });
 
   });
+/* بناء الأقسام */
+const sections = document.getElementById("categoriesSections");
+const groups = [...new Set(categories.map(c => c.group))];
+
+groups.forEach(group => {
+  const title = document.createElement("div");
+  title.className = "section-title";
+  title.textContent = group;
+  sections.appendChild(title);
+
+  const grid = document.createElement("div");
+  grid.className = "grid";
+
+  categories
+    .filter(c => c.group === group)
+    .forEach(cat => {
+      const card = document.createElement("div");
+      card.className = "cat-card";
+      card.onclick = () => {
+        window.location.href = `category.html?cat=${cat.slug}`;
+      };
+
+      card.innerHTML = `
+        <div class="cat-icon">${cat.icon}</div>
+        <div class="cat-name">${cat.name}</div>
+      `;
+
+      grid.appendChild(card);
+    });
+
+  sections.appendChild(grid);
+});
