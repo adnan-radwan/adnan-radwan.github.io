@@ -2,18 +2,18 @@
 .page-header {
   text-align: center;
   padding: 40px 20px;
-  background: linear-gradient(to bottom, #111, #000);
+  background: linear-gradient(to bottom, #161920, #121A28);
   color: #ffd700;
-  border-bottom: 1px solid rgba(255,215,0,0.3);
+  border-bottom: 3px solid rgba(255,215,0,0.3);
 }
 
 .page-header h1 {
-  font-size: 32px;
+  font-size: 35px;
   margin-bottom: 10px;
 }
 
 .page-header p {
-  font-size: 16px;
+  font-size: 18px;
   opacity: 0.8;
 }
 
@@ -23,38 +23,54 @@
   top: 0;
   z-index: 9999;
   width: 100%;
-  padding: 12px 18px;
+  padding: 22px 22px;
   background: rgba(5,5,12,0.85);
-  border-bottom: 1px solid rgba(212,175,55,0.35);
+  border-bottom: 4px solid rgba(212,175,55,0.35);
   backdrop-filter: blur(6px);
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #ffd700;
-  font-size: 1rem;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  font-size: 1.7rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
-.top-left { font-weight: bold; font-size: 1.1rem; }
+.top-left { font-weight: bold; font-size: 1.5rem; }
 .top-right a {
   color: #ffd700;
   text-decoration: none;
   font-size: 0.9rem;
-  padding: 6px 12px;
-  border: 1px solid rgba(212,175,55,0.35);
+  padding: 6px 18px;
+  border: 3px solid rgba(212,175,55,0.35);
   border-radius: 20px;
   transition: 0.3s;
 }
 .top-right a:hover { background: rgba(212,175,55,0.2); }
 
-/* شريط الفئات */
+/* شريط الفئات في صفحة التصنيفات */
 .categories-bar {
-  display: flex;
-  overflow-x: auto;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
   padding: 15px;
+}
+
+/* شكل الحبة */
+.ga-cat-pill {
   background: #111;
-  border-bottom: 1px solid rgba(255,215,0,0.3);
+  border: 1px solid #444;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.ga-cat-pill:hover {
+  background: #222;
+  border-color: gold;
+  transform: translateY(-3px);
 }
 
 .cat-tab {
