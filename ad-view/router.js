@@ -24,4 +24,5 @@ document.addEventListener("DOMContentLoaded", function () {
       if (slug) goToCategory(slug);
     });
   });
+
 });
