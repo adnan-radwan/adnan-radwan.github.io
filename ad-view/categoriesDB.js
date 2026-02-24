@@ -1,5 +1,9 @@
-// قاعدة بيانات الفئات فقط
-window.categoriesDB = [
+<script type="text/javascript">
+/* ============================
+   1) Categories Database
+============================ */
+var categoriesDB = [
+  
   { id: 1, slug: "electronics", name_ar: "إلكترونيات", icon: "📱" },
   { id: 2, slug: "fashion", name_ar: "أزياء", icon: "👗" },
   { id: 3, slug: "beauty", name_ar: "جمال", icon: "💄" },
@@ -11,5 +15,9 @@ window.categoriesDB = [
   { id: 9, slug: "health", name_ar: "صحة", icon: "🩺" },
   { id: 10, slug: "decor", name_ar: "ديكور", icon: "🪑" },
   { id: 11, slug: "shopping", name_ar: "تسوق", icon: "🛍️" },
-  { id: 12, slug: "other", name_ar: "أخرى", icon: "✨" }
+  { id: 12, slug: "other", name_ar: "أخرى", icon: "✨" },
+  { id: 13, slug: "books", name_ar: "كتب", icon: "📚" },
+  { id: 14, slug: "stationery", name_ar: "مكتبيات", icon: "🖇️" },
+  { id: 15, slug: "school-supplies", name_ar: "لوازم مدرسية", icon: "✏️" }
 ];
+</script>
