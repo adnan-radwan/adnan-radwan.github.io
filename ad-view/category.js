@@ -1,6 +1,5 @@
 /* ============================================================
-   GOLDEN ADS — CATEGORY PAGE ENGINE v8.1
-   Clean • Unified • Single-Category Mode
+   GOLDEN ADS — CATEGORY PAGE ENGINE (Final Clean Version)
 ============================================================ */
 
 /* -----------------------------------------
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!slug) return;
 
       const url = "https://www.adnan-radwan.net/p/category.html?cat=" + slug;
-      window.location.href = url; // نفس الصفحة
+      window.location.href = url;
     });
   });
 });
