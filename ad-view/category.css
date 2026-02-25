@@ -12,9 +12,8 @@
   height: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
-}  
-</style>
-<style>
+}
+
 html, body, #main, .main, #content, .content,
 .post-body, .entry-content, .post, .post-wrapper {
   width: 100% !important;
@@ -23,9 +22,6 @@ html, body, #main, .main, #content, .content,
   padding: 0 !important;
   box-sizing: border-box !important;
 }
-
-</style>
-<style>
 /* ============================
    GOLDEN ADS — CATEGORY PAGE
    Royal Cinematic Edition
@@ -51,15 +47,15 @@ body {
   z-index: 99999;
   background: #121A28;
   color: #FFD700;
-  padding: 28px 0px;
+  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
-  font-weight: 400;
+  font-weight: 600;
   border-bottom: 2px solid rgba(255,215,0,0.25);
 }
 
 body {
-  padding-top: 10px !important;
+  padding-top: 70px !important;
 }
 
 /* ============================
@@ -67,14 +63,14 @@ body {
 ============================= */
 .ga-header {
   text-align: center;
-  padding: 50px 20px;
+  padding: 40px 20px;
   background: #21304C;
   color: #FFE298;
   border-bottom: 3px solid rgba(255,215,0,0.35);
 }
 
 .ga-header h1 {
-  font-size: 2.9rem;
+  font-size: 2.4rem;
   margin-bottom: 10px;
 }
 
@@ -88,7 +84,7 @@ body {
   padding: 10px 20px;
   background: #FFD700;
   color: #121620;
-  border-radius: 18px;
+  border-radius: 8px;
   font-weight: bold;
   text-decoration: none;
   transition: 0.3s;
@@ -103,8 +99,8 @@ body {
 ============================= */
 .cat-title {
   text-align: center;
-  font-size: 2.2rem;
-  margin: 35px 0;
+  font-size: 2rem;
+  margin: 25px 0;
   color: #FFD700;
 }
 
@@ -176,7 +172,7 @@ body {
   transition: 0.3s;
   color: #FFE298;
   font-weight: 600;
-  font-size: 1.6rem;
+  font-size: 1rem;
 }
 
 .ga-cat-pill:hover {
@@ -184,7 +180,7 @@ body {
   color: #121620;
   border-color: #FFD700;
   transform: translateY(-4px);
-  box-shadow: 0 0 18px rgba(255,215,0,0.25);
+  box-shadow: 0 0 15px rgba(255,215,0,0.25);
 }
 
 /* ============================
