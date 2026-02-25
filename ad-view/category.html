@@ -85,3 +85,13 @@ window.onload = sendHeight;
 window.onresize = sendHeight;
 setInterval(sendHeight, 500);
 </script>
+<script>
+function sendHeight() {
+  const height = document.body.scrollHeight;
+  parent.postMessage({ height: height }, "*");
+}
+
+window.onload = sendHeight;
+window.onresize = sendHeight;
+setInterval(sendHeight, 400);
+</script>
