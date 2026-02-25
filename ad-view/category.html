@@ -75,3 +75,13 @@
 <script src="https://adnan-radwan.github.io/ad-view/categoriesDB.js"></script>
 <script src="https://adnan-radwan.github.io/ad-view/adsDB.js"></script>
 <script src="https://adnan-radwan.github.io/ad-view/category.js"></script>
+<script>
+function sendHeight() {
+  const height = document.body.scrollHeight;
+  parent.postMessage({ height: height }, "*");
+}
+
+window.onload = sendHeight;
+window.onresize = sendHeight;
+setInterval(sendHeight, 500);
+</script>
