@@ -1,3 +1,25 @@
+/* الشريط العلوي الثابت */
+.ga-topbar,
+.top-sticky-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999; /* فوق كل شيء */
+  background: #121A28;
+  color: #FFD700;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255,215,0,0.25);
+}
+
+/* منع الصفحة من الصعود تحت الشريط */
+body {
+  padding-top: 70px !important;
+}
+
 /* الغلاف */
 .page-header {
   text-align: center;
