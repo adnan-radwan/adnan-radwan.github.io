@@ -1,8 +1,11 @@
 /* ============================================================
-   GOLDEN ADS — CATEGORY PAGE ENGINE (Final Clean Version)
+   GOLDEN ADS — CATEGORY PAGE ENGINE v8.0
+   Clean • Unified • Single-Category Mode
 ============================================================ */
 
-/* 1) بناء شريط الفئات ديناميكيًا */
+/* -----------------------------------------
+   1) بناء شريط الفئات ديناميكيًا
+----------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   const bar = document.getElementById("categoriesBar");
   if (!bar || !window.categoriesDB) return;
@@ -15,70 +18,71 @@ document.addEventListener("DOMContentLoaded", () => {
   `).join("");
 });
 
-
-/* 2) تفعيل الانتقال إلى صفحة التصنيف */
+/* -----------------------------------------
+   2) تفعيل الانتقال بين الفئات (نفس الصفحة)
+----------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll("[data-cat]").forEach(tab => {
-    tab.addEventListener("click", function () {
-      const slug = this.getAttribute("data-cat");
+  document.querySelectorAll("[data-cat]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const slug = btn.getAttribute("data-cat");
+      if (!slug) return;
+
+      // الانتقال داخل نفس الصفحة
       const url = "https://www.adnan-radwan.net/p/category.html?cat=" + slug;
-      window.open(url, "_blank");
+      window.location.href = url;
     });
   });
 });
 
-
-/* 3) تحميل الإعلانات وعرضها حسب الفئة */
+/* -----------------------------------------
+   3) قراءة ?cat وعرض الإعلانات الخاصة بها فقط
+----------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
 
-  const container = document.getElementById("categoriesContainer");
-  if (!container) return;
-
-  // adsDB جاهز لأنك تستدعيه قبل هذا الملف في HTML
-  categoriesDB.forEach(cat => {
-
-    const ads = window.adsDB.filter(a => a.category === cat.slug);
-
-    if (ads.length === 0) return;
-
-    const section = document.createElement("div");
-    section.className = "category-section";
-
-    section.innerHTML = `
-      <div class="section-title">${cat.icon} ${cat.name_ar} (${ads.length})</div>
-      <div class="grid">
-        ${ads.map(ad => `
-          <a class="ad-card" href="${ad.link}" target="_blank">
-            <img class="ad-img" src="${ad.img}">
-            <div class="ad-title">${ad.title}</div>
-            <div class="ad-desc">${ad.desc || ""}</div>
-          </a>
-        `).join("")}
-      </div>
-    `;
-
-    container.appendChild(section);
-  });
-
-});
-
-document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const slug = params.get("cat");
 
-  if (!slug) return;
+  const titleEl = document.getElementById("catTitle");
+  const gridEl = document.getElementById("catGrid");
 
-  // فلترة الإعلانات حسب الفئة
-  const filtered = adsDB.filter(ad => ad.category === slug && ad.status === "active");
+  if (!titleEl || !gridEl) return;
 
-  // عرض الفئة في العنوان
-  document.getElementById("catTitle").textContent = slug;
+  // إذا لم يتم تحديد فئة → عرض رسالة
+  if (!slug) {
+    titleEl.textContent = "جميع الإعلانات";
+    gridEl.innerHTML = "<p>لم يتم اختيار فئة.</p>";
+    return;
+  }
+
+  // جلب الفئة من قاعدة البيانات
+  const cat = categoriesDB.find(c => c.slug === slug);
+
+  // إذا الفئة غير موجودة
+  if (!cat) {
+    titleEl.textContent = "فئة غير موجودة";
+    gridEl.innerHTML = "<p>لا توجد فئة بهذا الاسم.</p>";
+    return;
+  }
+
+  // عرض اسم الفئة
+  titleEl.textContent = `${cat.icon} ${cat.name_ar}`;
+
+  // فلترة الإعلانات
+  const filtered = adsDB.filter(ad =>
+    ad.category === slug && ad.status === "active"
+  );
 
   // عرض الإعلانات
-  document.getElementById("catGrid").innerHTML = filtered.map(ad => `
-    <div class="ad-card">
-      <img src="${ad.image}">
-      <h3>${ad.title}</h3>
-    </div>
-  `).join('');
+  if (filtered.length === 0) {
+    gridEl.innerHTML = "<p>لا توجد إعلانات في هذه الفئة.</p>";
+    return;
+  }
+
+  gridEl.innerHTML = filtered.map(ad => `
+    <a class="ad-card" href="${ad.link}" target="_blank">
+      <img class="ad-img" src="${ad.img}">
+      <div class="ad-title">${ad.title}</div>
+      <div class="ad-desc">${ad.desc || ""}</div>
+    </a>
+  `).join("");
 });
