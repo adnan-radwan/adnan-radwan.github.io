@@ -61,3 +61,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("cat");
+
+  if (!slug) return;
+
+  // فلترة الإعلانات حسب الفئة
+  const filtered = adsDB.filter(ad => ad.category === slug && ad.status === "active");
+
+  // عرض الفئة في العنوان
+  document.getElementById("catTitle").textContent = slug;
+
+  // عرض الإعلانات
+  document.getElementById("catGrid").innerHTML = filtered.map(ad => `
+    <div class="ad-card">
+      <img src="${ad.image}">
+      <h3>${ad.title}</h3>
+    </div>
+  `).join('');
+});
