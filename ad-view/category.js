@@ -1,5 +1,5 @@
 /* ============================================================
-   GOLDEN ADS — CATEGORY PAGE ENGINE v8.0
+   GOLDEN ADS — CATEGORY PAGE ENGINE v8.1
    Clean • Unified • Single-Category Mode
 ============================================================ */
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* -----------------------------------------
-   2) تفعيل الانتقال بين الفئات (نفس الصفحة)
+   2) التنقّل بين الفئات داخل نفس الصفحة
 ----------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("[data-cat]").forEach(btn => {
@@ -27,9 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const slug = btn.getAttribute("data-cat");
       if (!slug) return;
 
-      // الانتقال داخل نفس الصفحة
       const url = "https://www.adnan-radwan.net/p/category.html?cat=" + slug;
-      window.location.href = url;
+      window.location.href = url; // نفس الصفحة
     });
   });
 });
@@ -47,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!titleEl || !gridEl) return;
 
-  // إذا لم يتم تحديد فئة → عرض رسالة
+  // إذا لم يتم تحديد فئة
   if (!slug) {
     titleEl.textContent = "جميع الإعلانات";
     gridEl.innerHTML = "<p>لم يتم اختيار فئة.</p>";
@@ -57,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // جلب الفئة من قاعدة البيانات
   const cat = categoriesDB.find(c => c.slug === slug);
 
-  // إذا الفئة غير موجودة
   if (!cat) {
     titleEl.textContent = "فئة غير موجودة";
     gridEl.innerHTML = "<p>لا توجد فئة بهذا الاسم.</p>";
