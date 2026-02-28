@@ -1,4 +1,4 @@
-window.ads = [
+window.allAds_part1 = [
 {
 "id":1,
 "title":"هاتف ذكي بشاشة كبيرة",
@@ -3214,7 +3214,9 @@ window.ads = [
   "currency": "$",
   "tags": ["honey", "natural", "recommended"],
   "badge": "recommended"
-},
+}
+];
+window.allAds_part2 = [
 {"id":202,"title":"مزهرية فاخرة من الكريستال الأزرق","desc":"مزهرية كريستالية زرقاء مع لمسات ذهبية راقية.","image":"https://images.unsplash.com/photo-1519183071298-a2962be96c85","link":"/p/ad202.html","category":"decor","featured":true,"status":"active","expires":"2025-06-01","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vase","gold"],"badge":"gold"},
 {"id":203,"title":"صندوق ديكور محفور يدويًا","desc":"صندوق خشبي محفور يدويًا مع إطار ذهبي فاخر.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad203.html","category":"decor","featured":false,"status":"active","expires":"2025-05-30","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","box","gold"],"badge":"gold"},
 {"id":204,"title":"شمعدان كريستالي فاخر","desc":"شمعدان من الكريستال الشفاف مع قاعدة ذهبية.","image":"https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10","link":"/p/ad204.html","category":"decor","featured":true,"status":"active","expires":"2025-05-28","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","candle","gold"],"badge":"gold"},
@@ -3338,7 +3340,9 @@ window.ads = [
 {"id":322,"title":"مزهرية فاخرة من الكريستال البنفسجي","desc":"مزهرية كريستالية بلون بنفسجي راقٍ مع لمسات ذهبية أنيقة.","image":"https://images.unsplash.com/photo-1519183071298-a2962be96c85","link":"/p/ad322.html","category":"decor","featured":true,"status":"active","expires":"2025-05-08","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vase","gold"],"badge":"gold"},
 {"id":323,"title":"صندوق ديكور محفور بإطار ملكي","desc":"صندوق خشبي محفور يدويًا بإطار ذهبي ملكي فاخر.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad323.html","category":"decor","featured":false,"status":"active","expires":"2025-05-06","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","box","gold"],"badge":"gold"},
 {"id":324,"title":"شمعدان كريستالي ملكي","desc":"شمعدان من الكريستال الشفاف مع قاعدة ذهبية ملكية مزخرفة.","image":"https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10","link":"/p/ad324.html","category":"decor","featured":true,"status":"active","expires":"2025-05-04","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","candle","gold"],"badge":"gold"},
-{"id":325,"title":"لوحة فنية بإطار ذهبي فاخر","desc":"لوحة فنية بإطار ذهبي مزخرف وتفاصيل فنية دقيقة.","image":"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f","link":"/p/ad325.html","category":"decor","featured":false,"status":"active","expires":"2025-04-02","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","art","gold"],"badge":"gold"},
+{"id":325,"title":"لوحة فنية بإطار ذهبي فاخر","desc":"لوحة فنية بإطار ذهبي مزخرف وتفاصيل فنية دقيقة.","image":"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f","link":"/p/ad325.html","category":"decor","featured":false,"status":"active","expires":"2025-04-02","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","art","gold"],"badge":"gold"}
+];
+window.allAds_part3 = [
 {"id":326,"title":"مجموعة فازات ملكية","desc":"مجموعة فازات بتصميم ملكي فاخر ولمسات ذهبية براقة.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad326.html","category":"decor","featured":true,"status":"active","expires":"2025-02-24","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vases","gold"],"badge":"gold"},
 {"id":327,"title":"مزهرية فاخرة من الكريستال الرمادي","desc":"مزهرية كريستالية بلون رمادي أنيق مع لمسات ذهبية راقية.","image":"https://images.unsplash.com/photo-1519183071298-a2962be96c85","link":"/p/ad327.html","category":"decor","featured":true,"status":"active","expires":"2025-05-07","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vase","gold"],"badge":"gold"},
 {"id":328,"title":"صندوق ديكور محفور بإطار فاخر","desc":"صندوق ديكور خشبي محفور يدويًا بإطار ذهبي متقن وفاخر.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad328.html","category":"decor","featured":false,"status":"active","expires":"2025-05-05","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","box","gold"],"badge":"gold"},
@@ -3463,7 +3467,9 @@ window.ads = [
 {"id":447,"title":"مزهرية فاخرة من الكريستال الأزرق البحري","desc":"مزهرية كريستالية بلون أزرق بحري مع لمسات ذهبية راقية.","image":"https://images.unsplash.com/photo-1519183071298-a2962be96c85","link":"/p/ad447.html","category":"decor","featured":true,"status":"active","expires":"2025-04-13","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vase","gold"],"badge":"gold"},
 {"id":448,"title":"صندوق ديكور محفور بإطار فاخر","desc":"صندوق ديكور خشبي محفور يدويًا بإطار ذهبي متقن وفاخر.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad448.html","category":"decor","featured":false,"status":"active","expires":"2025-04-11","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","box","gold"],"badge":"gold"},
 {"id":449,"title":"شمعدان كريستالي فاخر","desc":"شمعدان من الكريستال الشفاف مع قاعدة ذهبية مزخرفة بتفاصيل دقيقة.","image":"https://images.unsplash.com/photo-1518544801958-efcbf8a7ec10","link":"/p/ad449.html","category":"decor","featured":true,"status":"active","expires":"2025-04-09","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","candle","gold"],"badge":"gold"},
-{"id":450,"title":"لوحة فنية بإطار ذهبي","desc":"لوحة فنية بإطار ذهبي فاخر وتفاصيل فنية متقنة.","image":"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f","link":"/p/ad450.html","category":"decor","featured":false,"status":"active","expires":"2025-03-08","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","art","gold"],"badge":"gold"},
+{"id":450,"title":"لوحة فنية بإطار ذهبي","desc":"لوحة فنية بإطار ذهبي فاخر وتفاصيل فنية متقنة.","image":"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f","link":"/p/ad450.html","category":"decor","featured":false,"status":"active","expires":"2025-03-08","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","art","gold"],"badge":"gold"}
+];
+window.allAds_part4 = [
 {"id":451,"title":"مجموعة فازات فاخرة","desc":"مجموعة فازات بتصميم فاخر ولمسات ذهبية أنيقة.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad451.html","category":"decor","featured":true,"status":"active","expires":"2025-01-30","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vases","gold"],"badge":"gold"},
 {"id":452,"title":"مزهرية فاخرة من الكريستال الأزرق السماوي العميق","desc":"مزهرية كريستالية بلون أزرق سماوي عميق مع لمسات ذهبية راقية.","image":"https://images.unsplash.com/photo-1519183071298-a2962be96c85","link":"/p/ad452.html","category":"decor","featured":true,"status":"active","expires":"2025-04-12","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vase","gold"],"badge":"gold"},
 {"id":453,"title":"صندوق ديكور محفور بإطار فاخر","desc":"صندوق ديكور خشبي محفور يدويًا بإطار ذهبي متقن وفاخر.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad453.html","category":"decor","featured":false,"status":"active","expires":"2025-04-10","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","box","gold"],"badge":"gold"},
