@@ -95,3 +95,21 @@ window.onload = sendHeight;
 window.onresize = sendHeight;
 setInterval(sendHeight, 400);
 </script>
+<section class="section cine-fade">
+  <div class="section-header">
+    <div>
+      <div class="section-title">
+        <span class="icon">📂</span>
+        <span id="categoryTitle">...</span>
+      </div>
+      <div class="section-sub">
+        جميع الإعلانات داخل هذا التصنيف.
+      </div>
+    </div>
+    <div class="section-actions">
+      <span id="categoryCount">0 إعلان</span>
+    </div>
+  </div>
+
+  <div class="grid" id="categoryGrid"></div>
+</section>
