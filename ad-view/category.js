@@ -1,82 +1,126 @@
 /* ===========================================
-   GOLDEN ADS — Category Page Logic v6.2
-   Official Stable Release — (Adnan Radwan)
+   CATEGORY PAGE — GOLDEN ADS (FINAL VERSION)
+   Unified Cinematic System — 2026
 =========================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+/* 1) قاعدة بيانات الفئات */
+const categoriesDB = [
+  { slug: "cars", name_ar: "سيارات", icon: "🚗" },
+  { slug: "realestate", name_ar: "عقارات", icon: "🏠" },
+  { slug: "jobs", name_ar: "وظائف", icon: "👔" },
+  { slug: "services", name_ar: "خدمات", icon: "🛠" },
+  { slug: "electronics", name_ar: "إلكترونيات", icon: "📱" },
+  { slug: "fashion", name_ar: "أزياء", icon: "👗" },
+  { slug: "beauty", name_ar: "جمال", icon: "💄" },
+  { slug: "food", name_ar: "طعام", icon: "🍔" },
+  { slug: "education", name_ar: "تعليم", icon: "🎓" },
+  { slug: "health", name_ar: "صحة", icon: "🩺" },
+  { slug: "decor", name_ar: "ديكور فاخر – Luxury Decor", icon: "🪑" },
+  { slug: "shopping", name_ar: "تسوق", icon: "🛍" },
+  { slug: "books", name_ar: "كتب", icon: "📚" },
+  { slug: "stationery", name_ar: "مكتبيات", icon: "🖇" },
+  { slug: "school-supplies", name_ar: "لوازم مدرسية", icon: "🎒" },
+  { slug: "other", name_ar: "أخرى", icon: "📦" }
+];
 
-  /* ELEMENTS */
-  const categoryTitleEl = document.getElementById("categoryTitle");
-  const categoryCountEl = document.getElementById("categoryCount");
-  const categoryGridEl  = document.getElementById("categoryGrid");
+/* 2) تحويل slug → الاسم العربي */
+function getCategoryName(slug) {
+  const cat = categoriesDB.find(c => c.slug === slug);
+  return cat ? cat.name_ar : slug;
+}
 
-  /* قراءة التصنيف من URL */
+/* 3) قراءة ?cat من الـ URL */
+function getSlugFromURL() {
   const params = new URLSearchParams(window.location.search);
-  const slug = params.get("cat");
+  return params.get("cat");
+}
 
-  /* إذا لم يوجد تصنيف → عرض رسالة */
+/* 4) رسم شريط الفئات */
+function renderCategoriesBar(activeSlug) {
+  const bar = document.getElementById("categoriesBar");
+  bar.innerHTML = "";
+
+  categoriesDB.forEach(cat => {
+    const pill = document.createElement("div");
+    pill.className = "ga-cat-pill" + (cat.slug === activeSlug ? " active" : "");
+    pill.textContent = `${cat.icon} ${cat.name_ar}`;
+    pill.dataset.slug = cat.slug;
+
+    pill.addEventListener("click", () => {
+      updateCategory(cat.slug);
+    });
+
+    bar.appendChild(pill);
+  });
+}
+
+/* 5) رسم الإعلانات — بترتيب الأحدث أولًا */
+function renderCategoryAds(slug) {
+  const grid = document.getElementById("catGrid");
+  const titleEl = document.getElementById("catTitle");
+  const subEl = document.getElementById("catSub");
+  const iconEl = document.getElementById("catHeroIcon");
+
+  const cat = categoriesDB.find(c => c.slug === slug);
+  const name_ar = cat.name_ar;
+
+  titleEl.textContent = name_ar;
+  subEl.textContent = `عرض الإعلانات الحقيقية لفئة "${name_ar}"`;
+  iconEl.textContent = cat.icon;
+
+  let ads = GoldenAds.getAdsByCategory(name_ar);
+
+  // ترتيب الأحدث أولًا
+  ads = ads.sort((a, b) => {
+    const dateA = new Date(a.expires || a.created_at || 0);
+    const dateB = new Date(b.expires || b.created_at || 0);
+    return dateB - dateA;
+  });
+
+  grid.innerHTML = "";
+  ads.forEach(ad => {
+    grid.appendChild(GoldenAds.createAdCard(ad));
+  });
+}
+
+/* 6) تحديث الصفحة بدون Reload */
+function updateCategory(slug) {
+  history.replaceState(null, "", "?cat=" + encodeURIComponent(slug));
+  renderCategoriesBar(slug);
+  renderCategoryAds(slug);
+}
+
+/* 7) تهيئة الصفحة */
+document.addEventListener("DOMContentLoaded", () => {
+  let slug = getSlugFromURL();
+
   if (!slug) {
-    if (categoryTitleEl) categoryTitleEl.textContent = "تصنيف غير معروف";
-    if (categoryGridEl) {
-      categoryGridEl.innerHTML = `
-        <div class="empty-msg">
-          لم يتم تحديد أي تصنيف.
-        </div>
-      `;
-    }
-    return;
+    slug = categoriesDB[0].slug;
+    history.replaceState(null, "", "?cat=" + encodeURIComponent(slug));
   }
 
-  /* تحديث العنوان */
-  if (categoryTitleEl) {
-    categoryTitleEl.textContent = slug;
-  }
+  renderCategoriesBar(slug);
+  renderCategoryAds(slug);
 
-  /* جلب الإعلانات */
-  const filtered = GoldenAds.getAdsByCategory(slug);
+  /* 8) السحب بالماوس */
+  const scrollBox = document.querySelector(".ga-scroll-cats");
+  if (scrollBox) {
+    let isDown = false, startX, scrollLeft;
 
-  /* عرض الإعلانات */
-  function renderCategoryPage(list) {
-    if (!categoryGridEl) return;
-
-    categoryGridEl.innerHTML = "";
-
-    if (!list.length) {
-      categoryGridEl.innerHTML = `
-        <div class="empty-msg">
-          لا توجد إعلانات في هذا التصنيف حاليًا.
-        </div>
-      `;
-      if (categoryCountEl) categoryCountEl.textContent = "0 إعلان";
-      return;
-    }
-
-    list.forEach(ad => {
-      const card = GoldenAds.createAdCard(ad);
-      categoryGridEl.appendChild(card);
+    scrollBox.addEventListener("mousedown", e => {
+      isDown = true;
+      startX = e.pageX - scrollBox.offsetLeft;
+      scrollLeft = scrollBox.scrollLeft;
     });
 
-    if (categoryCountEl) {
-      categoryCountEl.textContent = `${list.length} إعلان`;
-    }
-  }
+    scrollBox.addEventListener("mouseleave", () => isDown = false);
+    scrollBox.addEventListener("mouseup", () => isDown = false);
 
-  /* تشغيل العرض */
-  renderCategoryPage(filtered);
-
-  /* جعل الدالة متاحة للروتر */
-  window.renderCategoryPage = renderCategoryPage;
-
-  /* مؤثرات سينمائية */
-  const revealElements = document.querySelectorAll(".cine-fade, .cine-slide");
-  function revealOnScroll() {
-    const trigger = window.innerHeight * 0.88;
-    revealElements.forEach(el => {
-      const rect = el.getBoundingClientRect().top;
-      if (rect < trigger) el.classList.add("show");
+    scrollBox.addEventListener("mousemove", e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - scrollBox.offsetLeft;
+      scrollBox.scrollLeft = scrollLeft - (x - startX) * 1.2;
     });
   }
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("load", revealOnScroll);
-
 });
