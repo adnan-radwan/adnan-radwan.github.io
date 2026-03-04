@@ -17,3 +17,7 @@ window.categoriesDB = [
   { slug: "school-supplies", name_ar: "لوازم مدرسية", icon: "🎒" },
   { slug: "other", name_ar: "أخرى", icon: "📦" }
 ];
+window.categorySlugMap = {};
+window.categoriesDB.forEach(cat => {
+  window.categorySlugMap[cat.slug] = cat.name_ar;
+});
