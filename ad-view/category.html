@@ -1,93 +1,68 @@
-<!-- ============================
-     GOLDEN ADS — CATEGORY PAGE
-============================= -->
-
-<!-- الشريط العلوي الثابت -->
-<div class="top-sticky-bar">
-  <div class="left">GOLDEN ADS 👑 – ( Radwan )</div>
-  <div class="right">
-    <a href="/p/golden-ads-home.html" target="_blank">الرئيسية</a>
+<!-- الشريط العلوي -->
+<div class="ga-topbar">
+  <div class="ga-topbar-inner">
+    <div class="ga-topbar-left">GOLDEN ADS 👑 — ( Radwan )</div>
+    <div class="ga-topbar-right">
+      <a href="/p/golden-ads-home.html">الرئيسية</a>
+      <a href="/p/login.html">تسجيل الدخول</a>
+      <a href="/p/blog-page_23.html">إضافة إعلان</a>
+    </div>
   </div>
 </div>
 
-<!-- الغلاف -->
-<header class="ga-header">
-  <h1>التصنيفات</h1>
-  <p>تصفح الإعلانات حسب الفئة</p>
-  <a class="ga-add" href="/p/blog-page_23.html">✨ أضف إعلانك الآن</a>
-</header>
+<div class="ga-container" style="padding-top:140px;">
 
-<!-- ⭐ عنوان الفئة المختارة -->
-<h2 id="catTitle" class="cat-title"></h2>
+  <header class="ga-header">
+    <h1>التصنيفات</h1>
+    <p>تصفح الإعلانات حسب الفئة</p>
+    <a class="ga-add" href="/p/blog-page_23.html">✨ أضف إعلانك الآن</a>
+  </header>
 
-<!-- ⭐ شبكة الإعلانات الخاصة بالفئة -->
-<div id="catGrid" class="cat-grid"></div>
+  <!-- الشريط الأول -->
+  <div class="ga-scroll-cats">
+    <div id="categoriesBar" class="ga-scroll-inner"></div>
+  </div>
+
+  <!-- HERO -->
+  <section class="category-hero-royal cine-fade">
+    <div class="cat-hero-icon" id="catHeroIcon">📂</div>
+    <h1 class="cat-hero-title" id="catTitle">جارٍ التحميل...</h1>
+    <p class="cat-hero-desc" id="catSub">جارٍ التحميل...</p>
+
+    <div class="cat-hero-gold"></div>
+    <div class="cat-hero-overlay"></div>
+  </section>
+
+  <!-- الشريط الثاني -->
+  <div class="ga-scroll-cats">
+    <div id="categoriesBar" class="ga-scroll-inner"></div>
+  </div>
+
+  <!-- GRID -->
+  <section class="section cine-slide">
+    <div id="catGrid" class="cat-grid"></div>
+  </section>
+
+</div>
 
 <!-- FOOTER -->
 <footer class="ga-footer">
-  <div class="inner">
-    <div class="top">
-      <div class="brand">
-        <div class="title">GOLDEN ADS — Marketplace – ( Radwan )</div>
-      </div>
+  <div class="ga-footer-inner">
+    <div class="ga-footer-brand">GOLDEN ADS — Marketplace — ( Radwan )</div>
 
-      <div class="links">
-        <a href="/p/privacy.html" target="_blank">سياسة الخصوصية</a>
-        <a href="/p/about.html" target="_blank">من نحن</a>
-        <a href="/p/contact.html" target="_blank">اتصل بنا</a>
-      </div>
-
-      <div class="contact">
-        <span>البريد الرسمي:</span>
-        <a href="mailto:goldenads.service@yahoo.com">goldenads.service@yahoo.com</a>
-      </div>
+    <div class="ga-footer-links">
+      <a href="/p/privacy.html">سياسة الخصوصية</a>
+      <a href="/p/about.html">من نحن</a>
+      <a href="/p/contact.html">اتصل بنا</a>
     </div>
 
-    <div class="bottom">
-      © 2026 👑GOLDEN ADS — Adnan Radwan — All Rights Reserved
+    <div class="ga-footer-contact">
+      البريد الرسمي:
+      <a href="mailto:goldenads.service@yahoo.com">goldenads.service@yahoo.com</a>
+    </div>
+
+    <div class="ga-footer-copy">
+      © 2026 GOLDEN ADS — Adnan Radwan — All Rights Reserved
     </div>
   </div>
 </footer>
-
-<!-- ملفات JS -->
-<script src="https://adnan-radwan.github.io/ad-view/categoriesDB.js"></script>
-<script src="https://adnan-radwan.github.io/ad-view/adsDB.js"></script>
-<script src="https://adnan-radwan.github.io/ad-view/category.js"></script>
-<script>
-function sendHeight() {
-  const height = document.body.scrollHeight;
-  parent.postMessage({ height: height }, "*");
-}
-
-window.onload = sendHeight;
-window.onresize = sendHeight;
-setInterval(sendHeight, 500);
-</script>
-<script>
-function sendHeight() {
-  const height = document.body.scrollHeight;
-  parent.postMessage({ height: height }, "*");
-}
-
-window.onload = sendHeight;
-window.onresize = sendHeight;
-setInterval(sendHeight, 400);
-</script>
-<section class="section cine-fade">
-  <div class="section-header">
-    <div>
-      <div class="section-title">
-        <span class="icon">📂</span>
-        <span id="categoryTitle">...</span>
-      </div>
-      <div class="section-sub">
-        جميع الإعلانات داخل هذا التصنيف.
-      </div>
-    </div>
-    <div class="section-actions">
-      <span id="categoryCount">0 إعلان</span>
-    </div>
-  </div>
-
-  <div class="grid" id="categoryGrid"></div>
-</section>
