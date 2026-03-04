@@ -105,7 +105,32 @@ document.addEventListener("DOMContentLoaded", () => {
     latestCountLabel.textContent = `${latestAds.length} إعلان`;
   }
 
-  /* ===========================================
+  /* -------------------------------------------
+     4) نظام التنقّل بين الفئات (Router)
+  ------------------------------------------- */
+
+  const CATEGORY_PAGE = "https://www.adnan-radwan.net/p/category.html";
+
+  function getCategoryName(slug) {
+    return window.categorySlugMap[slug] || slug;
+  }
+
+  document.querySelectorAll(".ga-cat-pill").forEach(pill => {
+    pill.addEventListener("click", () => {
+
+      document.querySelectorAll(".ga-cat-pill").forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+
+      const slug = pill.dataset.cat;
+      const url = CATEGORY_PAGE + "?cat=" + encodeURIComponent(slug);
+
+      window.open(url, "_blank");
+    });
+  });
+
+});
+
+/* ===========================================
    GOLDEN ADS — Core Engine (window.allAds)
 =========================================== */
 window.GoldenAds = (function () {
