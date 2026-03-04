@@ -1,72 +1,70 @@
-// قراءة ID من الرابط
-const params = new URLSearchParams(window.location.search);
-const adId = Number(params.get("id"));
+/* ===========================================
+   AD VIEW PAGE — GOLDEN ADS (Unified 2026)
+   عرض إعلان واحد + إعلانات مشابهة
+=========================================== */
 
-// عناصر الصفحة
-const adImage = document.getElementById("adImage");
-const adTitle = document.getElementById("adTitle");
-const adDesc = document.getElementById("adDesc");
-const newPrice = document.getElementById("newPrice");
-const oldPrice = document.getElementById("oldPrice");
-const countdown = document.getElementById("countdown");
-const openLink = document.getElementById("openLink");
-const copyLink = document.getElementById("copyLink");
-const similarAdsBox = document.getElementById("similarAds");
-
-// جلب الإعلان
-const ad = window.ads.find(a => a.id === adId);
-
-if (!ad) {
-  adTitle.textContent = "الإعلان غير موجود";
-} else {
-  adImage.src = ad.image;
-  adTitle.textContent = ad.title;
-  adDesc.textContent = ad.desc;
-  newPrice.textContent = ad.newPrice ? ad.newPrice + " ر.س" : "";
-  oldPrice.textContent = ad.oldPrice ? ad.oldPrice + " ر.س" : "";
-
-  openLink.onclick = () => window.open(ad.link, "_blank");
-
-  copyLink.onclick = () => {
-    navigator.clipboard.writeText(window.location.href);
-    alert("تم نسخ رابط الإعلان");
-  };
-
-  startCountdown(ad.expires);
-  loadSimilarAds(ad.category, ad.id);
+/* 1) قراءة ID من الرابط */
+function getAdIdFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("id");
 }
 
-// عداد انتهاء العرض
-function startCountdown(dateStr) {
-  const end = new Date(dateStr).getTime();
+/* 2) عرض الإعلان الرئيسي */
+function renderAdView(ad) {
+  const titleEl = document.getElementById("adTitle");
+  const priceEl = document.getElementById("adPrice");
+  const locEl = document.getElementById("adLocation");
+  const imgEl = document.getElementById("adImage");
+  const descEl = document.getElementById("adDescription");
+  const catEl = document.getElementById("adCategory");
 
-  setInterval(() => {
-    const now = Date.now();
-    const diff = end - now;
+  titleEl.textContent = ad.title;
+  priceEl.textContent = ad.price ? ad.price + " USD" : "—";
+  locEl.textContent = ad.location || "—";
+  descEl.textContent = ad.description || "—";
+  imgEl.src = ad.image || "/ad-view/no-image.png";
 
-    if (diff <= 0) {
-      countdown.textContent = "انتهى العرض";
-      return;
-    }
-
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const m = Math.floor((diff / (1000 * 60)) % 60);
-
-    countdown.textContent = `${d} يوم — ${h} ساعة — ${m} دقيقة`;
-  }, 1000);
+  // عرض اسم الفئة من categoriesDB
+  catEl.textContent = ad.category || "—";
 }
 
-// إعلانات مشابهة
-function loadSimilarAds(category, currentId) {
-  const list = window.ads
-    .filter(a => a.category === category && a.id !== currentId)
-    .slice(0, 6);
+/* 3) عرض إعلانات مشابهة */
+function renderSimilarAds(ad) {
+  const grid = document.getElementById("similarGrid");
+  if (!grid) return;
 
-  similarAdsBox.innerHTML = list.map(ad => `
-    <div class="similar-card" onclick="location.href='ad-view.html?id=${ad.id}'">
-      <img src="${ad.image}">
-      <div class="similar-card-title">${ad.title}</div>
-    </div>
-  `).join("");
+  let ads = GoldenAds.getAdsByCategory(ad.category);
+
+  // استبعاد الإعلان الحالي
+  ads = ads.filter(a => a.id !== ad.id);
+
+  // ترتيب الأحدث أولًا
+  ads = ads.sort((a, b) => {
+    const dateA = new Date(a.expires || a.created_at || 0);
+    const dateB = new Date(b.expires || b.created_at || 0);
+    return dateB - dateA;
+  });
+
+  // نعرض 6 فقط
+  const subset = ads.slice(0, 6);
+
+  grid.innerHTML = "";
+  subset.forEach(a => {
+    grid.appendChild(GoldenAds.createAdCard(a));
+  });
 }
+
+/* 4) تهيئة الصفحة */
+document.addEventListener("DOMContentLoaded", () => {
+  const id = getAdIdFromURL();
+  if (!id) return;
+
+  const ad = GoldenAds.getAdById(id);
+  if (!ad) {
+    console.error("❌ الإعلان غير موجود");
+    return;
+  }
+
+  renderAdView(ad);
+  renderSimilarAds(ad);
+});
