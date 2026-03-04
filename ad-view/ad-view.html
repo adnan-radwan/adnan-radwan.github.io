@@ -3,68 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>عرض الإعلان — Golden Ads</title>
+  <title>عرض الإعلان — GOLDEN ADS</title>
 
-  <!-- خط Tajawal -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="https://i.imgur.com/2R7wI1N.png">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="ad-view.css">
+  <link rel="stylesheet" href="/ad-view/ad-view.css">
 </head>
 
 <body>
 
-  <!-- خلفية سينمائية -->
-  <div class="gold-bg"></div>
+  <!-- HERO -->
+  <section class="ga-ad-hero">
+    <h1 id="adTitle" class="ga-ad-title"></h1>
+    <p class="ga-ad-meta">
+      <span id="adPrice"></span> • 
+      <span id="adLocation"></span> • 
+      <span id="adCategory"></span>
+    </p>
+  </section>
 
-  <!-- حاوية الإعلان -->
-  <div class="ad-container">
+  <!-- صورة الإعلان -->
+  <section class="ga-ad-image-box">
+    <img id="adImage" class="ga-ad-image" src="/ad-view/no-image.png" alt="Ad Image">
+  </section>
 
-    <!-- صورة الإعلان -->
-    <div class="ad-image-box">
-      <img id="adImage" alt="صورة الإعلان">
-    </div>
+  <!-- وصف الإعلان -->
+  <section class="ga-ad-description-box">
+    <h2>وصف الإعلان</h2>
+    <p id="adDescription" class="ga-ad-description"></p>
+  </section>
 
-    <!-- محتوى الإعلان -->
-    <div class="ad-content">
-
-      <h1 id="adTitle" class="ad-title"></h1>
-
-      <p id="adDesc" class="ad-desc"></p>
-
-      <div class="price-box">
-        <span id="newPrice" class="new-price"></span>
-        <span id="oldPrice" class="old-price"></span>
-      </div>
-
-      <div class="expires-box">
-        <span>ينتهي خلال:</span>
-        <span id="countdown" class="countdown"></span>
-      </div>
-
-      <div class="buttons-row">
-        <button class="btn gold" id="openLink">زيارة الرابط</button>
-        <button class="btn dark" id="copyLink">نسخ رابط الإعلان</button>
-        <button class="btn dark" onclick="history.back()">رجوع</button>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- قسم الإعلانات المشابهة -->
-  <div class="similar-section">
+  <!-- إعلانات مشابهة -->
+  <section class="ga-similar-section">
     <h2>إعلانات مشابهة</h2>
-    <div id="similarAds" class="similar-grid"></div>
-  </div>
+    <div id="similarGrid" class="cat-grid"></div>
+  </section>
 
-  <!-- تحميل قاعدة البيانات -->
-  <script src="https://raw.githack.com/adnan-radwan/adnan-radwan.github.io/main/adsDB.js"></script>
-
-  <!-- JS -->
-  <script src="ad-view.js"></script>
+  <!-- سكربتات النظام الموحد -->
+  <script src="/ad-view/adsDB.js"></script>
+  <script src="/ad-view/categoriesDB.js"></script>
+  <script src="/ad-view/golden-core.js"></script>
+  <script src="/ad-view/ad-view.js"></script>
 
 </body>
 </html>
