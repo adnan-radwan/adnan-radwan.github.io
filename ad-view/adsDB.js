@@ -1,3 +1,9 @@
+/* ===========================================
+   GOLDEN ADS — adsDB.js (Auto Generator)
+   480 Ads — 30 per Category — 2026
+=========================================== */
+
+/* 1) صور ثابتة لكل فئة */
 const categoryImages = {
   "cars": "https://images.unsplash.com/photo-1503376780353-7e6692767b70",
   "realestate": "https://images.unsplash.com/photo-1568605114967-8130f3a36994",
@@ -16,6 +22,8 @@ const categoryImages = {
   "school-supplies": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b",
   "other": "https://images.unsplash.com/photo-1503602642458-232111445657"
 };
+
+/* 2) الفئات */
 const categoriesConfig = [
   { slug: "cars", name: "سيارات" },
   { slug: "realestate", name: "عقارات" },
@@ -35,7 +43,8 @@ const categoriesConfig = [
   { slug: "other", name: "أخرى" }
 ];
 
-function getGenericTitle(catSlug) {
+/* 3) عناوين واقعية عامة */
+function getGenericTitle(slug) {
   const titles = {
     "cars": ["سيارة سيدان اقتصادية", "سيارة دفع رباعي عائلية", "سيارة صغيرة مناسبة للمدينة", "سيارة مستعملة بحالة ممتازة"],
     "realestate": ["شقة للإيجار في موقع مميز", "منزل عائلي واسع", "مكتب تجاري جاهز للاستخدام", "استوديو مفروش بالكامل"],
@@ -55,13 +64,16 @@ function getGenericTitle(catSlug) {
     "other": ["منتج متنوع", "عرض خاص", "قطعة فريدة", "منتج جديد"]
   };
 
-  const list = titles[catSlug] || ["منتج مميز"];
+  const list = titles[slug] || ["منتج مميز"];
   return list[Math.floor(Math.random() * list.length)];
 }
+
+/* 4) وصف متوسط (سطرين) */
 function getGenericDescription(catName) {
   return `منتج عملي ضمن فئة ${catName}، مناسب للاستخدام اليومي ويتميز بجودة جيدة. خيار مناسب لمن يبحث عن منتج موثوق وسعر معقول.`;
 }
 
+/* 5) مولّد الإعلانات */
 function generateMockAds(countPerCategory = 30, startId = 1000) {
   const ads = [];
   let idCounter = startId;
@@ -3714,4 +3726,5 @@ window.allAds = [
 {"id":600,"title":"لوحة فنية بإطار ذهبي","desc":"لوحة فنية بإطار ذهبي فاخر وتفاصيل فنية متقنة.","image":"https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f","link":"/p/ad600.html","category":"decor","featured":false,"status":"active","expires":"2025-02-06","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","art","gold"],"badge":"gold"},
 {"id":601,"title":"مجموعة فازات فاخرة","desc":"مجموعة فازات بتصميم فاخر ولمسات ذهبية أنيقة.","image":"https://images.unsplash.com/photo-1528701800489-20be3c2a3c09","link":"/p/ad601.html","category":"decor","featured":true,"status":"active","expires":"2024-12-31","oldPrice":0,"newPrice":0,"currency":"$","tags":["decor","vases","gold"],"badge":"gold"}
 ];
+/* 6) قاعدة البيانات النهائية */
 window.allAds = generateMockAds(30, 1000);
