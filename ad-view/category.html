@@ -10,60 +10,41 @@
   </div>
 </div>
 
-<div class="ga-container" style="padding-top:140px;">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التصنيفات — GOLDEN ADS</title>
 
-  <header class="ga-header">
-    <h1>التصنيفات</h1>
-    <p>تصفح الإعلانات حسب الفئة</p>
-    <a class="ga-add" href="/p/blog-page_23.html">✨ أضف إعلانك الآن</a>
-  </header>
+  <link rel="stylesheet" href="/ad-view/category.css">
+</head>
 
-  <!-- الشريط الأول -->
-  <div class="ga-scroll-cats">
-    <div id="categoriesBar" class="ga-scroll-inner"></div>
-  </div>
+<body>
 
   <!-- HERO -->
-  <section class="category-hero-royal cine-fade">
-    <div class="cat-hero-icon" id="catHeroIcon">📂</div>
-    <h1 class="cat-hero-title" id="catTitle">جارٍ التحميل...</h1>
-    <p class="cat-hero-desc" id="catSub">جارٍ التحميل...</p>
-
-    <div class="cat-hero-gold"></div>
-    <div class="cat-hero-overlay"></div>
+  <section class="ga-cat-hero">
+    <h1 id="catTitle"></h1>
+    <p id="catSub"></p>
+    <div id="catHeroIcon" class="ga-cat-hero-icon"></div>
   </section>
 
-  <!-- الشريط الثاني -->
-  <div class="ga-scroll-cats">
-    <div id="categoriesBar2" class="ga-scroll-inner"></div>
-  </div>
+  <!-- شريط الفئات -->
+  <section class="ga-cat-bars">
+    <div id="categoriesBar" class="ga-scroll-cats"></div>
+    <div id="categoriesBar2" class="ga-scroll-cats"></div>
+  </section>
 
-  <!-- GRID -->
-  <section class="section cine-slide">
+  <!-- شبكة الإعلانات -->
+  <section class="ga-cat-grid-section">
     <div id="catGrid" class="cat-grid"></div>
   </section>
-<script src="/ad-view/adsDB.js"></script>
-<script src="/ad-view/golden-core.js"></script>
-<script src="/ad-view/category.js"></script>
 
-<!-- FOOTER -->
-<footer class="ga-footer">
-  <div class="ga-footer-inner">
-    <div class="ga-footer-brand">GOLDEN ADS — Marketplace — ( Radwan )</div>
+  <!-- سكربتات النظام الموحد -->
+  <script src="/ad-view/adsDB.js"></script>
+  <script src="/ad-view/categoriesDB.js"></script>
+  <script src="/ad-view/golden-core.js"></script>
+  <script src="/ad-view/category.js"></script>
 
-    <div class="ga-footer-links">
-      <a href="/p/privacy.html">سياسة الخصوصية</a>
-      <a href="/p/about.html">من نحن</a>
-      <a href="/p/contact.html">اتصل بنا</a>
-    </div>
-
-    <div class="ga-footer-contact">
-      البريد الرسمي:
-      <a href="mailto:goldenads.service@yahoo.com">goldenads.service@yahoo.com</a>
-    </div>
-
-    <div class="ga-footer-copy">
-      © 2026 GOLDEN ADS — Adnan Radwan — All Rights Reserved
-    </div>
-  </div>
-</footer>
+</body>
+</html>
