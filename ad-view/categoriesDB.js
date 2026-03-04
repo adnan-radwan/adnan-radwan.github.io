@@ -10,7 +10,11 @@ window.categoriesDB = [
   { slug: "food", name_ar: "طعام", icon: "🍔" },
   { slug: "education", name_ar: "تعليم", icon: "🎓" },
   { slug: "health", name_ar: "صحة", icon: "🩺" },
-  { slug: "decor", name_ar: "ديكور فاخر – Luxury Decor", icon: "🪑" },
+  {
+  slug: "luxury-decor",
+  name_ar: "ديكور فاخر – Luxury Decor",
+  icon: "🏛️"
+}
   { slug: "shopping", name_ar: "تسوق", icon: "🛍" },
   { slug: "books", name_ar: "كتب", icon: "📚" },
   { slug: "stationery", name_ar: "مكتبيات", icon: "🖇" },
