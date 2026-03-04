@@ -56,7 +56,7 @@ window.GoldenAds = {
         <p class="ga-ad-loc">${ad.location || "—"}</p>
       </div>
 
-      <a class="ga-ad-link" href="/ad-view/ad-view.html?id=${ad.id}"></a>
+      <a class="ga-ad-link" href="/ad-view/ad-details.html?id=${ad.id}"></a>
     `;
 
     return card;
