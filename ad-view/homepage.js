@@ -450,8 +450,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-</script>
-<script>
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const CATEGORY_PAGE = "https://www.adnan-radwan.net/p/category.html";
