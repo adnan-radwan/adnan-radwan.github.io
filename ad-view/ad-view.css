@@ -1,171 +1,139 @@
+/* ===========================================
+   AD VIEW PAGE — GOLDEN ADS (Cinematic 2026)
+   تصميم موحّد — بدون أي تعارض مع بلوجر
+=========================================== */
+
 body {
   margin: 0;
+  padding: 0;
   font-family: "Tajawal", sans-serif;
-  background: #000;
+  background: #111;
   color: #fff;
-  overflow-x: hidden;
-}
-
-/* خلفية ذهبية متحركة */
-.gold-bg {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top, #1a1205, #000);
-  overflow: hidden;
-  z-index: -1;
-}
-.gold-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("https://i.imgur.com/7E5ZQ0R.png");
-  opacity: 0.12;
-  animation: move 18s linear infinite;
-}
-@keyframes move {
-  from { transform: translateY(0); }
-  to { transform: translateY(-100%); }
-}
-
-/* حاوية الإعلان */
-.ad-container {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 30px;
-}
-@media (max-width: 900px) {
-  .ad-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* صورة الإعلان */
-.ad-image-box {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 0 40px rgba(212,175,55,0.4);
-}
-.ad-image-box img {
-  width: 100%;
-  display: block;
-  border-radius: 20px;
-}
-
-/* محتوى الإعلان */
-.ad-content {
-  background: rgba(10,10,10,0.85);
-  border: 1px solid rgba(212,175,55,0.4);
-  border-radius: 20px;
-  padding: 20px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 40px rgba(0,0,0,0.8);
-  animation: fadeIn 0.8s ease;
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.ad-title {
-  font-size: 26px;
-  color: #ffe9a9;
-  margin-bottom: 10px;
-  text-shadow: 0 0 10px rgba(212,175,55,0.5);
-}
-
-.ad-desc {
-  font-size: 14px;
-  color: #e8d6ac;
   line-height: 1.7;
-  margin-bottom: 20px;
 }
 
-/* الأسعار */
-.price-box {
-  margin-bottom: 20px;
+/* HERO */
+.ga-ad-hero {
+  padding: 40px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a1a, #000);
+  border-bottom: 1px solid #333;
 }
-.new-price {
-  font-size: 22px;
+
+.ga-ad-title {
+  font-size: 32px;
   font-weight: 700;
-  color: #f7e29b;
+  margin-bottom: 10px;
+  color: #f5d37d;
 }
-.old-price {
+
+.ga-ad-meta {
   font-size: 16px;
-  color: #ff8080;
-  text-decoration: line-through;
-  margin-right: 10px;
+  opacity: 0.8;
 }
 
-/* العد التنازلي */
-.expires-box {
-  margin-bottom: 20px;
-  font-size: 14px;
-  color: #ffe9b0;
-}
-.countdown {
-  font-weight: 700;
-  margin-right: 6px;
-}
-
-/* الأزرار */
-.buttons-row {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.btn {
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-}
-.btn.gold {
-  background: linear-gradient(135deg, #f9e29b, #d4af37, #a97910);
-  color: #2a1c03;
-}
-.btn.dark {
-  background: #222;
-  color: #fff;
-}
-
-/* الإعلانات المشابهة */
-.similar-section {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 10px 20px;
-}
-.similar-section h2 {
-  color: #ffe9a9;
-  margin-bottom: 20px;
-}
-.similar-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-}
-.similar-card {
-  background: rgba(12,12,12,0.85);
-  border: 1px solid rgba(212,175,55,0.3);
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: 0.2s;
-}
-.similar-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 20px rgba(212,175,55,0.3);
-}
-.similar-card img {
+/* IMAGE */
+.ga-ad-image-box {
   width: 100%;
-  height: 150px;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.ga-ad-image {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #333;
+  box-shadow: 0 0 20px rgba(255, 215, 100, 0.15);
+}
+
+/* DESCRIPTION */
+.ga-ad-description-box {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 12px;
+  border: 1px solid #333;
+}
+
+.ga-ad-description-box h2 {
+  margin-top: 0;
+  color: #f5d37d;
+  font-size: 22px;
+}
+
+.ga-ad-description {
+  font-size: 17px;
+  opacity: 0.9;
+}
+
+/* SIMILAR ADS */
+.ga-similar-section {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+.ga-similar-section h2 {
+  color: #f5d37d;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* GRID */
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+/* AD CARD */
+.ga-ad-card {
+  position: relative;
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #333;
+  transition: 0.25s;
+}
+
+.ga-ad-card:hover {
+  transform: translateY(-4px);
+  border-color: #f5d37d;
+  box-shadow: 0 0 15px rgba(255, 215, 100, 0.25);
+}
+
+.ga-ad-img img {
+  width: 100%;
+  height: 160px;
   object-fit: cover;
 }
-.similar-card-title {
-  padding: 10px;
-  font-size: 13px;
-  color: #ffe9b0;
+
+.ga-ad-body {
+  padding: 12px 15px;
+}
+
+.ga-ad-title {
+  font-size: 18px;
+  margin: 0 0 6px;
+  color: #fff;
+}
+
+.ga-ad-price {
+  font-size: 16px;
+  color: #f5d37d;
+  margin-bottom: 4px;
+}
+
+.ga-ad-loc {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* CLICKABLE LINK */
+.ga-ad-link {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
 }
