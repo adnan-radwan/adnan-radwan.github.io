@@ -35,10 +35,13 @@ function getSlugFromURL() {
   return params.get("cat");
 }
 
-/* 4) رسم شريط الفئات */
+/* 4) رسم شريطَي الفئات */
 function renderCategoriesBar(activeSlug) {
-  const bar = document.getElementById("categoriesBar");
-  bar.innerHTML = "";
+  const bar1 = document.getElementById("categoriesBar");
+  const bar2 = document.getElementById("categoriesBar2");
+
+  bar1.innerHTML = "";
+  if (bar2) bar2.innerHTML = "";
 
   categoriesDB.forEach(cat => {
     const pill = document.createElement("div");
@@ -46,11 +49,15 @@ function renderCategoriesBar(activeSlug) {
     pill.textContent = `${cat.icon} ${cat.name_ar}`;
     pill.dataset.slug = cat.slug;
 
-    pill.addEventListener("click", () => {
-      updateCategory(cat.slug);
-    });
+    pill.addEventListener("click", () => updateCategory(cat.slug));
 
-    bar.appendChild(pill);
+    bar1.appendChild(pill);
+
+    if (bar2) {
+      const pill2 = pill.cloneNode(true);
+      pill2.addEventListener("click", () => updateCategory(cat.slug));
+      bar2.appendChild(pill2);
+    }
   });
 }
 
@@ -70,7 +77,6 @@ function renderCategoryAds(slug) {
 
   let ads = GoldenAds.getAdsByCategory(name_ar);
 
-  // ترتيب الأحدث أولًا
   ads = ads.sort((a, b) => {
     const dateA = new Date(a.expires || a.created_at || 0);
     const dateB = new Date(b.expires || b.created_at || 0);
@@ -103,8 +109,9 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCategoryAds(slug);
 
   /* 8) السحب بالماوس */
-  const scrollBox = document.querySelector(".ga-scroll-cats");
-  if (scrollBox) {
+  const scrollBoxes = document.querySelectorAll(".ga-scroll-cats");
+
+  scrollBoxes.forEach(scrollBox => {
     let isDown = false, startX, scrollLeft;
 
     scrollBox.addEventListener("mousedown", e => {
@@ -122,5 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
       const x = e.pageX - scrollBox.offsetLeft;
       scrollBox.scrollLeft = scrollLeft - (x - startX) * 1.2;
     });
-  }
+  });
 });
