@@ -107,6 +107,7 @@ function generateMockAds(countPerCategory = 30, startId = 1000) {
 
   return ads;
 }
+window.allAds = generateMockAds(30, 1000);
 
 window.allAds = [
 {
