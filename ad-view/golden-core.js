@@ -1,115 +1,64 @@
 /* ===========================================
-   GOLDEN ADS — Core Engine v6.2
-   Official Stable Release — (Adnan Radwan)
+   GOLDEN ADS — CORE ENGINE (Unified 2026)
+   محرك موحّد لكل الصفحات
 =========================================== */
 
-window.GoldenAds = (function () {
-  "use strict";
+/* 1) التأكد من وجود قاعدة البيانات */
+if (!window.allAds) {
+  console.error("❌ ERROR: adsDB.js لم يتم تحميله — window.allAds غير موجود");
+  window.allAds = [];
+}
 
-  /* -------------------------------------------
-     1) ترتيب الإعلانات حسب ID
-  ------------------------------------------- */
-  const ads = (window.allAds || []).slice().sort((a, b) => a.id - b.id);
+if (!window.categoriesDB) {
+  console.error("❌ ERROR: categoriesDB.js لم يتم تحميله — window.categoriesDB غير موجود");
+  window.categoriesDB = [];
+}
 
-  /* -------------------------------------------
-     2) تحويل تاريخ الانتهاء إلى Date
-  ------------------------------------------- */
-  function parseDate(dateStr) {
-    return new Date(dateStr + "T23:59:59Z");
-  }
+/* 2) إنشاء خريطة slug → الاسم العربي (إن لم تكن موجودة) */
+if (!window.categorySlugMap) {
+  window.categorySlugMap = {};
+  window.categoriesDB.forEach(cat => {
+    window.categorySlugMap[cat.slug] = cat.name_ar;
+  });
+}
 
-  /* -------------------------------------------
-     3) التحقق من أن الإعلان نشط
-  ------------------------------------------- */
-  function isActive(ad) {
-    if (!ad || ad.status !== "active" || !ad.expires) return false;
-    return parseDate(ad.expires) >= new Date();
-  }
+/* 3) محرك GOLDEN ADS */
+window.GoldenAds = {
 
-  /* -------------------------------------------
-     4) جميع الإعلانات النشطة
-  ------------------------------------------- */
-  function getAllActiveAds() {
-    return ads.filter(isActive);
-  }
+  /* جلب كل الإعلانات */
+  getAllAds() {
+    return window.allAds || [];
+  },
 
-  /* -------------------------------------------
-     5) الإعلانات المميزة (featured = true)
-  ------------------------------------------- */
-  function getFeaturedAds() {
-    return getAllActiveAds().filter(ad => ad.featured === true);
-  }
+  /* جلب إعلان واحد عبر ID */
+  getAdById(id) {
+    return window.allAds.find(ad => String(ad.id) === String(id));
+  },
 
-  /* -------------------------------------------
-     6) الإعلانات حسب التصنيف
-  ------------------------------------------- */
-  function getAdsByCategory(category) {
-    return getAllActiveAds().filter(ad => ad.category === category);
-  }
+  /* جلب الإعلانات حسب الفئة (بالاسم العربي) */
+  getAdsByCategory(categoryName) {
+    return window.allAds.filter(ad => ad.category === categoryName);
+  },
 
-  /* -------------------------------------------
-     7) أحدث الإعلانات (مرتبة حسب تاريخ الانتهاء)
-  ------------------------------------------- */
-  function getLatestAds(limit = 20) {
-    return getAllActiveAds()
-      .sort((a, b) => new Date(b.expires) - new Date(a.expires))
-      .slice(0, limit);
-  }
-
-  /* -------------------------------------------
-     8) إنشاء كرت إعلان موحّد (ga-card)
-  ------------------------------------------- */
-  function createAdCard(ad, options = {}) {
-    const card = document.createElement("a");
-    card.className = "ga-card";
-
-    // وضع شريط FEATURED إذا كان الإعلان مميزًا
-    if (options.featuredMode) {
-      card.classList.add("featured-mode");
-    }
-
-    card.href = ad.link || "#";
+  /* إنشاء بطاقة إعلان موحّدة */
+  createAdCard(ad) {
+    const card = document.createElement("div");
+    card.className = "ga-ad-card";
 
     card.innerHTML = `
-      <div class="ga-card-img">
-        <img src="${ad.image}" alt="${ad.title}">
-        <span class="ga-badge">${ad.badge || "gold"}</span>
+      <div class="ga-ad-img">
+        <img src="${ad.image || '/ad-view/no-image.png'}" alt="${ad.title}">
       </div>
 
-      <div class="ga-card-body">
-        <h3 class="ga-title">${ad.title}</h3>
-        <p class="ga-desc">${ad.desc}</p>
-
-        <div class="ga-meta">
-          <span class="ga-cat">${ad.category}</span>
-          <span class="ga-exp">${ad.expires ? "ينتهي: " + ad.expires : ""}</span>
-        </div>
+      <div class="ga-ad-body">
+        <h3 class="ga-ad-title">${ad.title}</h3>
+        <p class="ga-ad-price">${ad.price ? ad.price + " USD" : "—"}</p>
+        <p class="ga-ad-loc">${ad.location || "—"}</p>
       </div>
+
+      <a class="ga-ad-link" href="/ad-view/ad-view.html?id=${ad.id}"></a>
     `;
 
     return card;
   }
-
-  /* -------------------------------------------
-     9) عرض قائمة إعلانات داخل عنصر معيّن
-  ------------------------------------------- */
-  function renderAds(containerId, list, options = {}) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = "";
-    list.forEach(ad => container.appendChild(createAdCard(ad, options)));
-  }
-
-  /* -------------------------------------------
-     10) واجهة الـ API الرسمية
-  ------------------------------------------- */
-  return {
-    getAllActiveAds,
-    getFeaturedAds,
-    getAdsByCategory,
-    getLatestAds,
-    renderAds,
-    createAdCard
-  };
-})();
+};
