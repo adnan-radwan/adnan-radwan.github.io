@@ -1,4 +1,4 @@
-window.allAds = [
+export const adsDB = [
 {
 "id":1,
 "title":"هاتف ذكي بشاشة كبيرة",
